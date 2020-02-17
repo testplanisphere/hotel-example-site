@@ -1,10 +1,10 @@
 import { ready, isValidUser } from "./global.js";
 
 ready(function() {
-  let form = document.getElementById("loginForm");
+  const form = document.getElementById("login-form");
   form.addEventListener("submit", function(event) {
-    let emailInput = document.getElementById("email");
-    let passwordInput = document.getElementById("password");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
     emailInput.setCustomValidity("");
     passwordInput.setCustomValidity("");
     if (emailInput.checkValidity() && passwordInput.checkValidity()) {
@@ -16,8 +16,8 @@ ready(function() {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      document.getElementById("emailMessage").textContent = emailInput.validationMessage;
-      document.getElementById("passwordMessage").textContent = passwordInput.validationMessage;
+      document.getElementById("email-message").textContent = emailInput.validationMessage;
+      document.getElementById("password-message").textContent = passwordInput.validationMessage;
       form.classList.add("was-validated");
     }
   });
