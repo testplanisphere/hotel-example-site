@@ -1,6 +1,8 @@
 export const PRESET_USER = new Map([
   ['email', 'ichiro@example.com'],
   ['password', 'password'],
+  ['name', '山田一郎'],
+  ['tel', '01234567891'],
 ]);
 
 export function ready(handler) {
