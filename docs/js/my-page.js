@@ -1,8 +1,13 @@
-import { PRESET_USER ,ready } from './global.js';
+import { ready, getUser, getSessionUser } from './global.js';
 
+history.replaceState(null, '', 'my-page.html');
 ready(() => {
-  window.history.replaceState(null, '', 'my-page.html');
-  document.getElementById('email').textContent = PRESET_USER.get('email');
-  document.getElementById('name').textContent = PRESET_USER.get('name');
-  document.getElementById('tel').textContent = PRESET_USER.get('tel');
+  const session = getSessionUser();
+  if (session === null) {
+    return;
+  }
+  const user = getUser(session);
+  document.getElementById('email').textContent = user.email;
+  document.getElementById('username').textContent = user.username;
+  document.getElementById('tel').textContent = user.tel;
 });

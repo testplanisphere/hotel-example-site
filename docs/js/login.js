@@ -1,4 +1,4 @@
-import { ready, isValidUser } from './global.js';
+import { ready, isValidUser, login } from './global.js';
 
 ready(() => {
   const form = document.getElementById('login-form');
@@ -19,6 +19,8 @@ ready(() => {
       document.getElementById('email-message').textContent = emailInput.validationMessage;
       document.getElementById('password-message').textContent = passwordInput.validationMessage;
       form.classList.add('was-validated');
+    } else {
+      login(emailInput.value);
     }
   });
 });
