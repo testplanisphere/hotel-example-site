@@ -11,7 +11,37 @@
     <title>マイページ</title>
   </head>
   <body>
+    <h1 class="text-center text-uppercase d-none d-lg-block display-3 my-5">Star Hotel</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light py-lg-4">
+      <a class="navbar-brand text-uppercase font-weight-bold d-lg-none" href="#">Star Hotel</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./index.html">ホーム</span></a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="#">宿泊予約</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./signup.html">会員登録</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <form action="./" class="form-inline">
+              <button type="submit" class="btn btn-outline-success my-2 my-sm-0">ログアウト</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2 class="my-3">マイページ</h2>
+        </div>
+      </div>
       <dl class="row">
         <dt class="col-sm-3">メールアドレス</dt>
         <dd class="col-sm-9" id="email"></dd>
