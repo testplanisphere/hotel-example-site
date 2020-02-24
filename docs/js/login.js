@@ -3,7 +3,7 @@ import { ready, resetCustomValidity, setCustomValidityMessage, isValidUser, getS
 ready(() => {
   const session = getSessionUser();
   if (session !== '') {
-    location.assign(location.origin);
+    location.assign(location.href.replace('login.html', 'index.html'));
   }
   const loginForm = document.getElementById('login-form');
   loginForm.addEventListener('submit', (event) => {

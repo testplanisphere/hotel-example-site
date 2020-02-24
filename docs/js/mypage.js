@@ -12,7 +12,7 @@ history.replaceState(null, '', 'mypage.html');
 ready(() => {
   const session = getSessionUser();
   if (session === '') {
-    location.assign(location.origin);
+    location.assign(location.href.replace('mypage.html', 'index.html'));
   }
   const user = getUser(session);
   document.getElementById('email').textContent = user.email;

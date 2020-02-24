@@ -3,7 +3,7 @@ import { ready, resetCustomValidity, setCustomValidityMessage, getUser, getSessi
 ready(() => {
   const session = getSessionUser();
   if (session !== '') {
-    location.assign(location.origin);
+    location.assign(location.href.replace('signup.html', 'index.html'));
   }
   const signupForm = document.getElementById('signup-form');
   signupForm.addEventListener('submit', (event) => {
