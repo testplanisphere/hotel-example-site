@@ -10,9 +10,9 @@
 
     <title>マイページ</title>
   </head>
-  <body>
+  <body class="bg-light">
     <h1 class="text-center text-uppercase d-none d-lg-block display-3 my-5">Star Hotel</h1>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light py-lg-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-4">
       <a class="navbar-brand text-uppercase font-weight-bold d-lg-none" href="#">Star Hotel</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,20 +36,54 @@
         </ul>
       </div>
     </nav>
-    <div class="container">
+    <div class="container bg-white py-5">
       <div class="row">
-        <div class="col">
+        <div class="col-lg-9 mx-auto">
           <h2 class="my-3">マイページ</h2>
         </div>
       </div>
-      <dl class="row">
-        <dt class="col-sm-3">メールアドレス</dt>
-        <dd class="col-sm-9" id="email"></dd>
-        <dt class="col-sm-3">氏名</dt>
-        <dd class="col-sm-9" id="username"></dd>
-        <dt class="col-sm-3">電話番号</dt>
-        <dd class="col-sm-9" id="tel"></dd>
-      </dl>
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>メールアドレス</h5>
+                <p id="email"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>氏名</h5>
+                <p id="username"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>住所</h5>
+                <p id="address"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>電話番号</h5>
+                <p id="tel"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>性別</h5>
+                <p id="sex"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>生年月日</h5>
+                <p id="birthday"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <!-- Optional JavaScript -->

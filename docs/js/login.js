@@ -1,12 +1,11 @@
-import { ready, isValidUser, login } from './global.js';
+import { ready, resetCustomValidity, setCustomValidityMessage, isValidUser, login } from './global.js';
 
 ready(() => {
   const form = document.getElementById('login-form');
   form.addEventListener('submit', (event) => {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    emailInput.setCustomValidity('');
-    passwordInput.setCustomValidity('');
+    resetCustomValidity(emailInput, passwordInput);
     if (emailInput.checkValidity() && passwordInput.checkValidity()) {
       if (!isValidUser(emailInput.value, passwordInput.value)) {
         emailInput.setCustomValidity('メールアドレスまたはパスワードが違います。');
@@ -16,8 +15,7 @@ ready(() => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      document.getElementById('email-message').textContent = emailInput.validationMessage;
-      document.getElementById('password-message').textContent = passwordInput.validationMessage;
+      setCustomValidityMessage(emailInput, passwordInput);
       form.classList.add('was-validated');
     } else {
       login(emailInput.value);

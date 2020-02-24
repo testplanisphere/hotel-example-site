@@ -10,9 +10,9 @@
 
     <title>ログイン</title>
   </head>
-  <body>
+  <body class="bg-light">
     <h1 class="text-center text-uppercase d-none d-lg-block display-3 my-5">Star Hotel</h1>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light py-lg-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-4">
       <a class="navbar-brand text-uppercase font-weight-bold d-lg-none" href="#">Star Hotel</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,19 +29,19 @@
             <a class="nav-link" href="./signup.html">会員登録</a>
           </li>
           <li class="nav-item px-lg-4 active">
-            <a class="nav-link" href="./login.html">ログイン <span class="sr-only">（現在のページ）</a>
+            <a class="btn btn-outline-secondary" href="./login.html" role="button">ログイン <span class="sr-only">（現在のページ）</a>
           </li>
         </ul>
       </div>
     </nav>
-    <div class="container">
+    <div class="container bg-white py-5">
       <div class="row">
-        <div class="col">
+        <div class="col-lg-5 mx-auto">
           <h2 class="my-3">ログイン</h2>
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-lg-5 mx-auto">
           <form action="./my-page.html" method="get" id="login-form" novalidate>
             <div class="form-group">
               <label for="email">メールアドレス</label>
@@ -53,7 +53,7 @@
               <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" required>
               <div class="invalid-feedback" id="password-message"></div>
             </div>
-            <button type="submit" class="btn btn-primary">ログイン</button>
+            <button type="submit" class="btn btn-primary btn-block">ログイン</button>
           </form>
         </div>
       </div>

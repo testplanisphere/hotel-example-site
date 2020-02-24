@@ -2,7 +2,10 @@ export const PRESET_USER = {
   'email': 'ichiro@example.com',
   'password': 'password',
   'username': '山田一郎',
+  'address': '東京都豊島区池袋',
   'tel': '01234567891',
+  'sex': '1',
+  'birthday': '',
 };
 
 export function ready(handler) {
@@ -11,6 +14,16 @@ export function ready(handler) {
   } else {
     handler();
   }
+}
+
+export function resetCustomValidity(...inputs) {
+  inputs.forEach(input => input.setCustomValidity(''));
+}
+
+export function setCustomValidityMessage(...inputs) {
+  inputs.forEach((input) => {
+    document.getElementById(`${input.id}-message`).textContent = input.validationMessage;
+  });
 }
 
 export function isValidUser(email, password) {
