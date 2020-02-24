@@ -1,4 +1,4 @@
-import { ready, getUser, getSessionUser } from './global.js';
+import { ready, getUser, getSessionUser, logout } from './global.js';
 
 const DISPLAY_SEX = new Map([
   ['0', '未登録'],
@@ -6,11 +6,13 @@ const DISPLAY_SEX = new Map([
   ['2', '女性'],
   ['9', 'その他'],
 ]);
+
 history.replaceState(null, '', 'mypage.html');
+
 ready(() => {
   const session = getSessionUser();
-  if (session === null) {
-    return;
+  if (session === '') {
+    location.assign(location.origin);
   }
   const user = getUser(session);
   document.getElementById('email').textContent = user.email;
@@ -32,4 +34,7 @@ ready(() => {
     document.getElementById('birthday').textContent = '未登録';
   }
   
+  document.getElementById('logout-form').addEventListener('submit', (event) => {
+    logout();
+  });
 });

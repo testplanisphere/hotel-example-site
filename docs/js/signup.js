@@ -1,8 +1,12 @@
-import { ready, resetCustomValidity, setCustomValidityMessage, getUser, login } from './global.js';
+import { ready, resetCustomValidity, setCustomValidityMessage, getUser, getSessionUser, login } from './global.js';
 
 ready(() => {
-  const form = document.getElementById('signup-form');
-  form.addEventListener('submit', (event) => {
+  const session = getSessionUser();
+  if (session !== '') {
+    location.assign(location.origin);
+  }
+  const signupForm = document.getElementById('signup-form');
+  signupForm.addEventListener('submit', (event) => {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const passwordConfirmationInput = document.getElementById('password-confirmation');
@@ -23,11 +27,11 @@ ready(() => {
         passwordConfirmationInput.setCustomValidity('入力されたパスワードと一致しません。');
       }
     }
-    if (form.checkValidity() === false) {
+    if (signupForm.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
       setCustomValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, sexSelect, birthdayInput);
-      form.classList.add('was-validated');
+      signupForm.classList.add('was-validated');
     } else {
       const newUser = {
         'email': emailInput.value,

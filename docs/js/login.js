@@ -1,8 +1,12 @@
-import { ready, resetCustomValidity, setCustomValidityMessage, isValidUser, login } from './global.js';
+import { ready, resetCustomValidity, setCustomValidityMessage, isValidUser, getSessionUser, login } from './global.js';
 
 ready(() => {
-  const form = document.getElementById('login-form');
-  form.addEventListener('submit', (event) => {
+  const session = getSessionUser();
+  if (session !== '') {
+    location.assign(location.origin);
+  }
+  const loginForm = document.getElementById('login-form');
+  loginForm.addEventListener('submit', (event) => {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     resetCustomValidity(emailInput, passwordInput);
@@ -12,11 +16,11 @@ ready(() => {
         passwordInput.setCustomValidity('メールアドレスまたはパスワードが違います。');
       }
     }
-    if (form.checkValidity() === false) {
+    if (loginForm.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
       setCustomValidityMessage(emailInput, passwordInput);
-      form.classList.add('was-validated');
+      loginForm.classList.add('was-validated');
     } else {
       login(emailInput.value);
     }
