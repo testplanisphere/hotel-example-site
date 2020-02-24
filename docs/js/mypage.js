@@ -6,7 +6,7 @@ const DISPLAY_SEX = new Map([
   ['2', '女性'],
   ['9', 'その他'],
 ]);
-history.replaceState(null, '', 'my-page.html');
+history.replaceState(null, '', 'mypage.html');
 ready(() => {
   const session = getSessionUser();
   if (session === null) {
