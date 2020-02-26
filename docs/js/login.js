@@ -1,10 +1,10 @@
 import { ready, resetCustomValidity, setCustomValidityMessage, isValidUser, getSessionUser, login } from './global.js';
 
+const session = getSessionUser();
+if (session !== '') {
+  location.assign(location.href.replace('login.html', 'index.html'));
+}
 ready(() => {
-  const session = getSessionUser();
-  if (session !== '') {
-    location.assign(location.href.replace('login.html', 'index.html'));
-  }
   const loginForm = document.getElementById('login-form');
   loginForm.addEventListener('submit', (event) => {
     const emailInput = document.getElementById('email');

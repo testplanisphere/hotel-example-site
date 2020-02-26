@@ -1,10 +1,10 @@
 import { ready, resetCustomValidity, setCustomValidityMessage, getUser, getSessionUser, login } from './global.js';
 
+const session = getSessionUser();
+if (session !== '') {
+  location.assign(location.href.replace('signup.html', 'index.html'));
+}
 ready(() => {
-  const session = getSessionUser();
-  if (session !== '') {
-    location.assign(location.href.replace('signup.html', 'index.html'));
-  }
   const signupForm = document.getElementById('signup-form');
   signupForm.addEventListener('submit', (event) => {
     const emailInput = document.getElementById('email');
@@ -33,14 +33,18 @@ ready(() => {
       setCustomValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, sexSelect, birthdayInput);
       signupForm.classList.add('was-validated');
     } else {
+      const rankInput = document.querySelector('input[name="rank"]:checked');
+      const notificationInput = document.getElementById('notification');
       const newUser = {
         'email': emailInput.value,
         'password': passwordInput.value,
         'username': usernameInput.value,
+        'rank': rankInput.value,
         'address': addressInput.value,
         'tel': telInput.value,
         'sex': sexSelect.options[sexSelect.selectedIndex].value,
         'birthday': birthdayInput.value,
+        'notification': notificationInput.checked,
       };
       localStorage.setItem(newUser.email, JSON.stringify(newUser));
       login(newUser.email);

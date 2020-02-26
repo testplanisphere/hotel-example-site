@@ -8,15 +8,19 @@ const DISPLAY_SEX = new Map([
 ]);
 
 history.replaceState(null, '', 'mypage.html');
-
+const session = getSessionUser();
+if (session === '') {
+  location.assign(location.href.replace('mypage.html', 'index.html'));
+}
 ready(() => {
-  const session = getSessionUser();
-  if (session === '') {
-    location.assign(location.href.replace('mypage.html', 'index.html'));
-  }
   const user = getUser(session);
   document.getElementById('email').textContent = user.email;
   document.getElementById('username').textContent = user.username;
+  if (user.rank === 'premium') {
+    document.getElementById('rank').textContent = 'プレミアム会員';
+  } else if (user.rank === 'normal') {
+    document.getElementById('rank').textContent = '通常会員';
+  }
   if (user.address !== '') {
     document.getElementById('address').textContent = user.address;
   } else {
@@ -33,6 +37,7 @@ ready(() => {
   } else {
     document.getElementById('birthday').textContent = '未登録';
   }
+  document.getElementById('notification').textContent = user.notification ? '受け取る' : '受け取らない'
   
   document.getElementById('logout-form').addEventListener('submit', (event) => {
     logout();

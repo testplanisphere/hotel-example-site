@@ -2,10 +2,12 @@ export const PRESET_USER = {
   'email': 'ichiro@example.com',
   'password': 'password',
   'username': '山田一郎',
+  'rank': 'premium',
   'address': '東京都豊島区池袋',
   'tel': '01234567891',
   'sex': '1',
   'birthday': '',
+  'notification': true,
 };
 
 export function ready(handler) {

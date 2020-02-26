@@ -65,6 +65,20 @@
               <input type="text" class="form-control" name="username" id="username" required>
               <div class="invalid-feedback" id="username-message"></div>
             </div>
+            <fieldset class="form-group">
+              <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="rank" id="rank-premium" value="premium" checked>
+                <label class="form-check-label" for="rank-premium">
+                  プレミアム会員
+                </label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="rank" id="rank-normal" value="normal">
+                <label class="form-check-label" for="rank-normal">
+                  一般会員
+                </label>
+              </div>
+            </fieldset>
             <div class="form-group">
               <label for="address">住所</label>
               <input type="text" class="form-control" name="address" id="address">
@@ -90,6 +104,14 @@
               <label for="birthday">生年月日</label>
               <input type="date" class="form-control" name="birthday" id="birthday">
               <div class="invalid-feedback" id="birthday-message"></div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="notification" id="notification">
+                <label class="form-check-label" for="notification">
+                  お知らせを受け取る
+                </label>
+              </div>
             </div>
             <button type="submit" class="btn btn-primary">登録</button>
           </form>
