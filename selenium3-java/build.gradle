@@ -11,6 +11,10 @@ plugins {
     id 'java-library'
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -18,6 +22,7 @@ repositories {
 }
 
 dependencies {
+    // Selenium-java 3
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
 
     // Use JUnit Jupiter API for testing.
