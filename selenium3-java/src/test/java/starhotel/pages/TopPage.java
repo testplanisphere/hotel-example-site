@@ -16,4 +16,10 @@ public class TopPage {
     loginLink.click();
     return new LoginPage(driver);
   }
+
+  public SignupPage goToSignupPage() {
+    var signupLink = driver.findElement(By.linkText("会員登録"));
+    signupLink.click();
+    return new SignupPage(driver);
+  }
 }

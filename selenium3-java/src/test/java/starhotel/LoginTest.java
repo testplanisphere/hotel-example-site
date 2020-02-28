@@ -7,11 +7,15 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import starhotel.pages.TopPage;
 
+@TestMethodOrder(OrderAnnotation.class)
 @DisplayName("ログイン画面テスト")
 class LoginTest {
 
@@ -35,6 +39,7 @@ class LoginTest {
   }
 
   @Test
+  @Order(1)
   @DisplayName("定義済みユーザでログインができること")
   void testLoginSuccess() {
     driver.get(URL);
@@ -46,6 +51,7 @@ class LoginTest {
   }
 
   @Test
+  @Order(2)
   @DisplayName("未入力でエラーとなること")
   void testLoginFailBlank() {
     driver.get(URL);
@@ -62,6 +68,7 @@ class LoginTest {
   }
 
   @Test
+  @Order(3)
   @DisplayName("未登録のユーザでエラーとなること")
   void testLoginFailUnregister() {
     driver.get(URL);
