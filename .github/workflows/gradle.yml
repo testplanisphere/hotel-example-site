@@ -13,9 +13,9 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Move working directory
-      run: cd ./selenium3-java
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      working-directory: ./selenium3-java
     - name: Build with Gradle
       run: ./gradlew build
+      working-directory: ./selenium3-java
