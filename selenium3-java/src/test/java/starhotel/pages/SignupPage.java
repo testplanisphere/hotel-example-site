@@ -65,9 +65,9 @@ public class SignupPage {
     telInput.sendKeys(tel);
   }
 
-  public void selectSex(String sex) {
-    var sexSelect = new Select(driver.findElement(By.id("sex")));
-    sexSelect.selectByVisibleText(sex);
+  public void selectGender(String gender) {
+    var genderSelect = new Select(driver.findElement(By.id("gender")));
+    genderSelect.selectByVisibleText(gender);
   }
 
   public void setBirthday(LocalDate birthday) {

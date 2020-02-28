@@ -55,7 +55,7 @@ public class SignupTest {
     signupPage.selectRank(Rank.NORMAL);
     signupPage.setAddress("神奈川県横浜市港区");
     signupPage.setTel("01234567891");
-    signupPage.selectSex("女性");
+    signupPage.selectGender("女性");
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.checkNotification(true);
     var myPage = signupPage.goToMyPage();
@@ -78,7 +78,7 @@ public class SignupTest {
     signupPage.selectRank(Rank.PREMIUM);
     signupPage.setAddress("");
     signupPage.setTel("");
-    signupPage.selectSex("");
+    signupPage.selectGender("");
     // signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.checkNotification(false);
     signupPage.goToMyPage();
@@ -110,7 +110,7 @@ public class SignupTest {
     signupPage.selectRank(Rank.NORMAL);
     signupPage.setAddress("千葉県千葉市");
     signupPage.setTel("1234567890");
-    signupPage.selectSex("その他");
+    signupPage.selectGender("その他");
     // signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.checkNotification(true);
     signupPage.goToMyPage();
@@ -142,7 +142,7 @@ public class SignupTest {
     signupPage.selectRank(Rank.NORMAL);
     signupPage.setAddress("神奈川県横浜市港区");
     signupPage.setTel("01234567891");
-    signupPage.selectSex("女性");
+    signupPage.selectGender("女性");
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.checkNotification(true);
     signupPage.goToMyPage();
@@ -165,7 +165,7 @@ public class SignupTest {
     signupPage.selectRank(Rank.NORMAL);
     signupPage.setAddress("神奈川県横浜市港区");
     signupPage.setTel("01234567891");
-    signupPage.selectSex("女性");
+    signupPage.selectGender("女性");
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.checkNotification(true);
     signupPage.goToMyPage();

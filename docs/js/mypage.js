@@ -1,6 +1,6 @@
 import { ready, getUser, getSessionUser, logout } from './global.js';
 
-const DISPLAY_SEX = new Map([
+const DISPLAY_GENDER = new Map([
   ['0', '未登録'],
   ['1', '男性'],
   ['2', '女性'],
@@ -31,7 +31,7 @@ ready(() => {
   } else {
     document.getElementById('tel').textContent = '未登録';
   }
-  document.getElementById('sex').textContent = DISPLAY_SEX.get(user.sex);
+  document.getElementById('gender').textContent = DISPLAY_GENDER.get(user.gender);
   if (user.birthday !== '') {
     document.getElementById('birthday').textContent = user.birthday;
   } else {

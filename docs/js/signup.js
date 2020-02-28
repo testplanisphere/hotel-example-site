@@ -13,9 +13,9 @@ ready(() => {
     const usernameInput = document.getElementById('username');
     const addressInput = document.getElementById('address');
     const telInput = document.getElementById('tel');
-    const sexSelect = document.getElementById('sex');
+    const genderSelect = document.getElementById('gender');
     const birthdayInput = document.getElementById('birthday');
-    resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, sexSelect, birthdayInput);
+    resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
     if (emailInput.checkValidity()) {
       const user = getUser(emailInput.value);
       if (user !== null) {
@@ -30,7 +30,7 @@ ready(() => {
     if (signupForm.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      setCustomValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, sexSelect, birthdayInput);
+      setCustomValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
       signupForm.classList.add('was-validated');
     } else {
       const rankInput = document.querySelector('input[name="rank"]:checked');
@@ -42,7 +42,7 @@ ready(() => {
         'rank': rankInput.value,
         'address': addressInput.value,
         'tel': telInput.value,
-        'sex': sexSelect.options[sexSelect.selectedIndex].value,
+        'gender': genderSelect.options[genderSelect.selectedIndex].value,
         'birthday': birthdayInput.value,
         'notification': notificationInput.checked,
       };

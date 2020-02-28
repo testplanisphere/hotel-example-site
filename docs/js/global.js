@@ -5,7 +5,7 @@ export const PRESET_USER = {
   'rank': 'premium',
   'address': '東京都豊島区池袋',
   'tel': '01234567891',
-  'sex': '1',
+  'gender': '1',
   'birthday': '',
   'notification': true,
 };
