@@ -29,7 +29,9 @@ class LoginTest {
     var options = new ChromeOptions();
     if ("true".equals(System.getenv("GITHUB_ACTIONS"))) {
       options.setHeadless(true);
+      options.addArguments("lang=ja_JP");
     }
+    options.setHeadless(true);
     driver = new ChromeDriver(options);
   }
 
