@@ -129,9 +129,9 @@ public class SignupPage {
     return telMessage.getText();
   }
 
-  public String getSexMessage() {
-    var sexMessage = driver.findElement(By.cssSelector("#sex ~ .invalid-feedback"));
-    return sexMessage.getText();
+  public String getGenderMessage() {
+    var genderMessage = driver.findElement(By.cssSelector("#gender ~ .invalid-feedback"));
+    return genderMessage.getText();
   }
 
   public String getBirthdayMessage() {

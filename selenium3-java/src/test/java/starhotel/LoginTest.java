@@ -13,19 +13,23 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import starhotel.pages.LoginPage;
 import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("ログイン画面テスト")
 class LoginTest {
 
-  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice/";
+  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice/login.html";
 
   private static WebDriver driver;
 
   @BeforeAll
   static void initAll() {
-    driver = new ChromeDriver();
+    var options = new ChromeOptions();
+    options.setHeadless(true);
+    driver = new ChromeDriver(options);
   }
 
   @AfterEach
@@ -44,8 +48,7 @@ class LoginTest {
   void testLoginSuccess() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var loginPage = topPage.goToLoginPage();
+    var loginPage = new LoginPage(driver);
     var myPage = loginPage.doLogin("ichiro@example.com", "password");
     assertEquals("マイページ", myPage.getHeaderText());
   }
@@ -56,8 +59,7 @@ class LoginTest {
   void testLoginFailBlank() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var loginPage = topPage.goToLoginPage();
+    var loginPage = new LoginPage(driver);
     loginPage.doLogin("", "");
     assertAll("エラーメッセージ",
         () -> assertEquals("このフィールドを入力してください。", loginPage.getEmailMessage()),
@@ -73,8 +75,7 @@ class LoginTest {
   void testLoginFailUnregister() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var loginPage = topPage.goToLoginPage();
+    var loginPage = new LoginPage(driver);
     loginPage.doLogin("error@example.com", "error");
     assertAll("エラーメッセージ",
         () -> assertEquals("メールアドレスまたはパスワードが違います。", loginPage.getEmailMessage()),

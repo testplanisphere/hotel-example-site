@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import starhotel.pages.SignupPage;
 import starhotel.pages.SignupPage.Rank;
 import starhotel.pages.TopPage;
 
@@ -21,13 +23,15 @@ import starhotel.pages.TopPage;
 @DisplayName("登録画面テスト")
 public class SignupTest {
 
-  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice/";
+  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice/signup.html";
 
   private static WebDriver driver;
 
   @BeforeAll
   static void initAll() {
-    driver = new ChromeDriver();
+    var options = new ChromeOptions();
+    options.setHeadless(true);
+    driver = new ChromeDriver(options);
   }
 
   @AfterEach
@@ -46,8 +50,7 @@ public class SignupTest {
   void testSignupSuccess() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var signupPage = topPage.goToSignupPage();
+    var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("password");
@@ -69,8 +72,7 @@ public class SignupTest {
   void testSignupErrorBlank() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var signupPage = topPage.goToSignupPage();
+    var signupPage = new SignupPage(driver);
     signupPage.setEmail("");
     signupPage.setPassword("");
     signupPage.setPasswordConfirmation("");
@@ -90,7 +92,7 @@ public class SignupTest {
         () -> assertEquals("このフィールドを入力してください。", signupPage.getUsernameMessage()),
         () -> assertEquals("", signupPage.getAddressMessage()),
         () -> assertEquals("", signupPage.getTelMessage()),
-        () -> assertEquals("", signupPage.getSexMessage()),
+        () -> assertEquals("", signupPage.getGenderMessage()),
         () -> assertEquals("", signupPage.getBirthdayMessage())
     );
   }
@@ -101,8 +103,7 @@ public class SignupTest {
   void testSignupErrorInvalid() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var signupPage = topPage.goToSignupPage();
+    var signupPage = new SignupPage(driver);
     signupPage.setEmail("a");
     signupPage.setPassword("1234567");
     signupPage.setPasswordConfirmation("1");
@@ -122,7 +123,7 @@ public class SignupTest {
         () -> assertEquals("", signupPage.getUsernameMessage()),
         () -> assertEquals("", signupPage.getAddressMessage()),
         () -> assertEquals("指定されている形式で入力してください。", signupPage.getTelMessage()),
-        () -> assertEquals("", signupPage.getSexMessage()),
+        () -> assertEquals("", signupPage.getGenderMessage()),
         () -> assertEquals("", signupPage.getBirthdayMessage())
     );
   }
@@ -133,8 +134,7 @@ public class SignupTest {
   void testSignupErrorDouble() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var signupPage = topPage.goToSignupPage();
+    var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("password");
@@ -156,8 +156,7 @@ public class SignupTest {
   void testSignupErrorUnMatchPassword() {
     driver.get(URL);
 
-    var topPage = new TopPage(driver);
-    var signupPage = topPage.goToSignupPage();
+    var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("123456789");
