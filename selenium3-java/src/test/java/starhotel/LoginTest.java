@@ -15,7 +15,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import starhotel.pages.LoginPage;
-import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("ログイン画面テスト")
@@ -28,7 +27,10 @@ class LoginTest {
   @BeforeAll
   static void initAll() {
     var options = new ChromeOptions();
-    options.setHeadless(true);
+    if ("true".equals(System.getenv("GITHUB_ACTIONS"))) {
+      options.setHeadless(true);
+      options.addArguments("lang=ja_JP");
+    }
     driver = new ChromeDriver(options);
   }
 
