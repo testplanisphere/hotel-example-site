@@ -87,14 +87,14 @@ class MyPageTest {
     var myPage = signupPage.goToMyPage();
 
     assertAll("マイページ表示項目",
-        () -> assertEquals("ichiro@example.com", myPage.getEmail()),
-        () -> assertEquals("山田一郎", myPage.getUsername()),
-        () -> assertEquals("プレミアム会員", myPage.getRank()),
-        () -> assertEquals("東京都豊島区池袋", myPage.getAddress()),
-        () -> assertEquals("01234567891", myPage.getTel()),
-        () -> assertEquals("男性", myPage.getGender()),
-        () -> assertEquals("未登録", myPage.getBirthday()),
-        () -> assertEquals("受け取る", myPage.getNotification())
+        () -> assertEquals("new-user@gmail.com", myPage.getEmail()),
+        () -> assertEquals("田中花子", myPage.getUsername()),
+        () -> assertEquals("通常会員", myPage.getRank()),
+        () -> assertEquals("神奈川県横浜市港区", myPage.getAddress()),
+        () -> assertEquals("09876543211", myPage.getTel()),
+        () -> assertEquals("女性", myPage.getGender()),
+        () -> assertEquals("2000-01-01", myPage.getBirthday()),
+        () -> assertEquals("受け取らない", myPage.getNotification())
     );
   }
 
