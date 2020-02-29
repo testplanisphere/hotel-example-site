@@ -19,5 +19,5 @@ jobs:
       run: chmod +x gradlew
       working-directory: ./selenium3-java
     - name: Build with Gradle
-      run: ./gradlew cleanTest test
+      run: ./gradlew cleanTest test --info
       working-directory: ./selenium3-java
