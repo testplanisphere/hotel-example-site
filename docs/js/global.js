@@ -1,3 +1,11 @@
+const ERROR_MESSAGES = new Map([
+  ['valueMissing', 'このフィールドを入力してください。'],
+  ['typeMismatch', 'メールアドレスを入力してください。'],
+  ['patternMismatch', '指定されている形式で入力してください。'],
+  ['tooLong', '文字以内で入力してください。'],
+  ['tooShort', '文字以上で入力してください。'],
+]);
+
 export const PRESET_USER = {
   'email': 'ichiro@example.com',
   'password': 'password',
@@ -24,8 +32,24 @@ export function resetCustomValidity(...inputs) {
 
 export function setCustomValidityMessage(...inputs) {
   inputs.forEach((input) => {
-    document.getElementById(`${input.id}-message`).textContent = input.validationMessage;
+    document.getElementById(`${input.id}-message`).textContent = getErrorMessege(input);
   });
+}
+
+function getErrorMessege(input) {
+  if (input.validity.customError) {
+    return input.validationMessage;
+  } else if (input.validity.valueMissing) {
+    return ERROR_MESSAGES.get('valueMissing');
+  } else if (input.validity.typeMismatch) {
+    return ERROR_MESSAGES.get('typeMismatch');
+  } else if (input.validity.patternMismatch) {
+    return ERROR_MESSAGES.get('patternMismatch');
+  } else if (input.validity.tooLong) {
+    return input.maxLength + ERROR_MESSAGES.get('tooLong');
+  } else if (input.validity.tooShort) {
+    return input.minLength + ERROR_MESSAGES.get('tooShort');
+  }
 }
 
 export function isValidUser(email, password) {

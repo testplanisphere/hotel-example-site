@@ -20,7 +20,7 @@ import starhotel.pages.LoginPage;
 @DisplayName("ログイン画面テスト")
 class LoginTest {
 
-  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice/login.html";
+  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice";
 
   private static WebDriver driver;
 
@@ -29,7 +29,6 @@ class LoginTest {
     var options = new ChromeOptions();
     if ("true".equals(System.getenv("GITHUB_ACTIONS"))) {
       options.setHeadless(true);
-      options.addArguments("lang=ja_JP");
     }
     driver = new ChromeDriver(options);
   }
@@ -48,7 +47,7 @@ class LoginTest {
   @Order(1)
   @DisplayName("定義済みユーザでログインができること")
   void testLoginSuccess() {
-    driver.get(URL);
+    driver.get(URL + "/login.html");
 
     var loginPage = new LoginPage(driver);
     var myPage = loginPage.doLogin("ichiro@example.com", "password");
@@ -59,7 +58,7 @@ class LoginTest {
   @Order(2)
   @DisplayName("未入力でエラーとなること")
   void testLoginFailBlank() {
-    driver.get(URL);
+    driver.get(URL + "/login.html");
 
     var loginPage = new LoginPage(driver);
     loginPage.doLogin("", "");
@@ -75,7 +74,7 @@ class LoginTest {
   @Order(3)
   @DisplayName("未登録のユーザでエラーとなること")
   void testLoginFailUnregister() {
-    driver.get(URL);
+    driver.get(URL + "/login.html");
 
     var loginPage = new LoginPage(driver);
     loginPage.doLogin("error@example.com", "error");

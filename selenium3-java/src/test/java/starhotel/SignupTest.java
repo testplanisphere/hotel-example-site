@@ -22,7 +22,7 @@ import starhotel.pages.SignupPage.Rank;
 @DisplayName("登録画面テスト")
 public class SignupTest {
 
-  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice/signup.html";
+  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice";
 
   private static WebDriver driver;
 
@@ -31,7 +31,6 @@ public class SignupTest {
     var options = new ChromeOptions();
     if ("true".equals(System.getenv("GITHUB_ACTIONS"))) {
       options.setHeadless(true);
-      options.addArguments("lang=ja_JP");
     }
     driver = new ChromeDriver(options);
   }
@@ -50,7 +49,7 @@ public class SignupTest {
   @Order(1)
   @DisplayName("ユーザの新規登録ができること")
   void testSignupSuccess() {
-    driver.get(URL);
+    driver.get(URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
@@ -72,7 +71,7 @@ public class SignupTest {
   @Order(2)
   @DisplayName("必須項目を未入力にするとエラーとなること")
   void testSignupErrorBlank() {
-    driver.get(URL);
+    driver.get(URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("");
@@ -103,7 +102,7 @@ public class SignupTest {
   @Order(3)
   @DisplayName("指定のフォーマット外の入力でエラーとなること")
   void testSignupErrorInvalid() {
-    driver.get(URL);
+    driver.get(URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("a");
@@ -119,9 +118,9 @@ public class SignupTest {
     signupPage.goToMyPage();
 
     assertAll("エラーメッセージ",
-        () -> assertEquals("メール アドレスに「@」を挿入してください。「a」内に「@」がありません。", signupPage.getEmailMessage()),
-        () -> assertEquals("このテキストは 8 文字以上で指定してください（現在は 7 文字です）。", signupPage.getPasswordMessage()),
-        () -> assertEquals("このテキストは 8 文字以上で指定してください（現在 1 文字で指定されています）。", signupPage.getPasswordConfirmationMessage()),
+        () -> assertEquals("メールアドレスを入力してください。", signupPage.getEmailMessage()),
+        () -> assertEquals("8文字以上で入力してください。", signupPage.getPasswordMessage()),
+        () -> assertEquals("8文字以上で入力してください。", signupPage.getPasswordConfirmationMessage()),
         () -> assertEquals("", signupPage.getUsernameMessage()),
         () -> assertEquals("", signupPage.getAddressMessage()),
         () -> assertEquals("指定されている形式で入力してください。", signupPage.getTelMessage()),
@@ -134,7 +133,7 @@ public class SignupTest {
   @Order(4)
   @DisplayName("登録済みのメールアドレスはエラーとなること")
   void testSignupErrorDouble() {
-    driver.get(URL);
+    driver.get(URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
@@ -156,7 +155,7 @@ public class SignupTest {
   @Order(5)
   @DisplayName("入力パスワードが一致しないとエラーとなること")
   void testSignupErrorUnMatchPassword() {
-    driver.get(URL);
+    driver.get(URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
