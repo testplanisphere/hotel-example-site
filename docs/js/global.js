@@ -1,11 +1,3 @@
-const ERROR_MESSAGES = new Map([
-  ['valueMissing', 'このフィールドを入力してください。'],
-  ['typeMismatch', 'メールアドレスを入力してください。'],
-  ['patternMismatch', '指定されている形式で入力してください。'],
-  ['tooLong', '文字以内で入力してください。'],
-  ['tooShort', '文字以上で入力してください。'],
-]);
-
 export const PRESET_USER = {
   'email': 'ichiro@example.com',
   'password': 'password',
@@ -18,6 +10,9 @@ export const PRESET_USER = {
   'notification': true,
 };
 
+/**
+ * @param {function(): void} handler 
+ */
 export function ready(handler) {
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', handler);
@@ -26,37 +21,56 @@ export function ready(handler) {
   }
 }
 
+/**
+ * @param  {...HTMLInputElement} inputs 
+ */
 export function resetCustomValidity(...inputs) {
   inputs.forEach(input => input.setCustomValidity(''));
 }
 
+/**
+ * @param  {...HTMLInputElement} inputs 
+ */
 export function setValidityMessage(...inputs) {
   inputs.forEach((input) => {
     document.querySelector(`#${input.id} ~ .invalid-feedback`).textContent = getErrorMessege(input);
   });
 }
 
+/**
+ * @param {HTMLInputElement} input 
+ * @returns {string}
+ */
 function getErrorMessege(input) {
   if (input.validity.customError) {
     return input.validationMessage;
   } else if (input.validity.valueMissing) {
-    return ERROR_MESSAGES.get('valueMissing');
+    return 'このフィールドを入力してください。';
   } else if (input.validity.typeMismatch) {
-    return ERROR_MESSAGES.get('typeMismatch');
+    return 'メールアドレスを入力してください。';
   } else if (input.validity.patternMismatch) {
-    return ERROR_MESSAGES.get('patternMismatch');
+    return '指定されている形式で入力してください。';
   } else if (input.validity.tooLong) {
-    return input.maxLength + ERROR_MESSAGES.get('tooLong');
+    return `${input.maxLength}文字以内で入力してください。`;
   } else if (input.validity.tooShort) {
-    return input.minLength + ERROR_MESSAGES.get('tooShort');
+    return `${input.minLength}文字以上で入力してください。`;
   }
 }
 
+/**
+ * @param {string} email 
+ * @param {string} password 
+ * @returns {boolean}
+ */
 export function isValidUser(email, password) {
   const user = getUser(email);
   return (user !== null && user.password === password);
 }
 
+/**
+ * @param {string} email 
+ * @returns {object}
+ */
 export function getUser(email) {
   if (PRESET_USER.email === email) {
     return PRESET_USER;
@@ -69,10 +83,16 @@ export function getUser(email) {
   }
 }
 
+/**
+ * @returns {string}
+ */
 export function getSessionUser() {
   return document.cookie.replace(/(?:(?:^|.*;\s*)session\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 }
 
+/**
+ * @param {string} email 
+ */
 export function login(email) {
   document.cookie = `session=${email}; max-age=630720000`;
 }
