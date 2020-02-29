@@ -1,4 +1,4 @@
-import { ready, resetCustomValidity, setCustomValidityMessage, getUser, getSessionUser, login } from './global.js';
+import { ready, resetCustomValidity, setValidityMessage, getUser, getSessionUser, login } from './global.js';
 
 const session = getSessionUser();
 if (session !== '') {
@@ -30,7 +30,7 @@ ready(() => {
     if (signupForm.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      setCustomValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
+      setValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
       signupForm.classList.add('was-validated');
     } else {
       const rankInput = document.querySelector('input[name="rank"]:checked');

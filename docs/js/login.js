@@ -1,4 +1,4 @@
-import { ready, resetCustomValidity, setCustomValidityMessage, isValidUser, getSessionUser, login } from './global.js';
+import { ready, resetCustomValidity, setValidityMessage, isValidUser, getSessionUser, login } from './global.js';
 
 const session = getSessionUser();
 if (session !== '') {
@@ -19,7 +19,7 @@ ready(() => {
     if (loginForm.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      setCustomValidityMessage(emailInput, passwordInput);
+      setValidityMessage(emailInput, passwordInput);
       loginForm.classList.add('was-validated');
     } else {
       login(emailInput.value);

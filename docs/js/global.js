@@ -30,9 +30,9 @@ export function resetCustomValidity(...inputs) {
   inputs.forEach(input => input.setCustomValidity(''));
 }
 
-export function setCustomValidityMessage(...inputs) {
+export function setValidityMessage(...inputs) {
   inputs.forEach((input) => {
-    document.getElementById(`${input.id}-message`).textContent = getErrorMessege(input);
+    document.querySelector(`#${input.id} ~ .invalid-feedback`).textContent = getErrorMessege(input);
   });
 }
 
