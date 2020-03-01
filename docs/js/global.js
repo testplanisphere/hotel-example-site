@@ -64,7 +64,7 @@ function getErrorMessege(input) {
  */
 export function isValidUser(email, password) {
   const user = getUser(email);
-  return (user !== null && user.password === password);
+  return (user && user.password === password);
 }
 
 /**
