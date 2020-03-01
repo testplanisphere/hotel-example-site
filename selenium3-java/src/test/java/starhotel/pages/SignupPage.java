@@ -2,7 +2,7 @@ package starhotel.pages;
 
 import java.time.LocalDate;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -72,12 +72,8 @@ public class SignupPage {
 
   public void setBirthday(LocalDate birthday) {
     var birthdayInput = driver.findElement(By.id("birthday"));
-    birthdayInput.clear();
-    birthdayInput.sendKeys(Integer.toString(birthday.getYear()));
-    birthdayInput.sendKeys(Keys.TAB);
-    birthdayInput.sendKeys(Integer.toString(birthday.getMonth().getValue()));
-    birthdayInput.sendKeys(Keys.TAB);
-    birthdayInput.sendKeys(Integer.toString(birthday.getDayOfMonth()));
+    ((JavascriptExecutor) driver)
+        .executeScript("arguments[0].value = arguments[1]", birthdayInput, birthday.toString());
   }
 
   public void checkNotification(boolean check) {
