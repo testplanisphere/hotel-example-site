@@ -34,10 +34,94 @@
         </ul>
       </div>
     </nav>
-    <div class="container bg-white">
-      <div class="row">
+    <div class="container">
+      <div class="row bg-white my-3 shadow-sm">
         <div class="col">
-          <h2 class="my-3">このサイトはテスト自動化の学習のためのデモサイト（開発中）です</h2>
+          <h2 class="my-3">このサイトはテスト自動化の学習のためのデモサイトです</h2>
+          <p>Seleniumなどのブラウザテスト自動化を学習したい方が利用しやすい<strong>テスト対象サイト</strong>として作成しています。</p>
+          <p>学習のほか、書籍やブログなどでのサンプルやデモなどにもお使いいただけます。</p>
+        </div>
+      </div>
+      <div class="row bg-white my-3 shadow-sm">
+        <div class="col">
+          <h3 class="my-3">サイトの構成</h3>
+          <p>ホテルの予約サイトを模した作りになっています。ログイン・会員登録・ホテルの宿泊予約のそれぞれの入力フォームを用意しています。</p>
+          <h4 class="my-3">ご利用上の注意</h4>
+          <ul>
+            <li>サイトはGitHub Pagesでホストされています。</li>
+            <li>入力データについて
+              <ul>
+                <li>データはブラウザのCookieおよびLocal Storageに保存されます。</li>
+                <li>DBなどサーバ側での保存はありません。</li>
+                <li>HTMLの仕様上、フォームへの入力内容はURLの末尾に付加されて送信されます。</li>
+              </ul>
+            </li>
+            <li>自動テストのスケジュール実行など、サイトに負荷のかかる処理はおやめください。</li>
+            <li>このサイトを利用することによって生じた損害などにつきましては、一切の責任を負いません。</li>
+          </ul>
+          <h4 class="my-3">構成の詳細</h4>
+          <div class="row">
+            <div class="col-12 col-lg-3">
+              <h5>ログイン画面</h5>
+              <p>シンプルなテキストインプットとボタンの画面です。ログイン情報はCookieに保存されます。会員登録画面で保存したユーザの他、定義済みのユーザがあります。</p>
+            </div>
+            <div class="col-12 col-lg-3">
+              <h5>会員登録画面</h5>
+              <p>複数種類のインプットがある画面です。この画面で登録したユーザはLocal Storageに保存され、ログインに使用することができるようになります。</p>
+            </div>
+            <div class="col-12 col-lg-3">
+              <h5>マイページ画面</h5>
+              <p>ログイン後に表示される画面です。登録したユーザ情報が表示され、確認に使うことができます。</p>
+            </div>
+            <div class="col-12 col-lg-3">
+              <h5>宿泊予約画面</h5>
+              <p>開発中</p>
+            </div>
+          </div>
+          <table class="table">
+            <caption>定義済みユーザ</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">メールアドレス</th>
+                <th scope="col">パスワード</th>
+                <th scope="col">会員ランク</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td><code>ichiro@example.com</code></td>
+                <td><code>password</code></td>
+                <td>プレミアム会員</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row bg-white my-3 shadow-sm">
+        <div class="col">
+          <h3 class="my-3">サンプルコード</h3>
+          <p>このサイトをテスト対象とした自動テストスクリプトのサンプルです。</p>
+          <p>学習の際の参考としてお使いください。なお、あくまで一例であり<strong>正解ではない</strong>ことをご留意ください。</p>
+          <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+              <div class="card shadow-sm">
+                <div class="card-header">初心者向け</div>
+                <div class="card-body">
+                  <h5 class="card-title">selenium3-java</h5>
+                  <dl class="small">
+                    <dt>フレームワーク</dt>
+                    <dd><a href="https://www.selenium.dev/">Selenium WebDriver</a></dd>
+                    <dt>プログラミング言語</dt>
+                    <dd>Java</dd>
+                    <dt>テスティングフレームワーク</dt>
+                    <dd><a href="https://junit.org/junit5/">JUnit 5</a></dd>
+                  </dl>
+                  <a href="https://github.com/takeya0x86/automation-testing-practice/tree/master/selenium3-java" class="card-link">コードを見る</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
