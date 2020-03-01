@@ -20,7 +20,7 @@ import starhotel.pages.SignupPage.Rank;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("登録画面テスト")
-public class SignupTest {
+class SignupTest {
 
   private static final String URL = "https://takeya0x86.github.io/automation-testing-practice";
 
