@@ -9,7 +9,7 @@ const DISPLAY_GENDER = new Map([
 
 history.replaceState(null, '', 'mypage.html');
 const session = getSessionUser();
-if (session === '') {
+if (!session) {
   location.assign(location.href.replace('mypage.html', 'index.html'));
 }
 ready(() => {
@@ -21,24 +21,12 @@ ready(() => {
   } else if (user.rank === 'normal') {
     document.getElementById('rank').textContent = '通常会員';
   }
-  if (user.address !== '') {
-    document.getElementById('address').textContent = user.address;
-  } else {
-    document.getElementById('address').textContent = '未登録';
-  }
-  if (user.tel !== '') {
-    document.getElementById('tel').textContent = user.tel;
-  } else {
-    document.getElementById('tel').textContent = '未登録';
-  }
+  document.getElementById('address').textContent = user.address ? user.address : '未登録';
+  document.getElementById('tel').textContent = user.tel ? user.tel : '未登録';
   document.getElementById('gender').textContent = DISPLAY_GENDER.get(user.gender);
-  if (user.birthday !== '') {
-    document.getElementById('birthday').textContent = user.birthday;
-  } else {
-    document.getElementById('birthday').textContent = '未登録';
-  }
-  document.getElementById('notification').textContent = user.notification ? '受け取る' : '受け取らない'
-  
+  document.getElementById('birthday').textContent = user.birthday ? user.birthday : '未登録';
+  document.getElementById('notification').textContent = user.notification ? '受け取る' : '受け取らない';
+
   document.getElementById('logout-form').addEventListener('submit', (event) => {
     logout();
   });

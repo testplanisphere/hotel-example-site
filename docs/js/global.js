@@ -76,7 +76,7 @@ export function getUser(email) {
     return PRESET_USER;
   }
   const user = localStorage.getItem(email);
-  if (user !== null) {
+  if (user) {
     return JSON.parse(user);
   } else {
     return null;

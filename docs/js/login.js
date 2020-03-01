@@ -1,7 +1,7 @@
 import { ready, resetCustomValidity, setValidityMessage, isValidUser, getSessionUser, login } from './global.js';
 
 const session = getSessionUser();
-if (session !== '') {
+if (session) {
   location.assign(location.href.replace('login.html', 'index.html'));
 }
 ready(() => {
@@ -16,7 +16,7 @@ ready(() => {
         passwordInput.setCustomValidity('メールアドレスまたはパスワードが違います。');
       }
     }
-    if (loginForm.checkValidity() === false) {
+    if (!loginForm.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();
       setValidityMessage(emailInput, passwordInput);

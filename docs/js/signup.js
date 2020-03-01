@@ -1,7 +1,7 @@
 import { ready, resetCustomValidity, setValidityMessage, getUser, getSessionUser, login } from './global.js';
 
 const session = getSessionUser();
-if (session !== '') {
+if (session) {
   location.assign(location.href.replace('signup.html', 'index.html'));
 }
 ready(() => {
@@ -18,7 +18,7 @@ ready(() => {
     resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
     if (emailInput.checkValidity()) {
       const user = getUser(emailInput.value);
-      if (user !== null) {
+      if (user) {
         emailInput.setCustomValidity('このメールアドレスはすでに登録済みです。');
       }
     }
@@ -27,7 +27,7 @@ ready(() => {
         passwordConfirmationInput.setCustomValidity('入力されたパスワードと一致しません。');
       }
     }
-    if (signupForm.checkValidity() === false) {
+    if (!signupForm.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();
       setValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
