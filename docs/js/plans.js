@@ -10,7 +10,7 @@ ready(() => {
       logout();
     });
   }
-  fetch('plan_data.json').then((response) => {
+  fetch('plan_data.json', {cache: 'no-store'}).then((response) => {
     return response.json();
   }).then((data) => {
     let planHtml = '';
