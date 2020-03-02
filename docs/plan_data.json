@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "name": "お得な特典付きプラン",
+    "roomBill": 7000,
+    "minHeadCount": 1,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "部屋指定なし"
+  },
+  {
+    "id": 1,
+    "name": "プレミアムプラン",
+    "roomBill": 10000,
+    "minHeadCount": 2,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "プレミアムツイン"
+  },
+  {
+    "id": 2,
+    "name": "朝食付プラン",
+    "roomBill": 8000,
+    "minHeadCount": 1,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "部屋指定なし"
+  }
+]
