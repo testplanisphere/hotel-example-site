@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>宿泊予約 | STAR HOTEL - テスト自動化デモサイト</title>
+  </head>
+  <body class="bg-light">
+    <h1 class="text-center text-uppercase d-none d-lg-block display-3 my-5">Star Hotel</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-4">
+      <a class="navbar-brand text-uppercase font-weight-bold d-lg-none" href="#">Star Hotel</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./index.html">ホーム</a>
+          </li>
+          <li class="nav-item px-lg-4 active">
+            <a class="nav-link" href="./plans.html">宿泊予約</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./signup.html">会員登録</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="btn btn-outline-secondary" href="./login.html" role="button">ログイン</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container bg-white py-5">
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+          <h2 class="my-3">宿泊予約</h2>
+          <h4 class="my-3" id ="plan-name">&nbsp;</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+        <form action="./reserve.html" method="get" id="reserve-form" novalidate>
+          <div class="form-group">
+              <label for="date">宿泊日 <span class="badge badge-primary">必須</span></label>
+              <input type="date" class="form-control" name="date" id="date" required>
+              <small class="form-text text-muted">明日以降の日付を選択してください。</small>
+              <div class="invalid-feedback"></div>
+          </div>
+          <div class="form-group">
+              <label for="term">宿泊数 <span class="badge badge-primary">必須</span></label>
+              <input type="number" class="form-control" name="term" id="term" required>
+              <div class="invalid-feedback"></div>
+          </div>
+          <div class="form-group">
+              <label for="head-count">人数 <span class="badge badge-primary">必須</span></label>
+              <input type="number" class="form-control" name="head-count" id="head-count" required>
+              <div class="invalid-feedback"></div>
+            </div>
+            <label>追加プラン <small class="text-muted">お1人様各1,000円</small></label>
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="breakfast" id="breakfast">
+                <label class="form-check-label" for="breakfast">
+                  朝食バイキング
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="early-check-in" id="early-check-in">
+                <label class="form-check-label" for="early-check-in">
+                  昼からチェックインプラン
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="sightseeing" id="sightseeing">
+                <label class="form-check-label" for="sightseeing">
+                  お得な観光プラン
+                </label>
+              </div>
+            </div>
+          <div class="form-group">
+              <label for="username">氏名 <span class="badge badge-primary">必須</span></label>
+              <input type="text" class="form-control" name="username" id="username" required>
+              <div class="invalid-feedback"></div>
+          </div>
+            <input type="hidden" name="plan-id" id="plan-id" value="">
+            <input type="hidden" name="room-bill" id="room-bill" value="">
+          <div class="form-group">
+            <h3>合計</h3>
+            <output class="h1 my-2">20,000円</output>
+            <button type="submit" class="btn btn-primary btn-block my-3">予約</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <footer class="text-center py-5">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://github.com/takeya0x86/automation-testing-practice/">GitHub</a></li>
+        </ul>
+        <p class="text-muted">© 2020</p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="./js/reserve.js" type="module"></script>
+  </body>
+</html>

@@ -47,13 +47,27 @@ function getErrorMessege(input) {
   } else if (input.validity.valueMissing) {
     return 'このフィールドを入力してください。';
   } else if (input.validity.typeMismatch) {
-    return 'メールアドレスを入力してください。';
+    if (input.type === 'email') {
+      return 'メールアドレスを入力してください。';
+    } else if (input.type === 'url') {
+      return 'URLを入力してください。';
+    } else {
+      return '有効な値を入力してください。';
+    }
+  } else if (input.validity.badInput) {
+    return '有効な値を入力してください。';
   } else if (input.validity.patternMismatch) {
     return '指定されている形式で入力してください。';
   } else if (input.validity.tooLong) {
     return `${input.maxLength}文字以内で入力してください。`;
   } else if (input.validity.tooShort) {
     return `${input.minLength}文字以上で入力してください。`;
+  } else if (input.validity.rangeOverflow) {
+    return `${input.max}以下の値を入力してください。`;
+  } else if (input.validity.rangeUnderflow) {
+    return `${input.min}以上の値を入力してください。`;
+  } else if (input.validity.stepMismatch) {
+    return '有効な値を入力してください。';
   }
 }
 
