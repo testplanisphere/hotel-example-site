@@ -2,6 +2,7 @@ package starhotel;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static starhotel.Utils.BASE_URL;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -12,25 +13,17 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import starhotel.pages.LoginPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("ログイン画面テスト")
 class LoginTest {
 
-  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice";
-
   private static WebDriver driver;
 
   @BeforeAll
   static void initAll() {
-    var options = new ChromeOptions();
-    if ("true".equals(System.getenv("GITHUB_ACTIONS"))) {
-      options.setHeadless(true);
-    }
-    driver = new ChromeDriver(options);
+    driver = Utils.createWebDriver();
   }
 
   @AfterEach
@@ -47,7 +40,7 @@ class LoginTest {
   @Order(1)
   @DisplayName("定義済みユーザでログインができること")
   void testLoginSuccess() {
-    driver.get(URL + "/login.html");
+    driver.get(BASE_URL + "/login.html");
 
     var loginPage = new LoginPage(driver);
     var myPage = loginPage.doLogin("ichiro@example.com", "password");
@@ -59,7 +52,7 @@ class LoginTest {
   @Order(2)
   @DisplayName("未入力でエラーとなること")
   void testLoginFailBlank() {
-    driver.get(URL + "/login.html");
+    driver.get(BASE_URL + "/login.html");
 
     var loginPage = new LoginPage(driver);
     loginPage.doLogin("", "");
@@ -74,7 +67,7 @@ class LoginTest {
   @Order(3)
   @DisplayName("未登録のユーザでエラーとなること")
   void testLoginFailUnregister() {
-    driver.get(URL + "/login.html");
+    driver.get(BASE_URL + "/login.html");
 
     var loginPage = new LoginPage(driver);
     loginPage.doLogin("error@example.com", "error");

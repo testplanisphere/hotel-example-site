@@ -2,6 +2,7 @@ package starhotel;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static starhotel.Utils.BASE_URL;
 
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterAll;
@@ -13,8 +14,6 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import starhotel.pages.SignupPage;
 import starhotel.pages.SignupPage.Rank;
 
@@ -22,17 +21,11 @@ import starhotel.pages.SignupPage.Rank;
 @DisplayName("登録画面テスト")
 class SignupTest {
 
-  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice";
-
   private static WebDriver driver;
 
   @BeforeAll
   static void initAll() {
-    var options = new ChromeOptions();
-    if ("true".equals(System.getenv("GITHUB_ACTIONS"))) {
-      options.setHeadless(true);
-    }
-    driver = new ChromeDriver(options);
+    driver = Utils.createWebDriver();
   }
 
   @AfterEach
@@ -49,7 +42,7 @@ class SignupTest {
   @Order(1)
   @DisplayName("ユーザの新規登録ができること")
   void testSignupSuccess() {
-    driver.get(URL + "/signup.html");
+    driver.get(BASE_URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
@@ -71,7 +64,7 @@ class SignupTest {
   @Order(2)
   @DisplayName("必須項目を未入力にするとエラーとなること")
   void testSignupErrorBlank() {
-    driver.get(URL + "/signup.html");
+    driver.get(BASE_URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("");
@@ -102,7 +95,7 @@ class SignupTest {
   @Order(3)
   @DisplayName("指定のフォーマット外の入力でエラーとなること")
   void testSignupErrorInvalid() {
-    driver.get(URL + "/signup.html");
+    driver.get(BASE_URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("a");
@@ -133,7 +126,7 @@ class SignupTest {
   @Order(4)
   @DisplayName("登録済みのメールアドレスはエラーとなること")
   void testSignupErrorDouble() {
-    driver.get(URL + "/signup.html");
+    driver.get(BASE_URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
@@ -155,7 +148,7 @@ class SignupTest {
   @Order(5)
   @DisplayName("入力パスワードが一致しないとエラーとなること")
   void testSignupErrorUnMatchPassword() {
-    driver.get(URL + "/signup.html");
+    driver.get(BASE_URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");

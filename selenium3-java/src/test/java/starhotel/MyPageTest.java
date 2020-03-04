@@ -2,6 +2,7 @@ package starhotel;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static starhotel.Utils.BASE_URL;
 
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterAll;
@@ -13,8 +14,6 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import starhotel.pages.LoginPage;
 import starhotel.pages.SignupPage;
 import starhotel.pages.SignupPage.Rank;
@@ -23,17 +22,11 @@ import starhotel.pages.SignupPage.Rank;
 @DisplayName("マイページテスト")
 class MyPageTest {
 
-  private static final String URL = "https://takeya0x86.github.io/automation-testing-practice";
-
   private static WebDriver driver;
 
   @BeforeAll
   static void initAll() {
-    var options = new ChromeOptions();
-    if ("true".equals(System.getenv("GITHUB_ACTIONS"))) {
-      options.setHeadless(true);
-    }
-    driver = new ChromeDriver(options);
+    driver = Utils.createWebDriver();
   }
 
   @AfterEach
@@ -50,7 +43,7 @@ class MyPageTest {
   @Order(1)
   @DisplayName("定義済みユーザの情報が表示されること")
   void testMyPageExistUser() {
-    driver.get(URL + "/login.html");
+    driver.get(BASE_URL + "/login.html");
 
     var loginPage = new LoginPage(driver);
     var myPage = loginPage.doLogin("ichiro@example.com", "password");
@@ -71,7 +64,7 @@ class MyPageTest {
   @Order(2)
   @DisplayName("新規登録したユーザの情報が表示されること")
   void testMyPageNewUser() {
-    driver.get(URL + "/signup.html");
+    driver.get(BASE_URL + "/signup.html");
 
     var signupPage = new SignupPage(driver);
     signupPage.setEmail("new-user@gmail.com");
