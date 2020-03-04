@@ -3,9 +3,14 @@ name: selenium3-java
 on: [push]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        browser: [chrome, firefox]
+      fail-fast: false
 
     steps:
     - uses: actions/checkout@v2
@@ -14,10 +19,16 @@ jobs:
       with:
         java-version: 11
     - name: Add chromedriver to system path
+      if: matrix.browser == 'chrome'
       run: echo "::add-path::$CHROMEWEBDRIVER"
+    - name: Add geckodriver to system path
+      if: matrix.browser == 'firefox'
+      run: echo "::add-path::$GECKOWEBDRIVER"
     - name: Grant execute permission for gradlew
+      working-directory: ./selenium3-java
       run: chmod +x gradlew
-      working-directory: ./selenium3-java
     - name: Build with Gradle
-      run: ./gradlew cleanTest test --info
       working-directory: ./selenium3-java
+      env:
+        BROWSER: ${{ matrix.browser }}
+      run: ./gradlew cleanTest test --info
