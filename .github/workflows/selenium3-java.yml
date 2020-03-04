@@ -20,11 +20,19 @@ jobs:
       with:
         java-version: 11
     - name: Grant execute permission for gradlew
-      working-directory: ./selenium3-java
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+      working-directory: selenium3-java
       run: chmod +x gradlew
-    - name: Build with Gradle
-      working-directory: ./selenium3-java
+    - name: Test with Gradle (UN*X)
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+      working-directory: selenium3-java
       env:
         BROWSER: ${{ matrix.browser }}
       run: ./gradlew cleanTest test --info
+    - name: Test with Gradle (Windows)
+      if: matrix.os == 'windows-latest'
+      working-directory: selenium3-java
+      env:
+        BROWSER: ${{ matrix.browser }}
+      run: gradlew.bat cleanTest test --info
       
