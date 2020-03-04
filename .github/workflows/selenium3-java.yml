@@ -32,4 +32,4 @@ jobs:
       working-directory: ./selenium3-java
       env:
         BROWSER: ${{ matrix.browser }}
-      run: ./gradlew cleanTest test --info
+      run: ./gradlew cleanTest test
