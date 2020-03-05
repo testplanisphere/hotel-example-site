@@ -1,4 +1,5 @@
-import { ready, getSessionUser, logout } from './global.js';
+import { ready } from './global.js';
+import { getSessionUser, logout } from './session.js';
 
 ready(() => {
   const session = getSessionUser();

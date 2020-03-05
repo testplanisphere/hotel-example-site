@@ -1,4 +1,5 @@
-import { ready, getSessionUser, logout } from './global.js';
+import { ready } from './global.js';
+import { getSessionUser, logout } from './session.js';
 
 ready(() => {
   const session = getSessionUser();
@@ -10,7 +11,7 @@ ready(() => {
       logout();
     });
   }
-  fetch('plan_data.json', {cache: 'no-store'}).then((response) => {
+  fetch('plan_data.json', { cache: 'no-store' }).then((response) => {
     return response.json();
   }).then((data) => {
     const planHtml = data.filter(val => val.id !== 0)

@@ -1,4 +1,6 @@
-import { ready, getSessionUser, logout, resetCustomValidity, setValidityMessage } from './global.js';
+import { ready } from './global.js';
+import { getSessionUser, logout } from './session.js';
+import { resetCustomValidity, setValidityMessage } from './validation.js';
 
 ready(() => {
   const session = getSessionUser();
@@ -16,7 +18,7 @@ ready(() => {
   const usernameInput = document .getElementById('username');
   const params = new URLSearchParams(document.location.search.substring(1));
   const planId = parseInt(params.get('plan-id'), 10);
-  fetch('plan_data.json', {cache: 'no-store'}).then((response) => {
+  fetch('plan_data.json', { cache: 'no-store' }).then((response) => {
     return response.json();
   }).then((data) => {
     const plan = data.find(val => val.id === planId);
