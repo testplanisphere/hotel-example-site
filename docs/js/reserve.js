@@ -42,5 +42,10 @@ ready(() => {
       reserveForm.classList.add('was-validated');
     }
   });
+  $('#date').datepicker({
+    showButtonPanel: true,
+    maxDate: 90,
+    minDate: 1,
+  });
 });
 

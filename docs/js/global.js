@@ -8,3 +8,12 @@ export function ready(handler) {
     handler();
   }
 }
+
+const currencyFormatter = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY', currencyDisplay: 'name' });
+/**
+ * @param {number} num
+ * @returns {string}
+ */
+export function formatCurrency(num) {
+  return currencyFormatter.format(num);
+}

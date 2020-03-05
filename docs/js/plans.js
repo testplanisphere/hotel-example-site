@@ -1,4 +1,4 @@
-import { ready } from './global.js';
+import { ready, formatCurrency } from './global.js';
 import { getSessionUser, logout } from './session.js';
 
 ready(() => {
@@ -27,11 +27,11 @@ function genPlanHtml(plan) {
   <div class="card-body">
     <h5 class="card-title">${plan.name}</h5>
       <ul class="list-unstyled">
-        <li>大人1名${plan.roomBill}円</li>
-        <li>1名様から</li>
+        <li>大人1名${formatCurrency(plan.roomBill)}</li>
+        <li>${plan.minHeadCount}名様から</li>
         <li>${plan.room}</li>
       </ul>
-      <a href="./reserve.html?plan-id=${plan.id}" class="btn btn-primary" target="_brank">このプランを見る</a>
+      <a href="./reserve.html?plan-id=${plan.id}" class="btn btn-primary" target="_brank">このプランで予約</a>
     </div>
   </div>
 </div>`
