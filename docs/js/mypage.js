@@ -19,7 +19,7 @@ ready(() => {
   if (user.rank === 'premium') {
     document.getElementById('rank').textContent = 'プレミアム会員';
   } else if (user.rank === 'normal') {
-    document.getElementById('rank').textContent = '通常会員';
+    document.getElementById('rank').textContent = '一般会員';
   }
   document.getElementById('address').textContent = user.address ? user.address : '未登録';
   document.getElementById('tel').textContent = user.tel ? user.tel : '未登録';
