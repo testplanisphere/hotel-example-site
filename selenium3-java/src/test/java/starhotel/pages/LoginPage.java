@@ -18,7 +18,7 @@ public class LoginPage {
     var passwordInput = driver.findElement(By.id("password"));
     passwordInput.clear();
     passwordInput.sendKeys(password);
-    var loginButton = driver.findElement(By.cssSelector("#login-form > button"));
+    var loginButton = driver.findElement(By.id("login-button"));
     loginButton.click();
     return new MyPage(driver);
   }
