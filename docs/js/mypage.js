@@ -1,4 +1,4 @@
-import { ready } from './lib/global.js';
+import { ready, redirectToTopFrom } from './lib/global.js';
 import { getUser, getSessionUser, logout } from './lib/session.js'
 
 const DISPLAY_GENDER = new Map([
@@ -11,10 +11,14 @@ const DISPLAY_GENDER = new Map([
 history.replaceState(null, '', 'mypage.html');
 const session = getSessionUser();
 if (!session) {
-  location.assign(location.href.replace('mypage.html', 'index.html'));
+  redirectToTopFrom('mypage.html');
 }
 ready(() => {
+
+  // load user data
   const user = getUser(session);
+
+  // set user data
   document.getElementById('email').textContent = user.email;
   document.getElementById('username').textContent = user.username;
   if (user.rank === 'premium') {

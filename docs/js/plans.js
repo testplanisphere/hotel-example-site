@@ -2,10 +2,14 @@ import { ready, formatCurrency } from './lib/global.js';
 import { getSessionUser, setLoginNavbar } from './lib/session.js';
 
 ready(() => {
+
+  // Check login
   const session = getSessionUser();
   if (session) {
     setLoginNavbar();
   }
+
+  // fetch plan data
   fetch('plan_data.json', { cache: 'no-store' }).then((response) => {
     return response.json();
   }).then((data) => {

@@ -1,12 +1,14 @@
-import { ready } from './lib/global.js';
+import { ready, redirectToTopFrom } from './lib/global.js';
 import { getUser, getSessionUser, login } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 
 const session = getSessionUser();
 if (session) {
-  location.assign(location.href.replace('signup.html', 'index.html'));
+  redirectToTopFrom('signup.html');
 }
 ready(() => {
+
+  // Collect input elements
   const signupForm = document.getElementById('signup-form');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
@@ -17,19 +19,26 @@ ready(() => {
   const genderSelect = document.getElementById('gender');
   const birthdayInput = document.getElementById('birthday');
 
+  // Setup submit event
   signupForm.addEventListener('submit', (event) => {
     resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
+
+    // Check exsists user
     if (emailInput.checkValidity()) {
       const user = getUser(emailInput.value);
       if (user) {
         emailInput.setCustomValidity('このメールアドレスはすでに登録済みです。');
       }
     }
+
+    // Check password
     if (passwordInput.checkValidity() && passwordConfirmationInput.checkValidity()) {
       if (passwordInput.value !== passwordConfirmationInput.value) {
         passwordConfirmationInput.setCustomValidity('入力されたパスワードと一致しません。');
       }
     }
+
+    // Submit or error
     if (signupForm.checkValidity()) {
       const rankInput = document.querySelector('input[name="rank"]:checked');
       const notificationInput = document.getElementById('notification');
@@ -44,6 +53,8 @@ ready(() => {
         'birthday': birthdayInput.value,
         'notification': notificationInput.checked,
       };
+
+      // store user data
       localStorage.setItem(newUser.email, JSON.stringify(newUser));
       login(newUser.email);
     } else {

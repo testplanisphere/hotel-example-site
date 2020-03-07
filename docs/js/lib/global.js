@@ -9,6 +9,13 @@ export function ready(handler) {
   }
 }
 
+/**
+ * @param {string} from 
+ */
+export function redirectToTopFrom(from) {
+  location.assign(location.href.replace(from, 'index.html'));
+}
+
 const currencyFormatter = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY', currencyDisplay: 'name' });
 /**
  * @param {number} num

@@ -1,4 +1,4 @@
-import { ready, formatCurrency } from './lib/global.js';
+import { ready, redirectToTopFrom, formatCurrency } from './lib/global.js';
 import { getSessionUser, setLoginNavbar } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 import { calcTotalBill } from './lib/billing.js';
@@ -28,10 +28,10 @@ ready(() => {
   const totalBillOutput = document.getElementById('total-bill');
 
   // Get URL params
-  const params = new URLSearchParams(document.location.search.substring(1));
+  const params = new URLSearchParams(location.search);
   const planId = parseInt(params.get('plan-id'), 10);
   if (isNaN(planId)) {
-    location.assign(location.href.replace('reserve.html', 'index.html'));
+    redirectToTopFrom(`reserve.html${location.search}`);
   }
 
   // fetch selected plan data
@@ -58,7 +58,7 @@ ready(() => {
     const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false);
     totalBillOutput.textContent = formatCurrency(total);
   }).catch(() => {
-    location.assign(location.href.replace('reserve.html', 'index.html'));
+    redirectToTopFrom(`reserve.html${location.search}`);
   });
 
   const updateTotalBill = function() {
