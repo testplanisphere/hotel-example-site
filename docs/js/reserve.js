@@ -1,6 +1,7 @@
-import { ready } from './lib/global.js';
+import { ready, formatCurrency } from './lib/global.js';
 import { getSessionUser, setLoginNavbar } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
+import { calcTotalBill } from './lib/billing.js';
 
 ready(() => {
 
@@ -17,10 +18,14 @@ ready(() => {
   const dateInput = document.getElementById('date');
   const termInput = document.getElementById('term');
   const headCountInput = document.getElementById('head-count');
+  const breakfastInput = document.getElementById('breakfast');
+  const earlyCheckInInput = document.getElementById('early-check-in');
+  const sightseeingInput = document.getElementById('sightseeing');
   const usernameInput = document.getElementById('username');
   const contactSelect = document.getElementById('contact');
   const emailInput = document.getElementById('email');
   const telInput = document.getElementById('tel');
+  const totalBillOutput = document.getElementById('total-bill');
 
   // Get URL params
   const params = new URLSearchParams(document.location.search.substring(1));
@@ -37,6 +42,7 @@ ready(() => {
     if (!plan) {
       return Promise.reject();
     }
+    // set initialize values
     document.getElementById('plan-name').textContent = plan.name;
     planIdHidden.value = plan.planId;
     roomBillHidden.value = plan.roomBill;
@@ -46,15 +52,35 @@ ready(() => {
     headCountInput.min = plan.minHeadCount;
     headCountInput.max = plan.maxHeadCount;
     headCountInput.value = plan.minHeadCount;
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.value = formatDate(tomorrow);
+    const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false);
+    totalBillOutput.textContent = formatCurrency(total);
   }).catch(() => {
     location.assign(location.href.replace('reserve.html', 'index.html'));
   });
+
+  const updateTotalBill = function() {
+    const date = parseDate(dateInput.value);
+    if (!date) {
+      return;
+    }
+    const roomBill = parseInt(roomBillHidden.value, 10);
+    const term = parseInt(termInput.value, 10);
+    const headCount = parseInt(headCountInput.value, 10);
+    const totalBill = calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked);
+    totalBillOutput.textContent = formatCurrency(totalBill);
+  };
 
   // Setup datepicker
   $('#date').datepicker({
     showButtonPanel: true,
     maxDate: 90,
     minDate: 1,
+    onSelect: function(dateText, inst) {
+      updateTotalBill();
+    },
   });
 
   // Setup contant select
@@ -82,6 +108,13 @@ ready(() => {
       telInput.parentElement.classList.replace('d-none', 'd-block');
     }
   });
+
+  // Setup calc total function
+  [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput].forEach((input) => {
+    input.addEventListener('change', (event) => {
+      updateTotalBill();
+    });
+  }); 
 
   // Setup submit event
   reserveForm.addEventListener('submit', (event) => {
@@ -125,4 +158,23 @@ function parseDate(dateString) {
   const month = parseInt(arr[2], 10);
   const date = parseInt(arr[3], 10);
   return new Date(year, month - 1, date);
-} 
+}
+
+/**
+ * @param {Date} date
+ * @returns {string} 
+ */
+function formatDate(date) {
+  return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`
+}
+
+/**
+ * @param {number} number 
+ * @returns {string}
+ */
+function pad(number) {
+  if (number < 10) {
+    return '0' + number;
+  }
+  return number;
+}
