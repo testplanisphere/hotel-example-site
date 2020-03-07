@@ -13,10 +13,16 @@ ready(() => {
   const usernameInput = document .getElementById('username');
   const params = new URLSearchParams(document.location.search.substring(1));
   const planId = parseInt(params.get('plan-id'), 10);
+  if (isNaN(planId)) {
+    location.assign(location.href.replace('reserve.html', 'index.html'));
+  }
   fetch('plan_data.json', { cache: 'no-store' }).then((response) => {
     return response.json();
   }).then((data) => {
     const plan = data.find(val => val.id === planId);
+    if (!plan) {
+      return Promise.reject();
+    }
     document.getElementById("plan-name").textContent = plan.name;
     termInput.min = plan.minTerm;
     termInput.max = plan.maxTerm;
@@ -24,6 +30,8 @@ ready(() => {
     headCountInput.min = plan.minHeadCount;
     headCountInput.max = plan.maxHeadCount;
     headCountInput.value = plan.minHeadCount;
+  }).catch(() => {
+    location.assign(location.href.replace('reserve.html', 'index.html'));
   });
   const reserveForm = document.getElementById('reserve-form');
   reserveForm.addEventListener('submit', (event) => {
