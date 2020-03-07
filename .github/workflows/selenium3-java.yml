@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        browser: [chrome]
+        browser: [chrome, firefox]
       fail-fast: false
 
     steps:
