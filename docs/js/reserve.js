@@ -86,6 +86,21 @@ ready(() => {
   // Setup submit event
   reserveForm.addEventListener('submit', (event) => {
     resetCustomValidity(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
+    if (dateInput.checkValidity()) {
+      const date = parseDate(dateInput.value);
+      if (!date) {
+        dateInput.setCustomValidity('有効な値を入力してください。');
+      } else {
+        const now = new Date();
+        const after90 = new Date();
+        after90.setDate(after90.getDate() + 90);
+        if (date.getTime() < now.getTime()) {
+          dateInput.setCustomValidity('翌日以降の日付を入力してください。');
+        } else if (date.getTime() > after90.getTime()) {
+          dateInput.setCustomValidity('3ヶ月以内の日付を入力してください。');
+        }
+      }
+    }
     if (reserveForm.checkValidity()) {
       // tbd      
     } else {
@@ -96,3 +111,18 @@ ready(() => {
     }
   });
 });
+
+/**
+ * @param {string} dateString
+ * @returns {Date}
+ */
+function parseDate(dateString) {
+  const arr = dateString.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+  if (!arr || arr.length !== 4) {
+    return null;
+  }
+  const year = parseInt(arr[1], 10);
+  const month = parseInt(arr[2], 10);
+  const date = parseInt(arr[3], 10);
+  return new Date(year, month - 1, date);
+} 
