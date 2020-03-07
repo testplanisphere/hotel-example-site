@@ -1,5 +1,5 @@
-import { ready, formatCurrency } from './global.js';
-import { getSessionUser, setLoginNavbar } from './session.js';
+import { ready, formatCurrency } from './lib/global.js';
+import { getSessionUser, setLoginNavbar } from './lib/session.js';
 
 ready(() => {
   const session = getSessionUser();

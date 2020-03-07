@@ -1,6 +1,6 @@
-import { ready } from './global.js';
-import { getUser, getSessionUser, login } from './session.js';
-import { resetCustomValidity, setValidityMessage } from './validation.js';
+import { ready } from './lib/global.js';
+import { getUser, getSessionUser, login } from './lib/session.js';
+import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 
 const session = getSessionUser();
 if (session) {

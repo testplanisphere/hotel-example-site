@@ -1,5 +1,5 @@
-import { ready } from './global.js';
-import { getUser, getSessionUser, logout } from './session.js'
+import { ready } from './lib/global.js';
+import { getUser, getSessionUser, logout } from './lib/session.js'
 
 const DISPLAY_GENDER = new Map([
   ['0', '未登録'],

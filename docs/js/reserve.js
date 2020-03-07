@@ -1,6 +1,6 @@
-import { ready } from './global.js';
-import { getSessionUser, setLoginNavbar } from './session.js';
-import { resetCustomValidity, setValidityMessage } from './validation.js';
+import { ready } from './lib/global.js';
+import { getSessionUser, setLoginNavbar } from './lib/session.js';
+import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 
 ready(() => {
 
