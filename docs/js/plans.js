@@ -10,7 +10,7 @@ ready(() => {
   }
 
   // fetch plan data
-  fetch('plan_data.json', { cache: 'no-store' }).then((response) => {
+  fetch('./data/plan_data.json', { cache: 'no-store' }).then((response) => {
     return response.json();
   }).then((data) => {
     const planHtml = data.filter(val => val.id !== 0)

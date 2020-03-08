@@ -34,7 +34,7 @@ ready(() => {
   }
 
   // fetch selected plan data
-  fetch('plan_data.json', { cache: 'no-store' }).then((response) => {
+  fetch('./data/plan_data.json', { cache: 'no-store' }).then((response) => {
     return response.json();
   }).then((data) => {
     const plan = data.find(val => val.id === planId);
