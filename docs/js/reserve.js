@@ -112,7 +112,20 @@ ready(() => {
   // Setup calc total function
   [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput].forEach((input) => {
     input.addEventListener('change', (event) => {
-      updateTotalBill();
+      resetCustomValidity(dateInput, termInput, headCountInput);
+      if (dateInput.checkValidity() && termInput.checkValidity() && headCountInput.checkValidity()) {
+        dateInput.parentElement.classList.remove('was-validated');
+        termInput.parentElement.classList.remove('was-validated');
+        headCountInput.parentElement.classList.remove('was-validated');
+        updateTotalBill();
+      } else {
+        if (event.target.id === 'date') {
+          validateDateInput(dateInput);
+        }
+        totalBillOutput.textContent = '-';
+        setValidityMessage(dateInput, termInput, headCountInput);
+        event.target.parentElement.classList.add('was-validated');
+      }
     });
   }); 
 
@@ -120,19 +133,7 @@ ready(() => {
   reserveForm.addEventListener('submit', (event) => {
     resetCustomValidity(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
     if (dateInput.checkValidity()) {
-      const date = parseDate(dateInput.value);
-      if (!date) {
-        dateInput.setCustomValidity('有効な値を入力してください。');
-      } else {
-        const now = new Date();
-        const after90 = new Date();
-        after90.setDate(after90.getDate() + 90);
-        if (date.getTime() < now.getTime()) {
-          dateInput.setCustomValidity('翌日以降の日付を入力してください。');
-        } else if (date.getTime() > after90.getTime()) {
-          dateInput.setCustomValidity('3ヶ月以内の日付を入力してください。');
-        }
-      }
+      validateDateInput(dateInput);
     }
     if (reserveForm.checkValidity()) {
       // tbd      
@@ -144,6 +145,25 @@ ready(() => {
     }
   });
 });
+
+/**
+ * @param {HTMLInputElement} dateInput 
+ */
+function validateDateInput(dateInput) {
+  const date = parseDate(dateInput.value);
+  if (!date) {
+    dateInput.setCustomValidity('有効な値を入力してください。');
+  } else {
+    const now = new Date();
+    const after90 = new Date();
+    after90.setDate(after90.getDate() + 90);
+    if (date.getTime() < now.getTime()) {
+      dateInput.setCustomValidity('翌日以降の日付を入力してください。');
+    } else if (date.getTime() > after90.getTime()) {
+      dateInput.setCustomValidity('3ヶ月以内の日付を入力してください。');
+    }
+  }
+}
 
 /**
  * @param {string} dateString
