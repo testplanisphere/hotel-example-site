@@ -14,7 +14,14 @@ ready(() => {
 
   // load data
   const transactionId = getTransactionId();
-  const reservation = JSON.parse(sessionStorage.getItem(transactionId));
+  if (!transactionId) {
+    redirectToTopFrom('confirm.html');
+  }
+  const data = sessionStorage.getItem(transactionId)
+  if (!data) {
+    redirectToTopFrom('confirm.html');
+  }
+  const reservation = JSON.parse(data);
   deleteTransactionId();
   sessionStorage.removeItem(transactionId);
 
