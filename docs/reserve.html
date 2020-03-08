@@ -40,11 +40,12 @@
         <div class="col-lg-9 mx-auto">
           <h2 class="my-3">宿泊予約</h2>
           <h4 class="my-3" id ="plan-name">&nbsp;</h4>
+          <p class="text-muted" id ="plan-desc">&nbsp;</p>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-6 ml-auto">
-          <form action="./reserve.html" method="get" id="reserve-form" novalidate>
+          <form action="./confirm.html" id="reserve-form" novalidate>
             <div class="form-group">
               <label for="date">宿泊日 <span class="badge badge-primary">必須</span></label>
               <input type="text" class="form-control" name="date" id="date" required>
@@ -61,7 +62,7 @@
               <input type="number" class="form-control" name="head-count" id="head-count" required>
               <div class="invalid-feedback"></div>
             </div>
-            <label>追加プラン <small class="text-muted">お1人様各1,000円</small></label>
+            <label>追加プラン <small class="text-muted">お一人様各1,000円</small></label>
             <div class="form-group">
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="breakfast" id="breakfast">
@@ -117,6 +118,7 @@
               <div class="invalid-feedback"></div>
             </div>
             <input type="hidden" name="plan-id" id="plan-id" value="">
+            <input type="hidden" name="plan-name" id="plan-name" value="">
             <input type="hidden" name="room-bill" id="room-bill" value="">
           </form>
         </div>

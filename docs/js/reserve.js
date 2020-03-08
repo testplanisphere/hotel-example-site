@@ -14,6 +14,7 @@ ready(() => {
   // Collect input elements
   const reserveForm = document.getElementById('reserve-form');
   const planIdHidden = document.getElementById('plan-id');
+  const planNameHidden = document.getElementById('plan-name');
   const roomBillHidden = document.getElementById('room-bill');
   const dateInput = document.getElementById('date');
   const termInput = document.getElementById('term');
@@ -25,6 +26,7 @@ ready(() => {
   const contactSelect = document.getElementById('contact');
   const emailInput = document.getElementById('email');
   const telInput = document.getElementById('tel');
+  const commentTextArea = document.getElementById('comment');
   const totalBillOutput = document.getElementById('total-bill');
 
   // Get URL params
@@ -44,7 +46,9 @@ ready(() => {
     }
     // set initialize values
     document.getElementById('plan-name').textContent = plan.name;
-    planIdHidden.value = plan.planId;
+    document.getElementById('plan-desc').textContent = `お一人様1泊${formatCurrency(plan.roomBill)}〜、土日は25%アップ`;
+    planIdHidden.value = plan.id;
+    planNameHidden.value = plan.name;
     roomBillHidden.value = plan.roomBill;
     termInput.min = plan.minTerm;
     termInput.max = plan.maxTerm;
@@ -136,7 +140,24 @@ ready(() => {
       validateDateInput(dateInput);
     }
     if (reserveForm.checkValidity()) {
-      // tbd      
+      const reservation = {
+        'roomBill': parseInt(roomBillHidden.value, 10),
+        'planName': planNameHidden.value,
+        'date': dateInput.value.replace(/\//g, '-'),
+        'term': parseInt(termInput.value, 10),
+        'headCount': parseInt(headCountInput.value, 10),
+        'breakfast': breakfastInput.checked,
+        'earlyCheckIn': earlyCheckInInput.checked,
+        'sightseeing': sightseeingInput.checked,
+        'username': usernameInput.value,
+        'contact': contactSelect.options[contactSelect.selectedIndex].value,
+        'email': emailInput.value,
+        'tel':telInput.value,
+        'comment': commentTextArea.value,
+      };
+      const transactionId = genTransactionId();
+      sessionStorage.setItem(transactionId, JSON.stringify(reservation));
+      document.cookie = `transaction=${transactionId}`;
     } else {
       event.preventDefault();
       event.stopPropagation();
@@ -197,4 +218,8 @@ function pad(number) {
     return '0' + number;
   }
   return number;
+}
+
+function genTransactionId() {
+  return (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000) + "";
 }

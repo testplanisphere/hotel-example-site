@@ -24,3 +24,8 @@ const currencyFormatter = new Intl.NumberFormat('ja-JP', { style: 'currency', cu
 export function formatCurrency(num) {
   return currencyFormatter.format(num);
 }
+
+const dateLongFormatter = new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+export function formatDateLong(date) {
+  return dateLongFormatter.format(date);
+}

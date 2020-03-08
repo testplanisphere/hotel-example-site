@@ -90,6 +90,14 @@ export function logout() {
   document.cookie = 'session=; max-age=0';
 }
 
+export function getTransactionId() {
+  return document.cookie.replace(/(?:(?:^|.*;\s*)transaction\s*\=\s*([^;]*).*$)|^.*$/, '$1');
+}
+
+export function deleteTransactionId() {
+  document.cookie = 'transaction=; max-age=0';
+}
+
 export function setLoginNavbar() {
   document.getElementById('signup-holder').innerHTML = '<a class="nav-link" href="./mypage.html">マイページ</a>';
   document.getElementById('login-holder').innerHTML
