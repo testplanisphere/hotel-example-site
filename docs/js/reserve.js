@@ -1,5 +1,5 @@
 import { ready, redirectToTopFrom, formatCurrency } from './lib/global.js';
-import { getSessionUser } from './lib/session.js';
+import { getSessionUser, getUser } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 import { calcTotalBill } from './lib/billing.js';
 
@@ -7,6 +7,7 @@ ready(() => {
 
   // Check login
   const session = getSessionUser();
+  const user = getUser(session);
 
   // Collect input elements
   const reserveForm = document.getElementById('reserve-form');
@@ -61,6 +62,13 @@ ready(() => {
   }).catch(() => {
     redirectToTopFrom(`reserve.html${location.search}`);
   });
+
+  // set login user data
+  if (user) {
+    usernameInput.value = user.username;
+    emailInput.value = user.email;
+    telInput.value = user.tel;
+  }
 
   const updateTotalBill = function() {
     const date = parseDate(dateInput.value);
