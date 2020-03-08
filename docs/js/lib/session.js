@@ -62,6 +62,7 @@ export function isValidUser(email, password) {
 export function getUser(email) {
   let user = PRESET_USERS.find(val => val.email === email);
   if (user) {
+    user.preset = true;
     return user;
   }
   user = localStorage.getItem(email);

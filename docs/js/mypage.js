@@ -35,4 +35,18 @@ ready(() => {
   document.getElementById('logout-form').addEventListener('submit', (event) => {
     logout();
   });
+
+  if (!user.preset) {
+    document.querySelector('#delete-form > button').disabled = false;
+    document.getElementById('delete-form').addEventListener('submit', (event) => {
+      if (confirm('退会すると全てのデータが削除されます。\nよろしいですか？')) {
+        logout();
+        localStorage.removeItem(user.email);
+        alert('退会処理を完了しました。ご利用ありがとうございました。')
+      } else {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    });
+  }
 });
