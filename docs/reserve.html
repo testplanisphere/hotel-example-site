@@ -34,13 +34,23 @@
             </div>
             <div class="form-group">
               <label for="term">宿泊数 <span class="badge badge-primary">必須</span></label>
-              <input type="number" class="form-control" name="term" id="term" required>
-              <div class="invalid-feedback"></div>
+              <div class="input-group">
+                <input type="number" class="form-control" name="term" id="term" required>
+                <div class="input-group-append">
+                  <span class="input-group-text">泊</span>
+                </div>
+                <div class="invalid-feedback"></div>
+              </div>
             </div>
             <div class="form-group">
               <label for="head-count">人数 <span class="badge badge-primary">必須</span></label>
-              <input type="number" class="form-control" name="head-count" id="head-count" required>
-              <div class="invalid-feedback"></div>
+              <div class="input-group">
+                <input type="number" class="form-control" name="head-count" id="head-count" required>
+                <div class="input-group-append">
+                  <span class="input-group-text">人</span>
+                </div>
+                <div class="invalid-feedback"></div>
+              </div>
             </div>
             <label>追加プラン <small class="text-muted">お一人様各1,000円</small></label>
             <div class="form-group">
