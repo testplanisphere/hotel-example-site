@@ -112,16 +112,16 @@ ready(() => {
   // Setup calc total function
   [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput].forEach((input) => {
     input.addEventListener('change', (event) => {
-      resetCustomValidity(dateInput, termInput, headCountInput);
+      resetCustomValidity(event.target);
+      if (event.target.id === 'date' && dateInput.checkValidity()) {
+        validateDateInput(dateInput);
+      }
       if (dateInput.checkValidity() && termInput.checkValidity() && headCountInput.checkValidity()) {
         dateInput.parentElement.classList.remove('was-validated');
         termInput.parentElement.classList.remove('was-validated');
         headCountInput.parentElement.classList.remove('was-validated');
         updateTotalBill();
       } else {
-        if (event.target.id === 'date') {
-          validateDateInput(dateInput);
-        }
         totalBillOutput.textContent = '-';
         setValidityMessage(dateInput, termInput, headCountInput);
         event.target.parentElement.classList.add('was-validated');

@@ -18,7 +18,7 @@ import starhotel.pages.LoginPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("リダイレクトテスト")
-public class RedirectionTest {
+class RedirectionTest {
 
   private static WebDriver driver;
 

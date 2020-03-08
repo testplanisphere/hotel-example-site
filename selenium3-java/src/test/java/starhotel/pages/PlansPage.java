@@ -1,5 +1,7 @@
 package starhotel.pages;
 
+import static starhotel.Utils.getNewWindowHandle;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.By;
@@ -25,5 +27,14 @@ public class PlansPage {
     return plans.stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
-
+  public ReservePage clickPlanByTitle(String title) {
+    wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#plan-list > div[role=\"status\"]"), 0));
+    var plans = driver.findElements(By.className("card"));
+    plans.stream()
+        .filter(elm -> title.equals(elm.findElement(By.className("card-title")).getText()))
+        .findFirst()
+        .ifPresent(elm -> elm.findElement(By.tagName("a")).click());
+    wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+    return new ReservePage(driver);
+  }
 }

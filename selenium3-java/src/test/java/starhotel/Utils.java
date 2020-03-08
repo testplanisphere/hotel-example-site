@@ -1,5 +1,7 @@
 package starhotel;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -37,6 +39,18 @@ public class Utils {
       }
       default:
         throw new RuntimeException(browser + " is not support.");
+    }
+  }
+
+  public static String getNewWindowHandle(Collection<String> handlesBeforeOpen, Collection<String> handlesAfterOpen) {
+    var handles = new ArrayList<>(handlesAfterOpen);
+    handles.removeAll(handlesBeforeOpen);
+    if (handles.isEmpty()) {
+      throw new RuntimeException("新しいウィンドウが見つかりません");
+    } else if (handles.size() > 1) {
+      throw new RuntimeException("新しいウィンドウが複数あります");
+    } else {
+      return handles.get(0);
     }
   }
 }
