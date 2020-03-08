@@ -1,5 +1,5 @@
 import { ready, redirectToTopFrom, formatCurrency, formatDateLong } from './lib/global.js';
-import { getSessionUser, setLoginNavbar, getTransactionId, deleteTransactionId } from './lib/session.js';
+import { getSessionUser, getTransactionId, deleteTransactionId } from './lib/session.js';
 import { calcTotalBill } from './lib/billing.js';
 
 history.replaceState(null, '', 'confirm.html');
@@ -8,9 +8,6 @@ ready(() => {
 
   // Check login
   const session = getSessionUser();
-  if (session) {
-    setLoginNavbar();
-  }
 
   // load data
   const transactionId = getTransactionId();

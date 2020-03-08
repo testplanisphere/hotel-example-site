@@ -1,5 +1,5 @@
 import { ready, redirectToTopFrom, formatCurrency } from './lib/global.js';
-import { getSessionUser, setLoginNavbar } from './lib/session.js';
+import { getSessionUser } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 import { calcTotalBill } from './lib/billing.js';
 
@@ -7,9 +7,6 @@ ready(() => {
 
   // Check login
   const session = getSessionUser();
-  if (session) {
-    setLoginNavbar();
-  }
 
   // Collect input elements
   const reserveForm = document.getElementById('reserve-form');
