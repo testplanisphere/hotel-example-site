@@ -43,88 +43,88 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-9 mx-auto">
-        <form action="./reserve.html" method="get" id="reserve-form" novalidate>
-          <div class="form-group">
-            <label for="date">宿泊日 <span class="badge badge-primary">必須</span></label>
-            <input type="text" class="form-control" name="date" id="date" required>
-            <small class="form-text text-muted">ご予約は3ヶ月以内の日付のみ可能です。</small>
-            <div class="invalid-feedback"></div>
-          </div>
-          <div class="form-group">
-            <label for="term">宿泊数 <span class="badge badge-primary">必須</span></label>
-            <input type="number" class="form-control" name="term" id="term" required>
-            <div class="invalid-feedback"></div>
-          </div>
-          <div class="form-group">
-            <label for="head-count">人数 <span class="badge badge-primary">必須</span></label>
-            <input type="number" class="form-control" name="head-count" id="head-count" required>
-            <div class="invalid-feedback"></div>
-          </div>
-          <label>追加プラン <small class="text-muted">お1人様各1,000円</small></label>
-          <div class="form-group">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" name="breakfast" id="breakfast">
-              <label class="form-check-label" for="breakfast">
-                朝食バイキング
-              </label>
+        <div class="col-lg-6 ml-auto">
+          <form action="./reserve.html" method="get" id="reserve-form" novalidate>
+            <div class="form-group">
+              <label for="date">宿泊日 <span class="badge badge-primary">必須</span></label>
+              <input type="text" class="form-control" name="date" id="date" required>
+              <small class="form-text text-muted">ご予約は3ヶ月以内の日付のみ可能です。</small>
+              <div class="invalid-feedback"></div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" name="early-check-in" id="early-check-in">
-              <label class="form-check-label" for="early-check-in">
-                昼からチェックインプラン
-              </label>
+            <div class="form-group">
+              <label for="term">宿泊数 <span class="badge badge-primary">必須</span></label>
+              <input type="number" class="form-control" name="term" id="term" required>
+              <div class="invalid-feedback"></div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" name="sightseeing" id="sightseeing">
-              <label class="form-check-label" for="sightseeing">
-                お得な観光プラン
-              </label>
+            <div class="form-group">
+              <label for="head-count">人数 <span class="badge badge-primary">必須</span></label>
+              <input type="number" class="form-control" name="head-count" id="head-count" required>
+              <div class="invalid-feedback"></div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="username">氏名 <span class="badge badge-primary">必須</span></label>
-            <input type="text" class="form-control" name="username" id="username" required>
-            <div class="invalid-feedback"></div>
-          </div>
-          <div class="form-group">
-            <label for="contact">確認のご連絡 <span class="badge badge-primary">必須</span></label>
-            <select class="form-control" name="contact" id="contact" required>
-              <option value="no" selected>希望しない</option>
-              <option value="email">メールでのご連絡</option>
-              <option value="tel">電話でのご連絡</option>
-            </select>
-            <div class="invalid-feedback"></div>
-          </div>
-          <div class="form-group d-none">
-            <label for="username">メールアドレス <span class="badge badge-primary">必須</span></label>
-            <input type="email" class="form-control" name="email" id="email" disabled>
-            <div class="invalid-feedback"></div>
-          </div>
-          <div class="form-group d-none">
-            <label for="username">電話番号 <span class="badge badge-primary">必須</span></label>
-            <input type="tel" class="form-control" name="tel" id="tel" pattern="[0-9]{11}" disabled>
-            <small class="form-text text-muted">11桁の数字で入力してください。例：01133335555</small>
-            <div class="invalid-feedback"></div>
-          </div>
-          <div class="form-group">
-            <label for="comment">ご要望・ご連絡事項等ありましたらご記入ください</label>
-            <textarea class="form-control" name="comment" id="comment" maxlength="140" rows="3"></textarea>
-            <div class="invalid-feedback"></div>
-          </div>
-          <input type="hidden" name="plan-id" id="plan-id" value="">
-          <input type="hidden" name="room-bill" id="room-bill" value="">
-          <div class="form-group">
-            <h3>合計</h3>
-            <output class="h1 my-2" name="total-bill" id="total-bill">-</output>
-            <button type="submit" class="btn btn-primary btn-block my-3">予約</button>
-          </div>
+            <label>追加プラン <small class="text-muted">お1人様各1,000円</small></label>
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="breakfast" id="breakfast">
+                <label class="form-check-label" for="breakfast">
+                  朝食バイキング
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="early-check-in" id="early-check-in">
+                <label class="form-check-label" for="early-check-in">
+                  昼からチェックインプラン
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="sightseeing" id="sightseeing">
+                <label class="form-check-label" for="sightseeing">
+                  お得な観光プラン
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="username">氏名 <span class="badge badge-primary">必須</span></label>
+              <input type="text" class="form-control" name="username" id="username" required>
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+              <label for="contact">確認のご連絡</label>
+              <select class="form-control" name="contact" id="contact" required>
+                <option value="no" selected>希望しない</option>
+                <option value="email">メールでのご連絡</option>
+                <option value="tel">電話でのご連絡</option>
+              </select>
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group d-none">
+              <label for="username">メールアドレス <span class="badge badge-primary">必須</span></label>
+              <input type="email" class="form-control" name="email" id="email" disabled>
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group d-none">
+              <label for="username">電話番号 <span class="badge badge-primary">必須</span></label>
+              <input type="tel" class="form-control" name="tel" id="tel" pattern="[0-9]{11}" disabled>
+              <small class="form-text text-muted">11桁の数字で入力してください。例：01133335555</small>
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="form-group">
+              <label for="comment">ご要望・ご連絡事項等ありましたらご記入ください</label>
+              <textarea class="form-control" name="comment" id="comment" maxlength="140" rows="3"></textarea>
+              <div class="invalid-feedback"></div>
+            </div>
+            <input type="hidden" name="plan-id" id="plan-id" value="">
+            <input type="hidden" name="room-bill" id="room-bill" value="">
+          </form>
         </div>
-        </form>
+        <div class="col-lg-3 mr-auto">
+          <h3>合計</h3>
+          <output class="h1 my-2" name="total-bill" id="total-bill" form="reserve-form">-</output>
+          <button type="submit" class="btn btn-primary btn-block my-3" form="reserve-form">予約内容を確認する</button>
+        </div>
       </div>
     </div>
     <footer class="text-center py-5">
