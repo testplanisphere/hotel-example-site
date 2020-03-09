@@ -21,7 +21,8 @@ ready(() => {
 
   // Setup submit event
   signupForm.addEventListener('submit', (event) => {
-    resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
+    resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput,
+        addressInput, telInput, genderSelect, birthdayInput);
 
     // Check exsists user
     if (emailInput.checkValidity()) {
@@ -60,7 +61,8 @@ ready(() => {
     } else {
       event.preventDefault();
       event.stopPropagation();
-      setValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput, addressInput, telInput, genderSelect, birthdayInput);
+      setValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput,
+          addressInput, telInput, genderSelect, birthdayInput);
       signupForm.classList.add('was-validated');
     }
   });

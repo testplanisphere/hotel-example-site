@@ -78,7 +78,8 @@ ready(() => {
     const roomBill = parseInt(roomBillHidden.value, 10);
     const term = parseInt(termInput.value, 10);
     const headCount = parseInt(headCountInput.value, 10);
-    const totalBill = calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked);
+    const totalBill = 
+    　　　　calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked);
     totalBillOutput.textContent = formatCurrency(totalBill);
   };
 
@@ -92,7 +93,7 @@ ready(() => {
     },
   });
 
-  // Setup contant select
+  // Setup contact select
   contactSelect.addEventListener('change', (event) => {
     if (event.target.value === 'no') {
       emailInput.disabled = true;
@@ -225,6 +226,9 @@ function pad(number) {
   return number;
 }
 
+/**
+ * @returns {string}
+ */
 function genTransactionId() {
   return (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000) + "";
 }

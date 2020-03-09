@@ -26,6 +26,10 @@ export function formatCurrency(num) {
 }
 
 const dateLongFormatter = new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+/**
+ * @param {Date} date 
+ * @returns {string}
+ */
 export function formatDateLong(date) {
   return dateLongFormatter.format(date);
 }

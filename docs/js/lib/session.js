@@ -91,6 +91,9 @@ export function logout() {
   document.cookie = 'session=; max-age=0';
 }
 
+/**
+ * @returns {string}
+ */
 export function getTransactionId() {
   return document.cookie.replace(/(?:(?:^|.*;\s*)transaction\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 }
