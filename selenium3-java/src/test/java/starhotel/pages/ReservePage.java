@@ -1,7 +1,9 @@
 package starhotel.pages;
 
+import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -87,6 +89,7 @@ public class ReservePage {
   }
 
   public String getPlanName() {
+    wait.until(ExpectedConditions.textMatches(By.id("plan-name"), Pattern.compile(".+")));
     var planName = driver.findElement(By.id("plan-name"));
     return planName.getText();
   }
