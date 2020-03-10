@@ -1,10 +1,10 @@
-import { ready, redirectToTopFrom } from './lib/global.js';
+import { ready, redirectToTop } from './lib/global.js';
 import { getUser, getSessionUser, login } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 
 const session = getSessionUser();
 if (session) {
-  redirectToTopFrom('signup.html');
+  redirectToTop();
 }
 ready(() => {
 

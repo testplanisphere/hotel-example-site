@@ -1,4 +1,4 @@
-import { ready, redirectToTopFrom, formatCurrency } from './lib/global.js';
+import { ready, redirectToTop, formatCurrency } from './lib/global.js';
 import { getSessionUser, getUser } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 import { calcTotalBill } from './lib/billing.js';
@@ -31,7 +31,7 @@ ready(() => {
   const params = new URLSearchParams(location.search);
   const planId = parseInt(params.get('plan-id'), 10);
   if (isNaN(planId)) {
-    redirectToTopFrom(`reserve.html${location.search}`);
+    redirectToTop();
   }
 
   // fetch selected plan data
@@ -60,7 +60,7 @@ ready(() => {
     const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false);
     totalBillOutput.textContent = formatCurrency(total);
   }).catch(() => {
-    redirectToTopFrom(`reserve.html${location.search}`);
+    redirectToTop();
   });
 
   // set login user data
@@ -223,12 +223,12 @@ function pad(number) {
   if (number < 10) {
     return '0' + number;
   }
-  return number;
+  return '' + number;
 }
 
 /**
  * @returns {string}
  */
 function genTransactionId() {
-  return (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000) + "";
+  return (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000) + '';
 }

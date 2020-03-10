@@ -11,10 +11,10 @@
     <title>宿泊予約確認 | STAR HOTEL - テスト自動化デモサイト</title>
   </head>
   <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand text-uppercase font-weight-bold" href="#">Star Hotel</a>
     </nav>
-    <div class="container bg-white py-5">
+    <div class="container bg-white py-5" id="confirm">
       <div class="row">
         <div class="col-lg-9 mx-auto">
           <h2 class="my-3">宿泊予約確認</h2>
@@ -25,17 +25,31 @@
           <h3 id="total-bill"></h3>
           <h4 id="plan-name"></h4>
           <p id="plan-desc" class="text-muted"></p>
-          <ul class="list-unstyled">
-            <li id="term"></li>
-            <li id="head-count"></li>
-            <li id="plans"></li>
-            <li id="username"></li>
-            <li id="contact"></li>
-            <li>ご要望・ご連絡事項等：<pre id="comment" class="pl-5"></pre></li>
-          </ul>
-          <form action="./success.html" id="confirm-form">
-            <button type="submit" class="btn btn-primary btn-block my-3">この内容で予約する</button>
-          </form>
+          <dl class="row pl-5">
+            <dt class="col-3">期間</dt>
+            <dd class="col-9" id="term"></dd>
+            <dt class="col-3">人数</dt>
+            <dd class="col-9" id="head-count"></dd>
+            <dt class="col-3">追加プラン</dt>
+            <dd class="col-9" id="plans"></dd>
+            <dt class="col-3">お名前</dt>
+            <dd class="col-9" id="username"></dd>
+            <dt class="col-3">確認のご連絡</dt>
+            <dd class="col-9" id="contact"></dd>
+            <dt class="col-3">ご要望・ご連絡事項等</dt>
+            <dd class="col-9"><pre id="comment"></pre></dd>
+          </dl>
+          <button type="button" class="btn btn-primary btn-block my-3" id="submit-button">この内容で予約する</button>
+        </div>
+      </div>
+    </div>
+    <div class="container bg-white py-5 d-none" id="success">
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">予約を完了しました</h4>
+            <p>ご来館、心よりお待ちしております。</p>
+          </div>
         </div>
       </div>
     </div>

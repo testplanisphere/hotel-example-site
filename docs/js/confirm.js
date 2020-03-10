@@ -1,4 +1,4 @@
-import { ready, redirectToTopFrom, formatCurrency, formatDateLong } from './lib/global.js';
+import { ready, redirectToTop, formatCurrency, formatDateLong } from './lib/global.js';
 import { getSessionUser, getTransactionId, deleteTransactionId } from './lib/session.js';
 import { calcTotalBill } from './lib/billing.js';
 
@@ -12,11 +12,11 @@ ready(() => {
   // load data
   const transactionId = getTransactionId();
   if (!transactionId) {
-    redirectToTopFrom('confirm.html');
+    redirectToTop();
   }
   const data = sessionStorage.getItem(transactionId)
   if (!data) {
-    redirectToTopFrom('confirm.html');
+    redirectToTop();
   }
   const reservation = JSON.parse(data);
   deleteTransactionId();
@@ -32,8 +32,8 @@ ready(() => {
   document.getElementById('total-bill').textContent = `合計 ${formatCurrency(totalBill)}（税込み）`;
   document.getElementById('plan-name').textContent = reservation.planName;
   document.getElementById('plan-desc').textContent = `お一人様1泊${formatCurrency(reservation.roomBill)}〜、土日は25%アップ`;
-  document.getElementById('term').textContent = `期間：${formatDateLong(reserveDate)} 〜 ${formatDateLong(endDate)} ${reservation.term}泊`;
-  document.getElementById('head-count').textContent = `ご人数：${reservation.headCount}名様`;
+  document.getElementById('term').textContent = `${formatDateLong(reserveDate)} 〜 ${formatDateLong(endDate)} ${reservation.term}泊`;
+  document.getElementById('head-count').textContent = `${reservation.headCount}名様`;
   let plansHtml = '';
   if (reservation.breakfast) {
     plansHtml += '<li>朝食バイキング</li>';
@@ -45,13 +45,13 @@ ready(() => {
     plansHtml += '<li>お得な観光プラン</li>';
   }
   if (plansHtml.length > 0) {
-    plansHtml = `追加プラン<ul>${plansHtml}</ul>`;
+    plansHtml = `<ul>${plansHtml}</ul>`;
   } else {
-    plansHtml = '追加プラン：なし';
+    plansHtml = 'なし';
   }
   document.getElementById('plans').innerHTML = plansHtml;
-  document.getElementById('username').textContent = `お名前：${reservation.username}様`;
-  let contactText = '確認のご連絡：';
+  document.getElementById('username').textContent = `${reservation.username}様`;
+  let contactText = '';
   if (reservation.contact === 'no') {
     contactText += '希望しない';
   } else if (reservation.contact === 'email') {
@@ -61,6 +61,11 @@ ready(() => {
   }
   document.getElementById('contact').textContent = contactText;
   document.getElementById('comment').textContent = reservation.comment;
+
+  document.getElementById('submit-button').addEventListener('click', (event) => {
+    document.getElementById('confirm').classList.add('d-none');
+    document.getElementById('success').classList.remove('d-none');
+  });
 });
 
 /**

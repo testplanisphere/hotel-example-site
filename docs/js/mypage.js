@@ -1,4 +1,4 @@
-import { ready, redirectToTopFrom } from './lib/global.js';
+import { ready, redirectToTop } from './lib/global.js';
 import { getUser, getSessionUser, logout } from './lib/session.js'
 
 const DISPLAY_GENDER = new Map([
@@ -11,7 +11,7 @@ const DISPLAY_GENDER = new Map([
 history.replaceState(null, '', 'mypage.html');
 const session = getSessionUser();
 if (!session) {
-  redirectToTopFrom('mypage.html');
+  redirectToTop();
 }
 ready(() => {
 

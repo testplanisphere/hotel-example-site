@@ -9,11 +9,9 @@ export function ready(handler) {
   }
 }
 
-/**
- * @param {string} from 
- */
-export function redirectToTopFrom(from) {
-  location.assign(location.href.replace(from, 'index.html'));
+export function redirectToTop() {
+  const path = location.pathname.replace(/(\/.+)(\/.+\.html)/, '$1/index.html');
+  location.assign(`${location.origin}${path}`);
 }
 
 const currencyFormatter = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY', currencyDisplay: 'name' });
