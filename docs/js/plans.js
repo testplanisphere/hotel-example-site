@@ -1,5 +1,5 @@
 import { ready, formatCurrency } from './lib/global.js';
-import { getSessionUser, setLoginNavbar } from './lib/session.js';
+import { getSessionUser, getUser, setLoginNavbar } from './lib/session.js';
 
 ready(() => {
 
@@ -8,17 +8,35 @@ ready(() => {
   if (session) {
     setLoginNavbar();
   }
+  const user = getUser(session);
 
   // fetch plan data
   fetch('./data/plan_data.json', { cache: 'no-store' }).then((response) => {
     return response.json();
   }).then((data) => {
-    const planHtml = data.filter(val => val.id !== 0)
+    const planHtml = data.filter(val => displayPlan(val, user))
         .map(val => genPlanHtml(val))
         .reduce((acc, cur) => acc + cur);
     document.getElementById('plan-list').innerHTML = planHtml;
   });
 });
+
+function displayPlan(plan, user) {
+  if (plan.id === 0) {
+    return false;
+  }
+  if (plan.only) {
+    if (plan.only === 'menber' && user) {
+      return true;
+    } else if (plan.only === 'premium' && user && user.rank === 'premium') {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return true;
+  }
+}
 
 function genPlanHtml(plan) {
   return `<div class="col-12 col-md-6 col-lg-4">

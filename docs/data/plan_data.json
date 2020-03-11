@@ -7,7 +7,8 @@
     "maxHeadCount": 9,
     "minTerm": 1,
     "maxTerm": 9,
-    "room": "部屋指定なし"
+    "room": "部屋指定なし",
+    "only": null
   },
   {
     "id": 1,
@@ -17,16 +18,62 @@
     "maxHeadCount": 9,
     "minTerm": 1,
     "maxTerm": 9,
-    "room": "プレミアムツイン"
+    "room": "プレミアムツイン",
+    "only": "premium"
   },
   {
     "id": 2,
-    "name": "朝食付プラン",
-    "roomBill": 8000,
+    "name": "ディナー付プラン",
+    "roomBill": 8500,
+    "minHeadCount": 1,
+    "maxHeadCount": 4,
+    "minTerm": 1,
+    "maxTerm": 3,
+    "room": "部屋指定なし",
+    "only": null
+  },
+  {
+    "id": 3,
+    "name": "お得なプラン",
+    "roomBill": 6000,
     "minHeadCount": 1,
     "maxHeadCount": 9,
     "minTerm": 1,
     "maxTerm": 9,
-    "room": "部屋指定なし"
+    "room": "部屋指定なし",
+    "only": "menber"
+  },
+  {
+    "id": 4,
+    "name": "素泊まり",
+    "roomBill": 5500,
+    "minHeadCount": 1,
+    "maxHeadCount": 2,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "シングル",
+    "only": null
+  },
+  {
+    "id": 5,
+    "name": "出張ビジネスプラン",
+    "roomBill": 7500,
+    "minHeadCount": 1,
+    "maxHeadCount": 2,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "シングル",
+    "only": null
+  },
+  {
+    "id": 6,
+    "name": "エステ・マッサージプラン",
+    "roomBill": 9000,
+    "minHeadCount": 1,
+    "maxHeadCount": 6,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "部屋指定なし",
+    "only": null
   }
 ]
