@@ -53,4 +53,12 @@ public class Utils {
       return handles.get(0);
     }
   }
+
+  public static void sleep(long millis) {
+    try {
+      Thread.sleep(millis);
+    } catch (InterruptedException ign) {
+      // ignore
+    }
+  }
 }

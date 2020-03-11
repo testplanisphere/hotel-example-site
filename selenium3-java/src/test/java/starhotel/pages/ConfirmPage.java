@@ -1,5 +1,7 @@
 package starhotel.pages;
 
+import static starhotel.Utils.sleep;
+
 import java.util.regex.Pattern;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -68,16 +70,16 @@ public class ConfirmPage {
   public void doConfirm() {
     var confirmButton = driver.findElement(By.cssSelector("button[data-target=\"#success-modal\"]"));
     confirmButton.click();
+    sleep(2000);
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("success-modal")));
   }
 
   public String getModalMessage() {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("success-modal")));
     var modalMessage = driver.findElement(By.cssSelector("#success-modal > div > div > .modal-body"));
     return modalMessage.getText();
   }
 
   public void close() {
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("success-modal")));
     var closeButton = driver.findElement(By.cssSelector("#success-modal > div > div > div > button"));
     closeButton.click();
   }
