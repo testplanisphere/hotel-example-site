@@ -178,7 +178,7 @@ class MyPageTest {
     assertEquals("退会処理を完了しました。ご利用ありがとうございました。", alert.getText());
     alert.accept();
     wait.until(ExpectedConditions.urlContains("index.html"));
-    assertTrue(driver.getCurrentUrl().endsWith("index.html"));
+    assertTrue(driver.getCurrentUrl().contains("index.html"));
   }
 
 }

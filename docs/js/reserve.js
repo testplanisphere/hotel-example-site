@@ -1,5 +1,5 @@
 import { ready, redirectToTop, formatCurrency } from './lib/global.js';
-import { getSessionUser, getUser } from './lib/session.js';
+import { getSessionUser, getUser, canDisplayPlan } from './lib/session.js';
 import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
 import { calcTotalBill } from './lib/billing.js';
 
@@ -39,7 +39,7 @@ ready(() => {
     return response.json();
   }).then((data) => {
     const plan = data.find(val => val.id === planId);
-    if (!plan) {
+    if (!plan || !canDisplayPlan(plan, user)) {
       return Promise.reject();
     }
     // set initialize values

@@ -110,3 +110,22 @@ export function setLoginNavbar() {
     logout();
   });
 }
+
+/**
+ * @param {object} plan 
+ * @param {object} user 
+ * @returns {boolean}
+ */
+export function canDisplayPlan(plan, user) {
+  if (!plan.only) {
+    return true;
+  }
+  if (!user) {
+    return false;
+  }
+  if (plan.only === 'member') {
+    return true;
+  } else if (plan.only === 'premium') {
+    return (user.rank === 'premium');
+  }
+}

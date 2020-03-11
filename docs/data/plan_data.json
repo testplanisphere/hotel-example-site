@@ -41,7 +41,7 @@
     "minTerm": 1,
     "maxTerm": 9,
     "room": "部屋指定なし",
-    "only": "menber"
+    "only": "member"
   },
   {
     "id": 4,

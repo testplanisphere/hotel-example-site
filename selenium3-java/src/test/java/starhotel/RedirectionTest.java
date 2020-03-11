@@ -103,4 +103,44 @@ class RedirectionTest {
     wait.until(ExpectedConditions.urlContains("index.html"));
     assertTrue(driver.getCurrentUrl().endsWith("index.html"));
   }
+
+  @Test
+  @Order(7)
+  @DisplayName("未ログインで会員専用プランでトップへリダイレクトすること1")
+  void testMemberOnlyPlanPageToTop() {
+    driver.get(BASE_URL + "/reserve.html?plan-id=3");
+    wait.until(ExpectedConditions.urlContains("index.html"));
+    assertTrue(driver.getCurrentUrl().endsWith("index.html"));
+  }
+
+  @Test
+  @Order(8)
+  @DisplayName("未ログインでプレミアム専用プランでトップへリダイレクトすること1")
+  void testPremiumOnlyPlanPageToTop() {
+    driver.get(BASE_URL + "/reserve.html?plan-id=1");
+    wait.until(ExpectedConditions.urlContains("index.html"));
+    assertTrue(driver.getCurrentUrl().endsWith("index.html"));
+  }
+
+  @Test
+  @Order(9)
+  @DisplayName("一般会員でプレミアム専用プランでトップへリダイレクトすること1")
+  void testPremiumOnlyPlanNormalMemberPageToTop() {
+    driver.get(BASE_URL + "/login.html");
+    var loginPage = new LoginPage(driver);
+    loginPage.doLogin("sakura@example.com", "pass123");
+
+    driver.get(BASE_URL + "/reserve.html?plan-id=1");
+    wait.until(ExpectedConditions.urlContains("index.html"));
+    assertTrue(driver.getCurrentUrl().endsWith("index.html"));
+  }
+
+  @Test
+  @Order(10)
+  @DisplayName("予約画面を経ずに確認画面でトップへリダイレクトすること2")
+  void testInvalidParamConfirmPageToTop() {
+    driver.get(BASE_URL + "/confirm.html");
+    wait.until(ExpectedConditions.urlContains("index.html"));
+    assertTrue(driver.getCurrentUrl().endsWith("index.html"));
+  }
 }
