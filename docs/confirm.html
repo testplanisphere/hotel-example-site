@@ -39,16 +39,24 @@
             <dt class="col-3">ご要望・ご連絡事項等</dt>
             <dd class="col-9"><pre id="comment"></pre></dd>
           </dl>
-          <button type="button" class="btn btn-primary btn-block my-3" id="submit-button">この内容で予約する</button>
+          <button type="button" class="btn btn-primary btn-block my-3" data-toggle="modal" data-target="#success-modal">この内容で予約する</button>
         </div>
       </div>
     </div>
-    <div class="container bg-white py-5 d-none" id="success">
-      <div class="row">
-        <div class="col-lg-9 mx-auto">
-          <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">予約を完了しました</h4>
+    <div class="modal fade" tabindex="-1" role="dialog" id="success-modal" data-backdrop="static">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">予約を完了しました</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
             <p>ご来館、心よりお待ちしております。</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal">閉じる</button>
           </div>
         </div>
       </div>

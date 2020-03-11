@@ -62,9 +62,8 @@ ready(() => {
   document.getElementById('contact').textContent = contactText;
   document.getElementById('comment').textContent = reservation.comment;
 
-  document.getElementById('submit-button').addEventListener('click', (event) => {
-    document.getElementById('confirm').classList.add('d-none');
-    document.getElementById('success').classList.remove('d-none');
+  $('#success-modal').on('hidden.bs.modal', function(event) {
+    window.close();
   });
 });
 
