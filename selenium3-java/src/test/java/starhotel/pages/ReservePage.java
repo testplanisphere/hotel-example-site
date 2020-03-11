@@ -66,7 +66,7 @@ public class ReservePage {
   }
 
   public void selectContact(String contact) {
-    var contactSelect = new Select(driver.findElement(By.id("contactSelect")));
+    var contactSelect = new Select(driver.findElement(By.id("contact")));
     contactSelect.selectByVisibleText(contact);
   }
 
@@ -86,6 +86,12 @@ public class ReservePage {
     var commentTextArea = driver.findElement(By.id("comment"));
     commentTextArea.clear();
     commentTextArea.sendKeys(comment);
+  }
+
+  public ConfirmPage goToConfirmPage() {
+    var submitButton = driver.findElement(By.cssSelector("button[data-test=\"submit-button\"]"));
+    submitButton.click();
+    return new ConfirmPage(driver);
   }
 
   public String getPlanName() {
@@ -109,6 +115,21 @@ public class ReservePage {
     return headCountInput.getAttribute("value");
   }
 
+  public String getUsername() {
+    var headCountInput = driver.findElement(By.id("username"));
+    return headCountInput.getAttribute("value");
+  }
+
+  public String getEmail() {
+    var headCountInput = driver.findElement(By.id("email"));
+    return headCountInput.getAttribute("value");
+  }
+
+  public String getTel() {
+    var headCountInput = driver.findElement(By.id("tel"));
+    return headCountInput.getAttribute("value");
+  }
+
   public String getReserveDateMessage() {
     var reserveDateMessage = driver.findElement(By.cssSelector("#date ~ .invalid-feedback"));
     return reserveDateMessage.getText();
@@ -122,5 +143,20 @@ public class ReservePage {
   public String getHeadCountMessage() {
     var headCountMessage = driver.findElement(By.cssSelector("#head-count ~ .invalid-feedback"));
     return headCountMessage.getText();
+  }
+
+  public String getUsernameMessage() {
+    var usernameMessage = driver.findElement(By.cssSelector("#username ~ .invalid-feedback"));
+    return usernameMessage.getText();
+  }
+
+  public String getEmailMessage() {
+    var emailMessage = driver.findElement(By.cssSelector("#email ~ .invalid-feedback"));
+    return emailMessage.getText();
+  }
+
+  public String getTelMessage() {
+    var telMessage = driver.findElement(By.cssSelector("#tel ~ .invalid-feedback"));
+    return telMessage.getText();
   }
 }

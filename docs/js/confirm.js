@@ -60,7 +60,7 @@ ready(() => {
     contactText += `電話：${reservation.tel}`;
   }
   document.getElementById('contact').textContent = contactText;
-  document.getElementById('comment').textContent = reservation.comment;
+  document.getElementById('comment').textContent = reservation.comment ? reservation.comment : 'なし';
 
   $('#success-modal').on('hidden.bs.modal', function(event) {
     window.close();
