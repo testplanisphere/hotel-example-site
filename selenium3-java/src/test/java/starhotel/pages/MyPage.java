@@ -55,4 +55,9 @@ public class MyPage {
     var notification = driver.findElement(By.id("notification"));
     return notification.getText();
   }
+
+  public void deleteUser() {
+    var deleteButton = driver.findElement(By.cssSelector("#delete-form > button"));
+    deleteButton.click();
+  }
 }

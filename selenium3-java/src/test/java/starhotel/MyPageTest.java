@@ -2,6 +2,7 @@ package starhotel;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static starhotel.Utils.BASE_URL;
 
 import java.time.LocalDate;
@@ -13,7 +14,10 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import starhotel.pages.LoginPage;
 import starhotel.pages.SignupPage;
 import starhotel.pages.SignupPage.Rank;
@@ -24,9 +28,12 @@ class MyPageTest {
 
   private static WebDriver driver;
 
+  private static WebDriverWait wait;
+
   @BeforeAll
   static void initAll() {
     driver = Utils.createWebDriver();
+    wait = new WebDriverWait(driver, 30);
   }
 
   @AfterEach
@@ -152,6 +159,26 @@ class MyPageTest {
         () -> assertEquals("2000-01-01", myPage.getBirthday()),
         () -> assertEquals("受け取らない", myPage.getNotification())
     );
+  }
+
+  @Test
+  @Order(6)
+  @DisplayName("新規登録したユーザが削除できること")
+  void testDeleteUser() {
+    driver.get(BASE_URL + "/login.html");
+
+    var loginPage = new LoginPage(driver);
+    var myPage = loginPage.doLogin("new-user@gmail.com", "11111111");
+    myPage.deleteUser();
+
+    Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
+    assertEquals("退会すると全ての情報が削除されます。\nよろしいですか？", confirm.getText());
+    confirm.accept();
+    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+    assertEquals("退会処理を完了しました。ご利用ありがとうございました。", alert.getText());
+    alert.accept();
+    wait.until(ExpectedConditions.urlContains("index.html"));
+    assertTrue(driver.getCurrentUrl().endsWith("index.html"));
   }
 
 }
