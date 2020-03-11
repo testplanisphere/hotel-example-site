@@ -18,7 +18,7 @@ public class PlansPage {
 
   public PlansPage(WebDriver driver) {
     this.driver = driver;
-    this.wait = new WebDriverWait(driver, 30);
+    this.wait = new WebDriverWait(driver, 10);
   }
 
   public List<String> getPlanTitles() {

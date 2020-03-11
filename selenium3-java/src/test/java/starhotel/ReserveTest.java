@@ -319,7 +319,7 @@ class ReserveTest {
 
   @Test
   @Order(10)
-  @DisplayName("宿泊予約が完了すること_ログイン_初期値")
+  @DisplayName("宿泊予約が完了すること_ログイン")
   void testReserveSuccess2() {
     driver.get(BASE_URL + "/login.html");
     var loginPage = new LoginPage(driver);

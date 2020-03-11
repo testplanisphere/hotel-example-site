@@ -33,7 +33,7 @@ class MyPageTest {
   @BeforeAll
   static void initAll() {
     driver = Utils.createWebDriver();
-    wait = new WebDriverWait(driver, 30);
+    wait = new WebDriverWait(driver, 10);
   }
 
   @AfterEach
@@ -171,10 +171,10 @@ class MyPageTest {
     var myPage = loginPage.doLogin("new-user@gmail.com", "11111111");
     myPage.deleteUser();
 
-    Alert confirm = wait.until(ExpectedConditions.alertIsPresent());
+    Alert confirm = driver.switchTo().alert();
     assertEquals("退会すると全ての情報が削除されます。\nよろしいですか？", confirm.getText());
     confirm.accept();
-    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+    Alert alert = driver.switchTo().alert();
     assertEquals("退会処理を完了しました。ご利用ありがとうございました。", alert.getText());
     alert.accept();
     wait.until(ExpectedConditions.urlContains("index.html"));

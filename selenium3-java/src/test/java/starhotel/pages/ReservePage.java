@@ -15,7 +15,7 @@ public class ReservePage {
 
   public ReservePage(WebDriver driver) {
     this.driver = driver;
-    this.wait = new WebDriverWait(driver, 30);
+    this.wait = new WebDriverWait(driver, 10);
   }
 
   public void setReserveDate(String date) {
@@ -95,7 +95,7 @@ public class ReservePage {
   }
 
   public String getPlanName() {
-    wait.until(ExpectedConditions.textMatches(By.id("plan-name"), Pattern.compile(".+")));
+    wait.until(ExpectedConditions.textMatches(By.id("plan-name"), Pattern.compile("\\H+")));
     var planName = driver.findElement(By.id("plan-name"));
     return planName.getText();
   }
