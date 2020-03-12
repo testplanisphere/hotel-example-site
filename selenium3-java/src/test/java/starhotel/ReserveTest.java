@@ -345,7 +345,6 @@ class ReserveTest {
     }
     var expectedTerm = longFormatter.format(expectedStart) + " 〜 " + longFormatter.format(expectedEnd) + " 2泊";
 
-    reservePage.setReserveDate(shortFormatter.format(expectedStart));
     reservePage.setReserveTerm("2");
     reservePage.setHeadCount("4");
     reservePage.checkBreakfastPlan(true);
@@ -353,6 +352,7 @@ class ReserveTest {
     reservePage.checkSightseeingPlan(false);
     reservePage.selectContact("メールでのご連絡");
     reservePage.setComment("あああ\n\nいいいいいいい\nうう");
+    reservePage.setReserveDate(shortFormatter.format(expectedStart));
     var confirmPage = reservePage.goToConfirmPage();
 
     assertAll("予約確認",
