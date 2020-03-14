@@ -22,4 +22,10 @@ public class TopPage {
     signupLink.click();
     return new SignupPage(driver);
   }
+
+  public PlansPage goToPlansPage() {
+    var planLink = driver.findElement(By.linkText("宿泊予約"));
+    planLink.click();
+    return new PlansPage(driver);
+  }
 }

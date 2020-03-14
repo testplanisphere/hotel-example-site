@@ -10,10 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static starhotel.Utils.BASE_URL;
 import static starhotel.Utils.getNewWindowHandle;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,8 +24,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import starhotel.pages.LoginPage;
-import starhotel.pages.PlansPage;
+import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("宿泊予約画面テスト")
@@ -72,10 +69,11 @@ class ReserveTest {
   @Order(1)
   @DisplayName("画面表示時の初期値が設定されていること_未ログイン")
   void testPageInitValue() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -95,14 +93,13 @@ class ReserveTest {
   @Order(2)
   @DisplayName("画面表示時の初期値が設定されていること_ログイン済み")
   void testPageInitValueLogin() {
-    driver.get(BASE_URL + "/login.html");
-    var loginPage = new LoginPage(driver);
-    loginPage.doLogin("ichiro@example.com", "password");
-
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+    var loginPage = topPage.goToLoginPage();
+    var myPage = loginPage.doLogin("ichiro@example.com", "password");
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = myPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("プレミアムプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -125,10 +122,11 @@ class ReserveTest {
   @Order(3)
   @DisplayName("入力値が空白でエラーとなること")
   void testBlankInputOne() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -150,10 +148,11 @@ class ReserveTest {
   @Order(4)
   @DisplayName("不正な入力値でエラーとなること_小")
   void testInvalidInputSmall() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -177,10 +176,11 @@ class ReserveTest {
   @Order(5)
   @DisplayName("不正な入力値でエラーとなること_大")
   void testInvalidInputBig() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -204,10 +204,11 @@ class ReserveTest {
   @Order(6)
   @DisplayName("不正な入力値でエラーとなること_文字列")
   void testInvalidInputOther() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -229,10 +230,11 @@ class ReserveTest {
   @Order(7)
   @DisplayName("不正な入力値でエラーとなること_確定時_メール選択")
   void testInvalidInputOnSubmitEmail() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -253,10 +255,11 @@ class ReserveTest {
   @Order(8)
   @DisplayName("不正な入力値でエラーとなること_確定時_電話選択")
   void testInvalidInputOnSubmitTel() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -277,10 +280,11 @@ class ReserveTest {
   @Order(9)
   @DisplayName("宿泊予約が完了すること_未ログイン_初期値")
   void testReserveSuccess() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
@@ -321,13 +325,13 @@ class ReserveTest {
   @Order(10)
   @DisplayName("宿泊予約が完了すること_ログイン")
   void testReserveSuccess2() {
-    driver.get(BASE_URL + "/login.html");
-    var loginPage = new LoginPage(driver);
-    loginPage.doLogin("ichiro@example.com", "password");
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+    var loginPage = topPage.goToLoginPage();
+    var myPage = loginPage.doLogin("ichiro@example.com", "password");
     var originalHandles = driver.getWindowHandles();
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = myPage.goToPlansPage();
     var reservePage = plansPage.clickPlanByTitle("プレミアムプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);

@@ -18,9 +18,8 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import starhotel.pages.LoginPage;
-import starhotel.pages.SignupPage;
 import starhotel.pages.SignupPage.Rank;
+import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("マイページテスト")
@@ -50,9 +49,10 @@ class MyPageTest {
   @Order(1)
   @DisplayName("定義済みユーザの情報が表示されること_ichiro")
   void testMyPageExistUserOne() {
-    driver.get(BASE_URL + "/login.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var loginPage = new LoginPage(driver);
+    var loginPage = topPage.goToLoginPage();
     var myPage = loginPage.doLogin("ichiro@example.com", "password");
 
     assertAll("マイページ表示項目",
@@ -71,9 +71,10 @@ class MyPageTest {
   @Order(2)
   @DisplayName("定義済みユーザの情報が表示されること_sakura")
   void testMyPageExistUserTwo() {
-    driver.get(BASE_URL + "/login.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var loginPage = new LoginPage(driver);
+    var loginPage = topPage.goToLoginPage();
     var myPage = loginPage.doLogin("sakura@example.com", "pass1234");
 
     assertAll("マイページ表示項目",
@@ -92,9 +93,10 @@ class MyPageTest {
   @Order(3)
   @DisplayName("定義済みユーザの情報が表示されること_jun")
   void testMyPageExistUserThree() {
-    driver.get(BASE_URL + "/login.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var loginPage = new LoginPage(driver);
+    var loginPage = topPage.goToLoginPage();
     var myPage = loginPage.doLogin("jun@example.com", "pa55w0rd!");
 
     assertAll("マイページ表示項目",
@@ -113,9 +115,10 @@ class MyPageTest {
   @Order(4)
   @DisplayName("定義済みユーザの情報が表示されること_yoshiki")
   void testMyPageExistUserFour() {
-    driver.get(BASE_URL + "/login.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var loginPage = new LoginPage(driver);
+    var loginPage = topPage.goToLoginPage();
     var myPage = loginPage.doLogin("yoshiki@example.com", "pass-pass");
 
     assertAll("マイページ表示項目",
@@ -134,9 +137,10 @@ class MyPageTest {
   @Order(5)
   @DisplayName("新規登録したユーザの情報が表示されること")
   void testMyPageNewUser() {
-    driver.get(BASE_URL + "/signup.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var signupPage = new SignupPage(driver);
+    var signupPage = topPage.goToSignupPage();
     signupPage.setEmail("new-user@gmail.com");
     signupPage.setPassword("11111111");
     signupPage.setPasswordConfirmation("11111111");
@@ -165,9 +169,10 @@ class MyPageTest {
   @Order(6)
   @DisplayName("新規登録したユーザが削除できること")
   void testDeleteUser() {
-    driver.get(BASE_URL + "/login.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var loginPage = new LoginPage(driver);
+    var loginPage = topPage.goToLoginPage();
     var myPage = loginPage.doLogin("new-user@gmail.com", "11111111");
     myPage.deleteUser();
 

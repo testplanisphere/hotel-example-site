@@ -11,6 +11,12 @@ public class MyPage {
     this.driver = driver;
   }
 
+  public PlansPage goToPlansPage() {
+    var planLink = driver.findElement(By.linkText("宿泊予約"));
+    planLink.click();
+    return new PlansPage(driver);
+  }
+
   public String getHeaderText() {
     var header = driver.findElement(By.tagName("h2"));
     return header.getText();

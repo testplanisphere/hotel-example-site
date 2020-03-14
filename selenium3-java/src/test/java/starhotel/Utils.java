@@ -2,6 +2,7 @@ package starhotel;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,24 +23,29 @@ public class Utils {
     if (browser == null) {
       browser = "chrome";
     }
+    WebDriver driver;
     switch (browser) {
       case "chrome": {
         var options = new ChromeOptions();
         if (githubActions) {
           options.setHeadless(true);
         }
-        return new ChromeDriver(options);
+        driver = new ChromeDriver(options);
+        break;
       }
       case "firefox": {
         var options = new FirefoxOptions();
         if (githubActions) {
           options.setHeadless(true);
         }
-        return new FirefoxDriver(options);
+        driver = new FirefoxDriver(options);
+        break;
       }
       default:
         throw new RuntimeException(browser + " is not support.");
     }
+    driver.manage().window().setSize(new Dimension(1920, 1080));
+    return driver;
   }
 
   public static String getNewWindowHandle(Collection<String> handlesBeforeOpen, Collection<String> handlesAfterOpen) {

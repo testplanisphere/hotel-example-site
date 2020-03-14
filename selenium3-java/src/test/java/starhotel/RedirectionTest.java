@@ -14,7 +14,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import starhotel.pages.LoginPage;
+import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("リダイレクトテスト")
@@ -53,9 +53,10 @@ class RedirectionTest {
   @Order(2)
   @DisplayName("ログイン済みでログイン画面からトップへリダイレクトすること")
   void testLoginPageToTop() {
-    driver.get(BASE_URL + "/login.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var loginPage = new LoginPage(driver);
+    var loginPage = topPage.goToLoginPage();
     loginPage.doLogin("ichiro@example.com", "password");
 
     driver.get(BASE_URL + "/login.html");
@@ -67,9 +68,10 @@ class RedirectionTest {
   @Order(3)
   @DisplayName("ログイン済みで登録画面からトップへリダイレクトすること")
   void testSignupPageToTop() {
-    driver.get(BASE_URL + "/login.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var loginPage = new LoginPage(driver);
+    var loginPage = topPage.goToLoginPage();
     loginPage.doLogin("ichiro@example.com", "password");
 
     driver.get(BASE_URL + "/signup.html");
@@ -126,8 +128,10 @@ class RedirectionTest {
   @Order(9)
   @DisplayName("一般会員でプレミアム専用プランでトップへリダイレクトすること1")
   void testPremiumOnlyPlanNormalMemberPageToTop() {
-    driver.get(BASE_URL + "/login.html");
-    var loginPage = new LoginPage(driver);
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+
+    var loginPage = topPage.goToLoginPage();
     loginPage.doLogin("sakura@example.com", "pass123");
 
     driver.get(BASE_URL + "/reserve.html?plan-id=1");

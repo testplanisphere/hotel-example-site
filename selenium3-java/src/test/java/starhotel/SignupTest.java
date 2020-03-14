@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
-import starhotel.pages.SignupPage;
 import starhotel.pages.SignupPage.Rank;
+import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("登録画面テスト")
@@ -42,9 +42,10 @@ class SignupTest {
   @Order(1)
   @DisplayName("ユーザの新規登録ができること")
   void testSignupSuccess() {
-    driver.get(BASE_URL + "/signup.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var signupPage = new SignupPage(driver);
+    var signupPage = topPage.goToSignupPage();
     signupPage.setEmail("new-user@gmail.com");
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("password");
@@ -64,9 +65,10 @@ class SignupTest {
   @Order(2)
   @DisplayName("必須項目を未入力にするとエラーとなること")
   void testSignupErrorBlank() {
-    driver.get(BASE_URL + "/signup.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var signupPage = new SignupPage(driver);
+    var signupPage = topPage.goToSignupPage();
     signupPage.setEmail("");
     signupPage.setPassword("");
     signupPage.setPasswordConfirmation("");
@@ -75,7 +77,7 @@ class SignupTest {
     signupPage.setAddress("");
     signupPage.setTel("");
     signupPage.selectGender("");
-    // signupPage.setBirthday(LocalDate.parse("2000-01-01"));
+    signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.checkNotification(false);
     signupPage.goToMyPage();
 
@@ -95,9 +97,10 @@ class SignupTest {
   @Order(3)
   @DisplayName("指定のフォーマット外の入力でエラーとなること")
   void testSignupErrorInvalid() {
-    driver.get(BASE_URL + "/signup.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var signupPage = new SignupPage(driver);
+    var signupPage = topPage.goToSignupPage();
     signupPage.setEmail("a");
     signupPage.setPassword("1234567");
     signupPage.setPasswordConfirmation("1");
@@ -106,7 +109,7 @@ class SignupTest {
     signupPage.setAddress("千葉県千葉市");
     signupPage.setTel("1234567890");
     signupPage.selectGender("その他");
-    // signupPage.setBirthday(LocalDate.parse("2000-01-01"));
+    signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.checkNotification(true);
     signupPage.goToMyPage();
 
@@ -126,9 +129,10 @@ class SignupTest {
   @Order(4)
   @DisplayName("登録済みのメールアドレスはエラーとなること")
   void testSignupErrorDouble() {
-    driver.get(BASE_URL + "/signup.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var signupPage = new SignupPage(driver);
+    var signupPage = topPage.goToSignupPage();
     signupPage.setEmail("new-user@gmail.com");
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("password");
@@ -148,9 +152,10 @@ class SignupTest {
   @Order(5)
   @DisplayName("入力パスワードが一致しないとエラーとなること")
   void testSignupErrorUnMatchPassword() {
-    driver.get(BASE_URL + "/signup.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var signupPage = new SignupPage(driver);
+    var signupPage = topPage.goToSignupPage();
     signupPage.setEmail("new-user@gmail.com");
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("123456789");

@@ -13,8 +13,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
-import starhotel.pages.LoginPage;
-import starhotel.pages.PlansPage;
+import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
 @DisplayName("プラン一覧画面テスト")
@@ -41,9 +40,10 @@ class PlansTest {
   @Order(1)
   @DisplayName("未ログイン状態でプラン一覧が表示されること")
   void testPlanListNotLogin() {
-    driver.get(BASE_URL + "/plans.html");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
 
-    var plansPage = new PlansPage(driver);
+    var plansPage = topPage.goToPlansPage();
     var planTitles = plansPage.getPlanTitles();
 
     assertAll("プラン一覧",
@@ -60,13 +60,12 @@ class PlansTest {
   @Order(2)
   @DisplayName("一般会員でログイン状態でプラン一覧が表示されること")
   void testPlanListLoginNormal() {
-    driver.get(BASE_URL + "/login.html");
-    var loginPage = new LoginPage(driver);
-    loginPage.doLogin("sakura@example.com", "pass1234");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+    var loginPage = topPage.goToLoginPage();
+    var myPage = loginPage.doLogin("sakura@example.com", "pass1234");
 
-    driver.get(BASE_URL + "/plans.html");
-
-    var plansPage = new PlansPage(driver);
+    var plansPage = myPage.goToPlansPage();
     var planTitles = plansPage.getPlanTitles();
 
     assertAll("プラン一覧",
@@ -84,13 +83,12 @@ class PlansTest {
   @Order(3)
   @DisplayName("プレミアム会員でログイン状態でプラン一覧が表示されること")
   void testPlanListLoginPremium() {
-    driver.get(BASE_URL + "/login.html");
-    var loginPage = new LoginPage(driver);
-    loginPage.doLogin("ichiro@example.com", "password");
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+    var loginPage = topPage.goToLoginPage();
+    var myPage = loginPage.doLogin("ichiro@example.com", "password");
 
-    driver.get(BASE_URL + "/plans.html");
-
-    var plansPage = new PlansPage(driver);
+    var plansPage = myPage.goToPlansPage();
     var planTitles = plansPage.getPlanTitles();
 
     assertAll("プラン一覧",
