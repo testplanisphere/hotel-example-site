@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
+import starhotel.pages.SignupPage.Gender;
 import starhotel.pages.SignupPage.Rank;
 import starhotel.pages.TopPage;
 
@@ -50,12 +51,12 @@ class SignupTest {
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("password");
     signupPage.setUsername("新規ユーザ１");
-    signupPage.selectRank(Rank.NORMAL);
+    signupPage.setRank(Rank.一般会員);
     signupPage.setAddress("神奈川県横浜市港区");
     signupPage.setTel("01234567891");
-    signupPage.selectGender("女性");
+    signupPage.setGender(Gender.女性);
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
-    signupPage.checkNotification(true);
+    signupPage.setNotification(true);
     var myPage = signupPage.goToMyPage();
 
     assertEquals("マイページ", myPage.getHeaderText());
@@ -73,13 +74,13 @@ class SignupTest {
     signupPage.setPassword("");
     signupPage.setPasswordConfirmation("");
     signupPage.setUsername("");
-    signupPage.selectRank(Rank.PREMIUM);
+    signupPage.setRank(Rank.プレミアム会員);
     signupPage.setAddress("");
     signupPage.setTel("");
-    signupPage.selectGender("");
+    signupPage.setGender(Gender.未登録);
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
-    signupPage.checkNotification(false);
-    signupPage.goToMyPage();
+    signupPage.setNotification(false);
+    signupPage.goToMyPageExpectingFailure();
 
     assertAll("エラーメッセージ",
         () -> assertEquals("このフィールドを入力してください。", signupPage.getEmailMessage()),
@@ -105,13 +106,13 @@ class SignupTest {
     signupPage.setPassword("1234567");
     signupPage.setPasswordConfirmation("1");
     signupPage.setUsername("テストテスト");
-    signupPage.selectRank(Rank.NORMAL);
+    signupPage.setRank(Rank.一般会員);
     signupPage.setAddress("千葉県千葉市");
     signupPage.setTel("1234567890");
-    signupPage.selectGender("その他");
+    signupPage.setGender(Gender.その他);
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
-    signupPage.checkNotification(true);
-    signupPage.goToMyPage();
+    signupPage.setNotification(true);
+    signupPage.goToMyPageExpectingFailure();
 
     assertAll("エラーメッセージ",
         () -> assertEquals("メールアドレスを入力してください。", signupPage.getEmailMessage()),
@@ -137,13 +138,13 @@ class SignupTest {
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("password");
     signupPage.setUsername("新規ユーザ１");
-    signupPage.selectRank(Rank.NORMAL);
+    signupPage.setRank(Rank.一般会員);
     signupPage.setAddress("神奈川県横浜市港区");
     signupPage.setTel("01234567891");
-    signupPage.selectGender("女性");
+    signupPage.setGender(Gender.女性);
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
-    signupPage.checkNotification(true);
-    signupPage.goToMyPage();
+    signupPage.setNotification(true);
+    signupPage.goToMyPageExpectingFailure();
 
     assertEquals("このメールアドレスはすでに登録済みです。", signupPage.getEmailMessage());
   }
@@ -160,13 +161,13 @@ class SignupTest {
     signupPage.setPassword("password");
     signupPage.setPasswordConfirmation("123456789");
     signupPage.setUsername("新規ユーザ１");
-    signupPage.selectRank(Rank.NORMAL);
+    signupPage.setRank(Rank.一般会員);
     signupPage.setAddress("神奈川県横浜市港区");
     signupPage.setTel("01234567891");
-    signupPage.selectGender("女性");
+    signupPage.setGender(Gender.男性);
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
-    signupPage.checkNotification(true);
-    signupPage.goToMyPage();
+    signupPage.setNotification(true);
+    signupPage.goToMyPageExpectingFailure();
 
     assertEquals("入力されたパスワードと一致しません。", signupPage.getPasswordConfirmationMessage());
   }

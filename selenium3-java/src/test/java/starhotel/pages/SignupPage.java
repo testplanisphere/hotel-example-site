@@ -8,12 +8,29 @@ import org.openqa.selenium.support.ui.Select;
 
 public class SignupPage {
 
-  public enum Rank { PREMIUM, NORMAL }
+  public enum Rank { プレミアム会員, 一般会員 }
+
+  public enum Gender {
+    未登録("0"), 男性("1"), 女性("2"), その他("9");
+
+    private final String value;
+
+    Gender(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+  }
 
   private WebDriver driver;
 
   public SignupPage(WebDriver driver) {
     this.driver = driver;
+    if (!this.driver.getTitle().equals("会員登録 | STAR HOTEL - テスト自動化デモサイト")) {
+      throw new IllegalStateException("現在のページが間違っています: " + this.driver.getTitle());
+    }
   }
 
   public void setEmail(String email) {
@@ -40,13 +57,13 @@ public class SignupPage {
     usernameInput.sendKeys(username);
   }
 
-  public void selectRank(Rank rank) {
+  public void setRank(Rank rank) {
     switch (rank) {
-      case PREMIUM:
+      case プレミアム会員:
         var premium = driver.findElement(By.id("rank-premium"));
         premium.click();
         break;
-      case NORMAL:
+      case 一般会員:
         var normal = driver.findElement(By.id("rank-normal"));
         normal.click();
         break;
@@ -65,9 +82,9 @@ public class SignupPage {
     telInput.sendKeys(tel);
   }
 
-  public void selectGender(String gender) {
+  public void setGender(Gender gender) {
     var genderSelect = new Select(driver.findElement(By.id("gender")));
-    genderSelect.selectByVisibleText(gender);
+    genderSelect.selectByValue(gender.getValue());
   }
 
   public void setBirthday(LocalDate birthday) {
@@ -76,16 +93,10 @@ public class SignupPage {
         .executeScript("arguments[0].value = arguments[1]", birthdayInput, birthday.toString());
   }
 
-  public void checkNotification(boolean check) {
+  public void setNotification(boolean checked) {
     var notificationCheck = driver.findElement(By.id("notification"));
-    if (check) {
-      if (!notificationCheck.isSelected()) {
-        notificationCheck.click();
-      }
-    } else {
-      if (notificationCheck.isSelected()) {
-        notificationCheck.click();
-      }
+    if (notificationCheck.isSelected() != checked) {
+      notificationCheck.click();
     }
   }
 
@@ -93,6 +104,11 @@ public class SignupPage {
     var signUpButton = driver.findElement(By.cssSelector("#signup-form > button"));
     signUpButton.click();
     return new MyPage(driver);
+  }
+
+  public void goToMyPageExpectingFailure() {
+    var signUpButton = driver.findElement(By.cssSelector("#signup-form > button"));
+    signUpButton.click();
   }
 
   public String getEmailMessage() {

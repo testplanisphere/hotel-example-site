@@ -9,6 +9,9 @@ public class LoginPage {
 
   public LoginPage(WebDriver driver) {
     this.driver = driver;
+    if (!this.driver.getTitle().equals("ログイン | STAR HOTEL - テスト自動化デモサイト")) {
+      throw new IllegalStateException("現在のページが間違っています: " + this.driver.getTitle());
+    }
   }
 
   public MyPage doLogin(String email, String password) {
@@ -21,6 +24,17 @@ public class LoginPage {
     var loginButton = driver.findElement(By.id("login-button"));
     loginButton.click();
     return new MyPage(driver);
+  }
+
+  public void doLoginExpectingFailure(String email, String password) {
+    var emailInput = driver.findElement(By.id("email"));
+    emailInput.clear();
+    emailInput.sendKeys(email);
+    var passwordInput = driver.findElement(By.id("password"));
+    passwordInput.clear();
+    passwordInput.sendKeys(password);
+    var loginButton = driver.findElement(By.id("login-button"));
+    loginButton.click();
   }
 
   public String getEmailMessage() {

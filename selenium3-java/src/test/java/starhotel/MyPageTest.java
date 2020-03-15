@@ -18,6 +18,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import starhotel.pages.SignupPage.Gender;
 import starhotel.pages.SignupPage.Rank;
 import starhotel.pages.TopPage;
 
@@ -145,12 +146,12 @@ class MyPageTest {
     signupPage.setPassword("11111111");
     signupPage.setPasswordConfirmation("11111111");
     signupPage.setUsername("田中花子");
-    signupPage.selectRank(Rank.NORMAL);
+    signupPage.setRank(Rank.一般会員);
     signupPage.setAddress("神奈川県横浜市港区");
     signupPage.setTel("09876543211");
-    signupPage.selectGender("女性");
+    signupPage.setGender(Gender.女性);
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
-    signupPage.checkNotification(false);
+    signupPage.setNotification(false);
     var myPage = signupPage.goToMyPage();
 
     assertAll("マイページ表示項目",

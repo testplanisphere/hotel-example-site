@@ -24,6 +24,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import starhotel.pages.ReservePage;
+import starhotel.pages.ReservePage.Contact;
 import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -74,10 +76,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     var tomorrow = shortFormatter.format(LocalDate.now().plusDays(1));
 
@@ -100,10 +103,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = myPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("プレミアムプラン");
+    plansPage.openPlanByTitle("プレミアムプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     var tomorrow = shortFormatter.format(LocalDate.now().plusDays(1));
 
@@ -127,10 +131,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     reservePage.setReserveDate("");
     reservePage.setReserveTerm("");
@@ -153,10 +158,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     var today = shortFormatter.format(LocalDate.now());
 
@@ -181,10 +187,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     var after90 = shortFormatter.format(LocalDate.now().plusDays(91));
 
@@ -209,10 +216,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     reservePage.setReserveDate("12/3//345");
     reservePage.setReserveTerm("a");
@@ -235,15 +243,16 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     reservePage.setUsername("");
-    reservePage.selectContact("メールでのご連絡");
+    reservePage.setContact(Contact.メール);
     reservePage.setEmail("");
-    reservePage.goToConfirmPage();
+    reservePage.goToConfirmPageExpectingFailure();
 
     assertAll("エラーメッセージ",
         () -> assertEquals("このフィールドを入力してください。", reservePage.getUsernameMessage()),
@@ -260,15 +269,16 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     reservePage.setUsername("");
-    reservePage.selectContact("電話でのご連絡");
+    reservePage.setContact(Contact.電話);
     reservePage.setTel("");
-    reservePage.goToConfirmPage();
+    reservePage.goToConfirmPageExpectingFailure();
 
     assertAll("エラーメッセージ",
         () -> assertEquals("このフィールドを入力してください。", reservePage.getUsernameMessage()),
@@ -285,10 +295,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = topPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("お得な特典付きプラン");
+    plansPage.openPlanByTitle("お得な特典付きプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     var expectedStart = LocalDate.now().plusDays(1);
     var expectedEnd = LocalDate.now().plusDays(2);
@@ -301,7 +312,7 @@ class ReserveTest {
     var expectedTerm = longFormatter.format(expectedStart) + " 〜 " + longFormatter.format(expectedEnd) + " 1泊";
 
     reservePage.setUsername("テスト太郎");
-    reservePage.selectContact("希望しない");
+    reservePage.setContact(Contact.希望しない);
     var confirmPage = reservePage.goToConfirmPage();
 
     assertAll("予約確認",
@@ -332,10 +343,11 @@ class ReserveTest {
     var originalHandles = driver.getWindowHandles();
 
     var plansPage = myPage.goToPlansPage();
-    var reservePage = plansPage.clickPlanByTitle("プレミアムプラン");
+    plansPage.openPlanByTitle("プレミアムプラン");
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
+    var reservePage = new ReservePage(driver);
 
     var expectedStart = LocalDate.now().plusDays(90);
     var expectedEnd = LocalDate.now().plusDays(92);
@@ -351,10 +363,10 @@ class ReserveTest {
 
     reservePage.setReserveTerm("2");
     reservePage.setHeadCount("4");
-    reservePage.checkBreakfastPlan(true);
-    reservePage.checkEarlyCheckInPlan(true);
-    reservePage.checkSightseeingPlan(false);
-    reservePage.selectContact("メールでのご連絡");
+    reservePage.setBreakfastPlan(true);
+    reservePage.setEarlyCheckInPlan(true);
+    reservePage.setSightseeingPlan(false);
+    reservePage.setContact(Contact.メール);
     reservePage.setComment("あああ\n\nいいいいいいい\nうう");
     reservePage.setReserveDate(shortFormatter.format(expectedStart));
     var confirmPage = reservePage.goToConfirmPage();

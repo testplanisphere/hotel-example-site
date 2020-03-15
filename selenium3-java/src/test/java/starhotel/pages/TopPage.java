@@ -9,6 +9,9 @@ public class TopPage {
 
   public TopPage(WebDriver driver) {
     this.driver = driver;
+    if (!this.driver.getTitle().equals("STAR HOTEL - テスト自動化デモサイト")) {
+      throw new IllegalStateException("現在のページが間違っています: " + this.driver.getTitle());
+    }
   }
 
   public LoginPage goToLoginPage() {

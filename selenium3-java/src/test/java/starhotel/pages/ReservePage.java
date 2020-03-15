@@ -9,6 +9,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ReservePage {
 
+  public enum Contact {
+    希望しない("no"), メール("email"), 電話("tel");
+
+    private final String value;
+
+    Contact(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+  }
+
   private WebDriver driver;
 
   private WebDriverWait wait;
@@ -16,6 +30,9 @@ public class ReservePage {
   public ReservePage(WebDriver driver) {
     this.driver = driver;
     this.wait = new WebDriverWait(driver, 10);
+    if (!this.driver.getTitle().equals("宿泊予約 | STAR HOTEL - テスト自動化デモサイト")) {
+      throw new IllegalStateException("現在のページが間違っています: " + this.driver.getTitle());
+    }
   }
 
   public void setReserveDate(String date) {
@@ -38,21 +55,21 @@ public class ReservePage {
     headCountInput.sendKeys(headCount);
   }
 
-  public void checkBreakfastPlan(boolean checked) {
+  public void setBreakfastPlan(boolean checked) {
     var breakfastCheck = driver.findElement(By.id("breakfast"));
     if (breakfastCheck.isSelected() != checked) {
       breakfastCheck.click();
     }
   }
 
-  public void checkEarlyCheckInPlan(boolean checked) {
+  public void setEarlyCheckInPlan(boolean checked) {
     var earlyCheckInCheck = driver.findElement(By.id("early-check-in"));
     if (earlyCheckInCheck.isSelected() != checked) {
       earlyCheckInCheck.click();
     }
   }
 
-  public void checkSightseeingPlan(boolean checked) {
+  public void setSightseeingPlan(boolean checked) {
     var sightseeingCheck = driver.findElement(By.id("sightseeing"));
     if (sightseeingCheck.isSelected() != checked) {
       sightseeingCheck.click();
@@ -65,9 +82,9 @@ public class ReservePage {
     usernameInput.sendKeys(username);
   }
 
-  public void selectContact(String contact) {
+  public void setContact(Contact contact) {
     var contactSelect = new Select(driver.findElement(By.id("contact")));
-    contactSelect.selectByVisibleText(contact);
+    contactSelect.selectByValue(contact.getValue());
   }
 
   public void setEmail(String email) {
@@ -92,6 +109,11 @@ public class ReservePage {
     var submitButton = driver.findElement(By.cssSelector("button[data-test=\"submit-button\"]"));
     submitButton.click();
     return new ConfirmPage(driver);
+  }
+
+  public void goToConfirmPageExpectingFailure() {
+    var submitButton = driver.findElement(By.cssSelector("button[data-test=\"submit-button\"]"));
+    submitButton.click();
   }
 
   public String getPlanName() {

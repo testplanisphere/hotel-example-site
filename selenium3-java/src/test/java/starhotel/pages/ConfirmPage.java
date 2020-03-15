@@ -17,6 +17,9 @@ public class ConfirmPage {
   public ConfirmPage(WebDriver driver) {
     this.driver = driver;
     this.wait = new WebDriverWait(driver, 10);
+    if (!this.driver.getTitle().equals("宿泊予約確認 | STAR HOTEL - テスト自動化デモサイト")) {
+      throw new IllegalStateException("現在のページが間違っています: " + this.driver.getTitle());
+    }
   }
 
   public String getTotalBill() {

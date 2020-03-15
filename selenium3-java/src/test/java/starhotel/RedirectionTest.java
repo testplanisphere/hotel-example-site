@@ -132,7 +132,7 @@ class RedirectionTest {
     var topPage = new TopPage(driver);
 
     var loginPage = topPage.goToLoginPage();
-    loginPage.doLogin("sakura@example.com", "pass123");
+    loginPage.doLogin("sakura@example.com", "pass1234");
 
     driver.get(BASE_URL + "/reserve.html?plan-id=1");
     wait.until(ExpectedConditions.urlContains("index.html"));

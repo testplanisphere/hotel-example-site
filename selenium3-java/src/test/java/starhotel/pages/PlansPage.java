@@ -1,7 +1,5 @@
 package starhotel.pages;
 
-import static starhotel.Utils.getNewWindowHandle;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import org.openqa.selenium.By;
@@ -19,6 +17,9 @@ public class PlansPage {
   public PlansPage(WebDriver driver) {
     this.driver = driver;
     this.wait = new WebDriverWait(driver, 10);
+    if (!this.driver.getTitle().equals("宿泊プラン一覧 | STAR HOTEL - テスト自動化デモサイト")) {
+      throw new IllegalStateException("現在のページが間違っています: " + this.driver.getTitle());
+    }
   }
 
   public List<String> getPlanTitles() {
@@ -27,7 +28,7 @@ public class PlansPage {
     return plans.stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
-  public ReservePage clickPlanByTitle(String title) {
+  public void openPlanByTitle(String title) {
     wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#plan-list > div[role=\"status\"]"), 0));
     var plans = driver.findElements(By.className("card"));
     plans.stream()
@@ -35,6 +36,5 @@ public class PlansPage {
         .findFirst()
         .ifPresent(elm -> elm.findElement(By.tagName("a")).click());
     wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-    return new ReservePage(driver);
   }
 }

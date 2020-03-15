@@ -57,7 +57,7 @@ class LoginTest {
     var topPage = new TopPage(driver);
 
     var loginPage = topPage.goToLoginPage();
-    loginPage.doLogin("", "");
+    loginPage.doLoginExpectingFailure("", "");
 
     assertAll("エラーメッセージ",
         () -> assertEquals("このフィールドを入力してください。", loginPage.getEmailMessage()),
@@ -73,7 +73,7 @@ class LoginTest {
     var topPage = new TopPage(driver);
 
     var loginPage = topPage.goToLoginPage();
-    loginPage.doLogin("error@example.com", "error");
+    loginPage.doLoginExpectingFailure("error@example.com", "error");
 
     assertAll("エラーメッセージ",
         () -> assertEquals("メールアドレスまたはパスワードが違います。", loginPage.getEmailMessage()),
