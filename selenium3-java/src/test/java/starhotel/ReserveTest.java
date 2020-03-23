@@ -229,8 +229,8 @@ class ReserveTest {
 
     assertAll("エラーメッセージ",
         () -> assertEquals("有効な値を入力してください。", reservePage.getReserveDateMessage()),
-        () -> assertEquals("このフィールドを入力してください。", reservePage.getReserveTermMessage()),
-        () -> assertEquals("このフィールドを入力してください。", reservePage.getHeadCountMessage())
+        () -> assertFalse(reservePage.getReserveTermMessage().isEmpty()),
+        () -> assertFalse(reservePage.getHeadCountMessage().isEmpty())
     );
   }
 
