@@ -1,3 +1,4 @@
+import { parseDate } from './global.js';
 /**
  * @param  {...HTMLInputElement} inputs 
  */
@@ -45,5 +46,25 @@ function getErrorMessege(input) {
     return `${input.min}以上の値を入力してください。`;
   } else if (input.validity.stepMismatch) {
     return '有効な値を入力してください。';
+  }
+}
+
+/**
+ * @param {string} value
+ * @returns {string} 
+ */
+export function validateDateInput(value) {
+  const date = parseDate(value);
+  if (!date) {
+    return '有効な値を入力してください。';
+  } else {
+    const now = new Date();
+    const after90 = new Date();
+    after90.setDate(after90.getDate() + 90);
+    if (date.getTime() < now.getTime()) {
+      return '翌日以降の日付を入力してください。';
+    } else if (date.getTime() > after90.getTime()) {
+      return '3ヶ月以内の日付を入力してください。';
+    }
   }
 }

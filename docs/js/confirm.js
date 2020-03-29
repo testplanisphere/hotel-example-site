@@ -1,4 +1,4 @@
-import { ready, redirectToTop, formatCurrency, formatDateLong } from './lib/global.js';
+import { ready, redirectToTop, formatCurrency, formatDateLong, parseDateISO } from './lib/global.js';
 import { getSessionUser, getTransactionId, deleteTransactionId } from './lib/session.js';
 import { calcTotalBill } from './lib/billing.js';
 
@@ -66,18 +66,3 @@ ready(() => {
     window.close();
   });
 });
-
-/**
- * @param {string} dateString
- * @returns {Date}
- */
-function parseDateISO(dateString) {
-  const arr = dateString.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-  if (!arr || arr.length !== 4) {
-    return null;
-  }
-  const year = parseInt(arr[1], 10);
-  const month = parseInt(arr[2], 10);
-  const date = parseInt(arr[3], 10);
-  return new Date(year, month - 1, date);
-}

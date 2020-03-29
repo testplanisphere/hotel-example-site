@@ -31,3 +31,52 @@ const dateLongFormatter = new Intl.DateTimeFormat('ja-JP', { year: 'numeric', mo
 export function formatDateLong(date) {
   return dateLongFormatter.format(date);
 }
+
+/**
+ * @param {string} dateString
+ * @returns {Date}
+ */
+export function parseDate(dateString) {
+  const arr = dateString.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+  if (!arr || arr.length !== 4) {
+    return null;
+  }
+  const year = parseInt(arr[1], 10);
+  const month = parseInt(arr[2], 10);
+  const date = parseInt(arr[3], 10);
+  return new Date(year, month - 1, date);
+}
+
+/**
+ * @param {string} dateString
+ * @returns {Date}
+ */
+export function parseDateISO(dateString) {
+  const arr = dateString.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if (!arr || arr.length !== 4) {
+    return null;
+  }
+  const year = parseInt(arr[1], 10);
+  const month = parseInt(arr[2], 10);
+  const date = parseInt(arr[3], 10);
+  return new Date(year, month - 1, date);
+}
+
+/**
+ * @param {number} number 
+ * @returns {string}
+ */
+function pad(number) {
+  if (number < 10) {
+    return '0' + number;
+  }
+  return '' + number;
+}
+
+/**
+ * @param {Date} date
+ * @returns {string} 
+ */
+export function formatDate(date) {
+  return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`;
+}

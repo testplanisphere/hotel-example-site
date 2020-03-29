@@ -94,6 +94,13 @@ export function logout() {
 /**
  * @returns {string}
  */
+export function genTransactionId() {
+  return (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000) + '';
+}
+
+/**
+ * @returns {string}
+ */
 export function getTransactionId() {
   return document.cookie.replace(/(?:(?:^|.*;\s*)transaction\s*\=\s*([^;]*).*$)|^.*$/, '$1');
 }

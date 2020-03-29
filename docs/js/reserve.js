@@ -1,6 +1,6 @@
-import { ready, redirectToTop, formatCurrency } from './lib/global.js';
-import { getSessionUser, getUser, canDisplayPlan } from './lib/session.js';
-import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
+import { ready, redirectToTop, formatCurrency, formatDate, parseDate } from './lib/global.js';
+import { getSessionUser, getUser, canDisplayPlan, genTransactionId } from './lib/session.js';
+import { resetCustomValidity, setValidityMessage, validateDateInput } from './lib/validation.js';
 import { calcTotalBill } from './lib/billing.js';
 
 ready(() => {
@@ -44,7 +44,8 @@ ready(() => {
     }
     // set initialize values
     document.getElementById('plan-name').textContent = plan.name;
-    document.getElementById('plan-desc').textContent = `お一人様1泊${formatCurrency(plan.roomBill)}〜、土日は25%アップ`;
+    document.getElementById('plan-desc').textContent
+        = `お一人様1泊${formatCurrency(plan.roomBill)}〜、土日は25%アップ。${plan.minHeadCount}名様〜${plan.maxHeadCount}名様、最長${plan.maxTerm}泊`;
     planIdHidden.value = plan.id;
     planNameHidden.value = plan.name;
     roomBillHidden.value = plan.roomBill;
@@ -124,7 +125,10 @@ ready(() => {
     input.addEventListener('change', (event) => {
       resetCustomValidity(event.target);
       if (event.target.id === 'date' && dateInput.checkValidity()) {
-        validateDateInput(dateInput);
+        const dateMessage = validateDateInput(dateInput.value);
+        if (dateMessage) {
+          dateInput.setCustomValidity(dateMessage);
+        }
       }
       if (dateInput.checkValidity() && termInput.checkValidity() && headCountInput.checkValidity()) {
         dateInput.parentElement.classList.remove('was-validated');
@@ -143,7 +147,10 @@ ready(() => {
   reserveForm.addEventListener('submit', (event) => {
     resetCustomValidity(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
     if (dateInput.checkValidity()) {
-      validateDateInput(dateInput);
+      const dateMessage = validateDateInput(dateInput.value);
+      if (dateMessage) {
+        dateInput.setCustomValidity(dateMessage);
+      }
     }
     if (reserveForm.checkValidity()) {
       const reservation = {
@@ -172,63 +179,3 @@ ready(() => {
     }
   });
 });
-
-/**
- * @param {HTMLInputElement} dateInput 
- */
-function validateDateInput(dateInput) {
-  const date = parseDate(dateInput.value);
-  if (!date) {
-    dateInput.setCustomValidity('有効な値を入力してください。');
-  } else {
-    const now = new Date();
-    const after90 = new Date();
-    after90.setDate(after90.getDate() + 90);
-    if (date.getTime() < now.getTime()) {
-      dateInput.setCustomValidity('翌日以降の日付を入力してください。');
-    } else if (date.getTime() > after90.getTime()) {
-      dateInput.setCustomValidity('3ヶ月以内の日付を入力してください。');
-    }
-  }
-}
-
-/**
- * @param {string} dateString
- * @returns {Date}
- */
-function parseDate(dateString) {
-  const arr = dateString.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
-  if (!arr || arr.length !== 4) {
-    return null;
-  }
-  const year = parseInt(arr[1], 10);
-  const month = parseInt(arr[2], 10);
-  const date = parseInt(arr[3], 10);
-  return new Date(year, month - 1, date);
-}
-
-/**
- * @param {Date} date
- * @returns {string} 
- */
-function formatDate(date) {
-  return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`
-}
-
-/**
- * @param {number} number 
- * @returns {string}
- */
-function pad(number) {
-  if (number < 10) {
-    return '0' + number;
-  }
-  return '' + number;
-}
-
-/**
- * @returns {string}
- */
-function genTransactionId() {
-  return (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000) + '';
-}
