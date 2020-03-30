@@ -60,6 +60,11 @@ ready(() => {
     dateInput.value = formatDate(tomorrow);
     const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false);
     totalBillOutput.textContent = formatCurrency(total);
+    if (plan.roomPage) {
+      const roomInfo = document.getElementById('room-info');
+      roomInfo.classList.add('embed-responsive', 'embed-responsive-1by1');
+      roomInfo.innerHTML = `<iframe class="embed-responsive-item" src="./rooms/${plan.roomPage}" title="部屋情報" name="room"></iframe>`;
+    }
   }).catch(() => {
     redirectToTop();
   });

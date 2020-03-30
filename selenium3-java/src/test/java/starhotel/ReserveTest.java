@@ -26,6 +26,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import starhotel.pages.ReservePage;
 import starhotel.pages.ReservePage.Contact;
+import starhotel.pages.RoomPage;
 import starhotel.pages.TopPage;
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -90,6 +91,11 @@ class ReserveTest {
         () -> assertEquals("1", reservePage.getReserveTerm()),
         () -> assertEquals("1", reservePage.getHeadCount())
     );
+
+    driver.switchTo().frame("room");
+    var roomPage = new RoomPage(driver);
+    assertEquals("スタンダードツイン", roomPage.getHeader());
+    driver.switchTo().defaultContent();
   }
 
   @Test
@@ -120,6 +126,11 @@ class ReserveTest {
         () -> assertEquals("ichiro@example.com", reservePage.getEmail()),
         () -> assertEquals("01234567891", reservePage.getTel())
     );
+
+    driver.switchTo().frame("room");
+    var roomPage = new RoomPage(driver);
+    assertEquals("プレミアムツイン", roomPage.getHeader());
+    driver.switchTo().defaultContent();
   }
 
   @Test

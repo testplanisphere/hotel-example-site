@@ -7,7 +7,8 @@
     "maxHeadCount": 9,
     "minTerm": 1,
     "maxTerm": 9,
-    "room": "部屋指定なし",
+    "room": "スタンダードツイン",
+    "roomPage": "standard-twin.html",
     "only": null
   },
   {
@@ -19,6 +20,7 @@
     "minTerm": 1,
     "maxTerm": 9,
     "room": "プレミアムツイン",
+    "roomPage": "premium-twin.html",
     "only": "premium"
   },
   {
@@ -30,6 +32,7 @@
     "minTerm": 1,
     "maxTerm": 3,
     "room": "部屋指定なし",
+    "roomPage": null,
     "only": null
   },
   {
@@ -41,6 +44,7 @@
     "minTerm": 1,
     "maxTerm": 9,
     "room": "部屋指定なし",
+    "roomPage": null,
     "only": "member"
   },
   {
@@ -52,6 +56,7 @@
     "minTerm": 1,
     "maxTerm": 9,
     "room": "シングル",
+    "roomPage": "single.html",
     "only": null
   },
   {
@@ -63,6 +68,7 @@
     "minTerm": 1,
     "maxTerm": 9,
     "room": "シングル",
+    "roomPage": "single.html",
     "only": null
   },
   {
@@ -74,6 +80,7 @@
     "minTerm": 1,
     "maxTerm": 9,
     "room": "部屋指定なし",
+    "roomPage": null,
     "only": null
   }
 ]
