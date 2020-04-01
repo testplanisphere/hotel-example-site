@@ -32,11 +32,28 @@ ready(() => {
   document.getElementById('birthday').textContent = user.birthday ? user.birthday : '未登録';
   document.getElementById('notification').textContent = user.notification ? '受け取る' : '受け取らない';
 
+  // set icon
+  if (user.icon) {
+    const img = document.createElement('img');
+    img.classList.add('img-thumbnail');
+    img.src = user.icon.image;
+    img.width = user.icon.width;
+    img.height = user.icon.height;
+    img.style.backgroundColor = user.icon.color;
+    const iconHolder = document.getElementById('icon-holder');
+    iconHolder.innerHTML = '';
+    iconHolder.appendChild(img);
+  }
+
   document.getElementById('logout-form').addEventListener('submit', (event) => {
     logout();
   });
 
   if (!user.preset) {
+    const iconLink = document.getElementById('icon-link');
+    iconLink.classList.remove('disabled');
+    iconLink.removeAttribute('tabindex');
+    iconLink.removeAttribute('aria-disabled');
     document.querySelector('#delete-form > button').disabled = false;
     document.getElementById('delete-form').addEventListener('submit', (event) => {
       if (confirm('退会すると全ての情報が削除されます。\nよろしいですか？')) {
