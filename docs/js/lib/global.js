@@ -1,5 +1,6 @@
 /**
- * @param {function(): void} handler 
+ * Onready event handler
+ * @param {function(): void} handler
  */
 export function ready(handler) {
   if (document.readyState === 'loading') {
@@ -9,32 +10,38 @@ export function ready(handler) {
   }
 }
 
+/**
+ * Redirect to top page
+ */
 export function redirectToTop() {
   const path = location.pathname.replace(/(\/.+)(\/.+\.html)/, '$1/index.html');
   location.assign(`${location.origin}${path}`);
 }
 
-const currencyFormatter = new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY', currencyDisplay: 'name' });
+const currencyFormatter = new Intl.NumberFormat('ja-JP', {style: 'currency', currency: 'JPY', currencyDisplay: 'name'});
 /**
+ * Format currency to XXXX円
  * @param {number} num
- * @returns {string}
+ * @return {string} XXXX円
  */
 export function formatCurrency(num) {
   return currencyFormatter.format(num);
 }
 
-const dateLongFormatter = new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+const dateLongFormatter = new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: 'long', day: 'numeric'});
 /**
- * @param {Date} date 
- * @returns {string}
+ * Format date to yyyy年MM月dd日
+ * @param {Date} date
+ * @return {string} yyyy年MM月dd日
  */
 export function formatDateLong(date) {
   return dateLongFormatter.format(date);
 }
 
 /**
+ * Parse date from yyyy/MM/dd
  * @param {string} dateString
- * @returns {Date}
+ * @return {Date} date
  */
 export function parseDate(dateString) {
   const arr = dateString.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
@@ -48,8 +55,9 @@ export function parseDate(dateString) {
 }
 
 /**
+ * Parse date from yyyy-MM-dd
  * @param {string} dateString
- * @returns {Date}
+ * @return {Date} date
  */
 export function parseDateISO(dateString) {
   const arr = dateString.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
@@ -63,19 +71,21 @@ export function parseDateISO(dateString) {
 }
 
 /**
- * @param {number} number 
- * @returns {string}
+ * Pad zero
+ * @param {number} number
+ * @return {string} 0X string
  */
 function pad(number) {
   if (number < 10) {
-    return '0' + number;
+    return `0${number}`;
   }
-  return '' + number;
+  return `${number}`;
 }
 
 /**
+ * Format date to yyyy/MM/dd
  * @param {Date} date
- * @returns {string} 
+ * @return {string} yyyy/MM/dd
  */
 export function formatDate(date) {
   return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`;

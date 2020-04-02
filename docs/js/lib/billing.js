@@ -1,12 +1,13 @@
 /**
+ * Calc total bill
  * @param {number} roomBill
- * @param {Date} date 
- * @param {number} term 
- * @param {number} headCount 
- * @param {boolean} breakfast 
- * @param {boolean} earlyCheckIn 
+ * @param {Date} date
+ * @param {number} term
+ * @param {number} headCount
+ * @param {boolean} breakfast
+ * @param {boolean} earlyCheckIn
  * @param {boolean} sightseeing
- * @returns {number}
+ * @return {number} total bill
  */
 export function calcTotalBill(roomBill, date, term, headCount, breakfast, earlyCheckIn, sightseeing) {
   let totalBill = roomBill * headCount * term;
@@ -17,7 +18,7 @@ export function calcTotalBill(roomBill, date, term, headCount, breakfast, earlyC
       totalBill += roomBill * 0.25 * headCount;
     }
   }
-  
+
   if (breakfast) {
     totalBill += 1000 * headCount * term;
   }

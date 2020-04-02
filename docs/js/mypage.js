@@ -1,5 +1,5 @@
-import { ready, redirectToTop } from './lib/global.js';
-import { getUser, getSessionUser, logout } from './lib/session.js'
+import {ready, redirectToTop} from './lib/global.js';
+import {getUser, getSessionUser, logout} from './lib/session.js';
 
 const DISPLAY_GENDER = new Map([
   ['0', '未登録'],
@@ -14,7 +14,6 @@ if (!session) {
   redirectToTop();
 }
 ready(() => {
-
   // load user data
   const user = getUser(session);
   if (!user) {
@@ -48,7 +47,7 @@ ready(() => {
     iconHolder.appendChild(img);
   }
 
-  document.getElementById('logout-form').addEventListener('submit', (event) => {
+  document.getElementById('logout-form').addEventListener('submit', () => {
     logout();
   });
 
@@ -62,7 +61,7 @@ ready(() => {
       if (confirm('退会すると全ての情報が削除されます。\nよろしいですか？')) {
         logout();
         localStorage.removeItem(user.email);
-        alert('退会処理を完了しました。ご利用ありがとうございました。')
+        alert('退会処理を完了しました。ご利用ありがとうございました。');
       } else {
         event.preventDefault();
         event.stopPropagation();

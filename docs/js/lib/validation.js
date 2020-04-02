@@ -1,23 +1,17 @@
-import { parseDate } from './global.js';
+import {parseDate} from './global.js';
+
 /**
- * @param  {...HTMLInputElement} inputs 
+ * Reset all validation states
+ * @param  {...HTMLInputElement} inputs
  */
 export function resetCustomValidity(...inputs) {
-  inputs.forEach(input => input.setCustomValidity(''));
+  inputs.forEach((input) => input.setCustomValidity(''));
 }
 
 /**
- * @param  {...HTMLInputElement} inputs 
- */
-export function setValidityMessage(...inputs) {
-  inputs.forEach((input) => {
-    document.querySelector(`#${input.id} ~ .invalid-feedback`).textContent = getErrorMessege(input);
-  });
-}
-
-/**
- * @param {HTMLInputElement} input 
- * @returns {string}
+ * Get error messege
+ * @param {HTMLInputElement} input
+ * @return {string} error messege
  */
 function getErrorMessege(input) {
   if (input.validity.customError) {
@@ -50,8 +44,9 @@ function getErrorMessege(input) {
 }
 
 /**
+ * Validation for date Input
  * @param {string} value
- * @returns {string} 
+ * @return {string} error messege
  */
 export function validateDateInput(value) {
   const date = parseDate(value);
@@ -67,4 +62,14 @@ export function validateDateInput(value) {
       return '3ヶ月以内の日付を入力してください。';
     }
   }
+}
+
+/**
+ * Set all validation masseges
+ * @param  {...HTMLInputElement} inputs
+ */
+export function setValidityMessage(...inputs) {
+  inputs.forEach((input) => {
+    document.querySelector(`#${input.id} ~ .invalid-feedback`).textContent = getErrorMessege(input);
+  });
 }

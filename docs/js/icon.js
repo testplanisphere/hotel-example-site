@@ -1,6 +1,6 @@
-import { ready, redirectToTop } from './lib/global.js';
-import { getUser, getSessionUser, logout } from './lib/session.js';
-import { setValidityMessage } from './lib/validation.js';
+import {ready, redirectToTop} from './lib/global.js';
+import {getUser, getSessionUser, logout} from './lib/session.js';
+import {setValidityMessage} from './lib/validation.js';
 
 const session = getSessionUser();
 
@@ -16,7 +16,6 @@ if (user.preset) {
 }
 
 ready(() => {
-
   // Collect input elements
   const iconForm = document.getElementById('icon-form');
   const iconInput = document.getElementById('icon');
@@ -53,11 +52,11 @@ ready(() => {
       return;
     }
     const img = document.createElement('img');
-    img.id = 'icon-img'
+    img.id = 'icon-img';
     img.classList.add('img-thumbnail');
     img.src = URL.createObjectURL(file);
-    img.width = 100
-    img.height = 100
+    img.width = 100;
+    img.height = 100;
     img.onload = function() {
       URL.revokeObjectURL(this.src);
     };
@@ -75,7 +74,7 @@ ready(() => {
 
     // set color input
     colorInput.disabled = false;
-    colorInput.addEventListener('change', (event) =>{
+    colorInput.addEventListener('change', (event) => {
       document.getElementById('icon-img').style.backgroundColor = event.target.value;
     });
   });
@@ -104,8 +103,7 @@ ready(() => {
     }
   });
 
-  document.getElementById('logout-form').addEventListener('submit', (event) => {
+  document.getElementById('logout-form').addEventListener('submit', () => {
     logout();
   });
-  
 });

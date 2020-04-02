@@ -1,10 +1,9 @@
-import { ready, redirectToTop, formatCurrency, formatDate, parseDate } from './lib/global.js';
-import { getSessionUser, getUser, canDisplayPlan, genTransactionId } from './lib/session.js';
-import { resetCustomValidity, setValidityMessage, validateDateInput } from './lib/validation.js';
-import { calcTotalBill } from './lib/billing.js';
+import {ready, redirectToTop, formatCurrency, formatDate, parseDate} from './lib/global.js';
+import {getSessionUser, getUser, canDisplayPlan, genTransactionId} from './lib/session.js';
+import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/validation.js';
+import {calcTotalBill} from './lib/billing.js';
 
 ready(() => {
-
   // Check login
   const session = getSessionUser();
   const user = getUser(session);
@@ -35,17 +34,17 @@ ready(() => {
   }
 
   // fetch selected plan data
-  fetch('./data/plan_data.json', { cache: 'no-store' }).then((response) => {
+  fetch('./data/plan_data.json', {cache: 'no-store'}).then((response) => {
     return response.json();
   }).then((data) => {
-    const plan = data.find(val => val.id === planId);
+    const plan = data.find((val) => val.id === planId);
     if (!plan || !canDisplayPlan(plan, user)) {
-      return Promise.reject();
+      return Promise.reject(new Error());
     }
     // set initialize values
     document.getElementById('plan-name').textContent = plan.name;
-    document.getElementById('plan-desc').textContent
-        = `お一人様1泊${formatCurrency(plan.roomBill)}〜、土日は25%アップ。${plan.minHeadCount}名様〜${plan.maxHeadCount}名様、最長${plan.maxTerm}泊`;
+    document.getElementById('plan-desc').textContent =
+        `お一人様1泊${formatCurrency(plan.roomBill)}〜、土日は25%アップ。${plan.minHeadCount}名様〜${plan.maxHeadCount}名様、最長${plan.maxTerm}泊`;
     planIdHidden.value = plan.id;
     planNameHidden.value = plan.name;
     roomBillHidden.value = plan.roomBill;
@@ -84,8 +83,8 @@ ready(() => {
     const roomBill = parseInt(roomBillHidden.value, 10);
     const term = parseInt(termInput.value, 10);
     const headCount = parseInt(headCountInput.value, 10);
-    const totalBill = 
-    　　　　calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked);
+    const totalBill =
+        calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked);
     totalBillOutput.textContent = formatCurrency(totalBill);
   };
 
@@ -94,7 +93,7 @@ ready(() => {
     showButtonPanel: true,
     maxDate: 90,
     minDate: 1,
-    onSelect: function(dateText, inst) {
+    onSelect: function() {
       updateTotalBill();
     },
   });
@@ -146,7 +145,7 @@ ready(() => {
         event.target.parentElement.classList.add('was-validated');
       }
     });
-  }); 
+  });
 
   // Setup submit event
   reserveForm.addEventListener('submit', (event) => {
@@ -170,7 +169,7 @@ ready(() => {
         'username': usernameInput.value,
         'contact': contactSelect.options[contactSelect.selectedIndex].value,
         'email': emailInput.value,
-        'tel':telInput.value,
+        'tel': telInput.value,
         'comment': commentTextArea.value,
       };
       const transactionId = genTransactionId();

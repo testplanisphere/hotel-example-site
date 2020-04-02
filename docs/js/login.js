@@ -1,13 +1,12 @@
-import { ready, redirectToTop } from './lib/global.js';
-import { isValidUser, getSessionUser, login } from './lib/session.js';
-import { resetCustomValidity, setValidityMessage } from './lib/validation.js';
+import {ready, redirectToTop} from './lib/global.js';
+import {isValidUser, getSessionUser, login} from './lib/session.js';
+import {resetCustomValidity, setValidityMessage} from './lib/validation.js';
 
 const session = getSessionUser();
 if (session) {
   redirectToTop();
 }
 ready(() => {
-
   // Collect input elements
   const loginForm = document.getElementById('login-form');
   const emailInput = document.getElementById('email');

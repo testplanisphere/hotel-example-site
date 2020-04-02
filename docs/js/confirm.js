@@ -1,18 +1,17 @@
-import { ready, redirectToTop, formatCurrency, formatDateLong, parseDateISO } from './lib/global.js';
-import { getSessionUser, getTransactionId, deleteTransactionId } from './lib/session.js';
-import { calcTotalBill } from './lib/billing.js';
+import {ready, redirectToTop, formatCurrency, formatDateLong, parseDateISO} from './lib/global.js';
+import {getTransactionId, deleteTransactionId} from './lib/session.js';
+import {calcTotalBill} from './lib/billing.js';
 
 history.replaceState(null, '', 'confirm.html');
 
 ready(() => {
-
   // load data
   const transactionId = getTransactionId();
   if (!transactionId) {
     redirectToTop();
     return;
   }
-  const data = sessionStorage.getItem(transactionId)
+  const data = sessionStorage.getItem(transactionId);
   if (!data) {
     redirectToTop();
     return;
@@ -24,7 +23,7 @@ ready(() => {
   // create contents
   const reserveDate = parseDateISO(reservation.date);
   const endDate = new Date(reserveDate.getFullYear(), reserveDate.getMonth(), reserveDate.getDate() + reservation.term);
-  const totalBill = calcTotalBill(reservation.roomBill, reserveDate, reservation.term, 
+  const totalBill = calcTotalBill(reservation.roomBill, reserveDate, reservation.term,
       reservation.headCount, reservation.breakfast, reservation.earlyCheckIn, reservation.sightseeing);
 
   // set result
@@ -61,7 +60,7 @@ ready(() => {
   document.getElementById('contact').textContent = contactText;
   document.getElementById('comment').textContent = reservation.comment ? reservation.comment : 'なし';
 
-  $('#success-modal').on('hidden.bs.modal', function(event) {
+  $('#success-modal').on('hidden.bs.modal', function() {
     window.close();
   });
 });
