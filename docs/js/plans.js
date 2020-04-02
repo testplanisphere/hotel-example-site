@@ -31,7 +31,7 @@ function genPlanHtml(plan) {
         <li>${plan.minHeadCount}名様から</li>
         <li>${plan.room}</li>
       </ul>
-      <a href="./reserve.html?plan-id=${plan.id}" class="btn btn-primary" target="_brank">このプランで予約</a>
+      <a href="./reserve.html?plan-id=${plan.id}" class="btn btn-primary" target="_blank">このプランで予約</a>
     </div>
   </div>
 </div>`

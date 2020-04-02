@@ -11,9 +11,9 @@ ready(() => {
 
   // Collect input elements
   const reserveForm = document.getElementById('reserve-form');
-  const planIdHidden = document.getElementById('plan-id');
-  const planNameHidden = document.getElementById('plan-name');
-  const roomBillHidden = document.getElementById('room-bill');
+  const planIdHidden = document.getElementById('plan-id-hidden');
+  const planNameHidden = document.getElementById('plan-name-hidden');
+  const roomBillHidden = document.getElementById('room-bill-hidden');
   const dateInput = document.getElementById('date');
   const termInput = document.getElementById('term');
   const headCountInput = document.getElementById('head-count');

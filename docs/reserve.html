@@ -83,9 +83,10 @@
               <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
-              <label for="contact">確認のご連絡</label>
+              <label for="contact">確認のご連絡 <span class="badge badge-primary">必須</span></label>
               <select class="form-control" name="contact" id="contact" required>
-                <option value="no" selected>希望しない</option>
+                <option value="" selected>選択してください</option>
+                <option value="no">希望しない</option>
                 <option value="email">メールでのご連絡</option>
                 <option value="tel">電話でのご連絡</option>
               </select>
@@ -107,9 +108,9 @@
               <textarea class="form-control" name="comment" id="comment" maxlength="140" rows="3"></textarea>
               <div class="invalid-feedback"></div>
             </div>
-            <input type="hidden" name="plan-id" id="plan-id" value="">
-            <input type="hidden" name="plan-name" id="plan-name" value="">
-            <input type="hidden" name="room-bill" id="room-bill" value="">
+            <input type="hidden" name="plan-id-hidden" id="plan-id-hidden" value="">
+            <input type="hidden" name="plan-name-hidden" id="plan-name-hidden" value="">
+            <input type="hidden" name="room-bill-hidden" id="room-bill-hidden" value="">
           </form>
         </div>
         <div class="col-lg-3 mr-auto">
