@@ -6,17 +6,16 @@ history.replaceState(null, '', 'confirm.html');
 
 ready(() => {
 
-  // Check login
-  const session = getSessionUser();
-
   // load data
   const transactionId = getTransactionId();
   if (!transactionId) {
     redirectToTop();
+    return;
   }
   const data = sessionStorage.getItem(transactionId)
   if (!data) {
     redirectToTop();
+    return;
   }
   const reservation = JSON.parse(data);
   deleteTransactionId();

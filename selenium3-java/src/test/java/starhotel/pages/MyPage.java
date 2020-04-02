@@ -2,6 +2,7 @@ package starhotel.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.Color;
 
 public class MyPage {
 
@@ -18,6 +19,12 @@ public class MyPage {
     var planLink = driver.findElement(By.linkText("宿泊予約"));
     planLink.click();
     return new PlansPage(driver);
+  }
+
+  public IconPage goToIconPage() {
+    var iconLink = driver.findElement(By.id("icon-link"));
+    iconLink.click();
+    return new IconPage(driver);
   }
 
   public String getHeaderText() {
@@ -63,6 +70,25 @@ public class MyPage {
   public String getNotification() {
     var notification = driver.findElement(By.id("notification"));
     return notification.getText();
+  }
+
+  public boolean existsIconImage() {
+    var images = driver.findElements(By.cssSelector("#icon-holder > img"));
+    return !images.isEmpty();
+  }
+
+  public int getIconImageWidth() {
+    var image = driver.findElement(By.cssSelector("#icon-holder > img"));
+    return Integer.parseInt(image.getAttribute("width"));
+  }
+
+  public Color getIconImageBorder() {
+    var image = driver.findElement(By.cssSelector("#icon-holder > img"));
+    String backgroundColor = image.getCssValue("backgroundColor");
+    if (backgroundColor.isEmpty()) {
+      backgroundColor = image.getCssValue("background-color");
+    }
+    return Color.fromString(backgroundColor);
   }
 
   public void deleteUser() {

@@ -17,6 +17,9 @@ ready(() => {
 
   // load user data
   const user = getUser(session);
+  if (!user) {
+    return;
+  }
 
   // set user data
   document.getElementById('email').textContent = user.email;

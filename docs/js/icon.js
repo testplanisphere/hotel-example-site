@@ -69,8 +69,8 @@ ready(() => {
     zoomInput.disabled = false;
     zoomInput.addEventListener('change', (event) => {
       const iconImg = document.getElementById('icon-img');
-      iconImg.width = 100 * event.target.value * 0.01;
-      iconImg.height = 100 * event.target.value * 0.01;
+      iconImg.width = parseInt(event.target.value, 10);
+      iconImg.height = parseInt(event.target.value, 10);
     });
 
     // set color input
@@ -83,14 +83,13 @@ ready(() => {
   iconForm.addEventListener('submit', (event) => {
     if (iconForm.checkValidity()) {
       const file = iconInput.files[0];
-      const iconImg = document.getElementById('icon-img');
       const reader = new FileReader();
       reader.onload = function(event) {
         const dataURL = event.target.result;
         const icon = {
           'image': dataURL,
-          'width': iconImg.width,
-          'height': iconImg.height,
+          'width': parseInt(zoomInput.value, 10),
+          'height': parseInt(zoomInput.value, 10),
           'color': colorInput.value,
         };
         user.icon = icon;

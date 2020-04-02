@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static starhotel.Utils.BASE_URL;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.Colors;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import starhotel.pages.SignupPage.Gender;
@@ -168,6 +171,65 @@ class MyPageTest {
 
   @Test
   @Order(6)
+  @DisplayName("アイコン設定で画像以外のファイルはエラーとなること")
+  void testIconNotImage() {
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+
+    var loginPage = topPage.goToLoginPage();
+    var myPage = loginPage.doLogin("new-user@gmail.com", "11111111");
+    var iconPage = myPage.goToIconPage();
+
+    Path file = Paths.get("src", "test", "resources", "dummy.txt");
+    iconPage.setIcon(file);
+
+    assertEquals("画像ファイルを選択してください。", iconPage.getIconMessage());
+  }
+
+  @Test
+  @Order(7)
+  @DisplayName("アイコン設定で10KBを越えるファイルはエラーとなること")
+  void testIconOverSize() {
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+
+    var loginPage = topPage.goToLoginPage();
+    var myPage = loginPage.doLogin("new-user@gmail.com", "11111111");
+    var iconPage = myPage.goToIconPage();
+
+    Path file = Paths.get("src", "test", "resources", "240x240_12.png");
+    iconPage.setIcon(file);
+
+    assertEquals("ファイルサイズは10KB以下にしてください。", iconPage.getIconMessage());
+  }
+
+  @Test
+  @Order(8)
+  @DisplayName("設定したアイコンがマイページに表示されること")
+  void testIconSuccess() {
+    driver.get(BASE_URL);
+    var topPage = new TopPage(driver);
+
+    var loginPage = topPage.goToLoginPage();
+    var myPage = loginPage.doLogin("new-user@gmail.com", "11111111");
+    var iconPage = myPage.goToIconPage();
+
+    Path file = Paths.get("src", "test", "resources", "240x240_01.png");
+    iconPage.setIcon(file);
+    iconPage.setZoom(80);
+    iconPage.setColor(Colors.BLACK.getColorValue());
+    iconPage.goToMyPage();
+
+    assertTrue(myPage.existsIconImage());
+    assertAll("アイコン画像",
+        () -> assertTrue(myPage.existsIconImage()),
+        () -> assertEquals(80 - 10, myPage.getIconImageWidth()), // -(padding + border)
+        () -> assertEquals(Colors.BLACK.getColorValue(), myPage.getIconImageBorder())
+    );
+  }
+
+  @Test
+  @Order(9)
   @DisplayName("新規登録したユーザが削除できること")
   void testDeleteUser() {
     driver.get(BASE_URL);
