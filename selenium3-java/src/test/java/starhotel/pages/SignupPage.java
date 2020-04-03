@@ -67,6 +67,8 @@ public class SignupPage {
         var normal = driver.findElement(By.id("rank-normal"));
         normal.click();
         break;
+      default:
+        throw new AssertionError();
     }
   }
 

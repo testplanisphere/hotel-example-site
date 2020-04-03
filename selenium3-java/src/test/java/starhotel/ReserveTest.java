@@ -370,7 +370,7 @@ class ReserveTest {
     } else {
       expectedTotalBill = "合計 92,000円（税込み）";
     }
-    var expectedTerm = longFormatter.format(expectedStart) + " 〜 " + longFormatter.format(expectedEnd) + " 2泊";
+    final var expectedTerm = longFormatter.format(expectedStart) + " 〜 " + longFormatter.format(expectedEnd) + " 2泊";
 
     reservePage.setReserveTerm("2");
     reservePage.setHeadCount("4");
