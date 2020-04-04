@@ -47,12 +47,14 @@ class PlansTest {
     var planTitles = plansPage.getPlanTitles();
 
     assertAll("プラン一覧",
-        () -> assertEquals(5, planTitles.size()),
+        () -> assertEquals(7, planTitles.size()),
         () -> assertEquals("お得な特典付きプラン", planTitles.get(0)),
-        () -> assertEquals("ディナー付プラン", planTitles.get(1)),
-        () -> assertEquals("素泊まり", planTitles.get(2)),
-        () -> assertEquals("出張ビジネスプラン", planTitles.get(3)),
-        () -> assertEquals("エステ・マッサージプラン", planTitles.get(4))
+        () -> assertEquals("素泊まり", planTitles.get(1)),
+        () -> assertEquals("出張ビジネスプラン", planTitles.get(2)),
+        () -> assertEquals("エステ・マッサージプラン", planTitles.get(3)),
+        () -> assertEquals("貸し切り露天風呂プラン", planTitles.get(4)),
+        () -> assertEquals("カップル限定プラン", planTitles.get(5)),
+        () -> assertEquals("テーマパーク優待プラン", planTitles.get(6))
     );
   }
 
@@ -69,13 +71,16 @@ class PlansTest {
     var planTitles = plansPage.getPlanTitles();
 
     assertAll("プラン一覧",
-        () -> assertEquals(6, planTitles.size()),
+        () -> assertEquals(9, planTitles.size()),
         () -> assertEquals("お得な特典付きプラン", planTitles.get(0)),
-        () -> assertEquals("ディナー付プラン", planTitles.get(1)),
+        () -> assertEquals("ディナー付きプラン", planTitles.get(1)),
         () -> assertEquals("お得なプラン", planTitles.get(2)),
         () -> assertEquals("素泊まり", planTitles.get(3)),
         () -> assertEquals("出張ビジネスプラン", planTitles.get(4)),
-        () -> assertEquals("エステ・マッサージプラン", planTitles.get(5))
+        () -> assertEquals("エステ・マッサージプラン", planTitles.get(5)),
+        () -> assertEquals("貸し切り露天風呂プラン", planTitles.get(6)),
+        () -> assertEquals("カップル限定プラン", planTitles.get(7)),
+        () -> assertEquals("テーマパーク優待プラン", planTitles.get(8))
     );
   }
 
@@ -92,14 +97,17 @@ class PlansTest {
     var planTitles = plansPage.getPlanTitles();
 
     assertAll("プラン一覧",
-        () -> assertEquals(7, planTitles.size()),
+        () -> assertEquals(10, planTitles.size()),
         () -> assertEquals("お得な特典付きプラン", planTitles.get(0)),
         () -> assertEquals("プレミアムプラン", planTitles.get(1)),
-        () -> assertEquals("ディナー付プラン", planTitles.get(2)),
+        () -> assertEquals("ディナー付きプラン", planTitles.get(2)),
         () -> assertEquals("お得なプラン", planTitles.get(3)),
         () -> assertEquals("素泊まり", planTitles.get(4)),
         () -> assertEquals("出張ビジネスプラン", planTitles.get(5)),
-        () -> assertEquals("エステ・マッサージプラン", planTitles.get(6))
+        () -> assertEquals("エステ・マッサージプラン", planTitles.get(6)),
+        () -> assertEquals("貸し切り露天風呂プラン", planTitles.get(7)),
+        () -> assertEquals("カップル限定プラン", planTitles.get(8)),
+        () -> assertEquals("テーマパーク優待プラン", planTitles.get(9))
     );
   }
 

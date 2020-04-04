@@ -25,7 +25,7 @@
   },
   {
     "id": 2,
-    "name": "ディナー付プラン",
+    "name": "ディナー付きプラン",
     "roomBill": 8500,
     "minHeadCount": 1,
     "maxHeadCount": 4,
@@ -33,7 +33,7 @@
     "maxTerm": 3,
     "room": "部屋指定なし",
     "roomPage": null,
-    "only": null
+    "only": "member"
   },
   {
     "id": 3,
@@ -79,6 +79,42 @@
     "maxHeadCount": 6,
     "minTerm": 1,
     "maxTerm": 9,
+    "room": "部屋指定なし",
+    "roomPage": null,
+    "only": null
+  },
+  {
+    "id": 7,
+    "name": "貸し切り露天風呂プラン",
+    "roomBill": 9000,
+    "minHeadCount": 1,
+    "maxHeadCount": 6,
+    "minTerm": 1,
+    "maxTerm": 3,
+    "room": "部屋指定なし",
+    "roomPage": null,
+    "only": null
+  },
+  {
+    "id": 8,
+    "name": "カップル限定プラン",
+    "roomBill": 8000,
+    "minHeadCount": 2,
+    "maxHeadCount": 2,
+    "minTerm": 1,
+    "maxTerm": 2,
+    "room": "プレミアムツイン",
+    "roomPage": "premium-twin.html",
+    "only": null
+  },
+  {
+    "id": 9,
+    "name": "テーマパーク優待プラン",
+    "roomBill": 10000,
+    "minHeadCount": 1,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 5,
     "room": "部屋指定なし",
     "roomPage": null,
     "only": null

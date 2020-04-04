@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static starhotel.Utils.BASE_URL;
 import static starhotel.Utils.getNewWindowHandle;
+import static starhotel.Utils.sleep;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -78,6 +79,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -110,6 +112,7 @@ class ReserveTest {
 
     var plansPage = myPage.goToPlansPage();
     plansPage.openPlanByTitle("プレミアムプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -143,6 +146,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -170,6 +174,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -199,6 +204,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -228,6 +234,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -255,6 +262,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -281,6 +289,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -307,6 +316,7 @@ class ReserveTest {
 
     var plansPage = topPage.goToPlansPage();
     plansPage.openPlanByTitle("お得な特典付きプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);
@@ -355,6 +365,7 @@ class ReserveTest {
 
     var plansPage = myPage.goToPlansPage();
     plansPage.openPlanByTitle("プレミアムプラン");
+    sleep(500);
     var newHandles = driver.getWindowHandles();
     var newHandle = getNewWindowHandle(originalHandles, newHandles);
     driver.switchTo().window(newHandle);

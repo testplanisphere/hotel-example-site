@@ -26,8 +26,15 @@ ready(() => {
  * @return {string} plan HTML
  */
 function genPlanHtml(plan) {
+  let header = '';
+  if (plan.only === 'premium') {
+    header = '<div class="card-header">❤️プレミアム会員限定❤️</div>'
+  } else if (plan.only === 'member') {
+    header = '<div class="card-header">会員限定</div>'
+  }
   return `<div class="col-12 col-md-6 col-lg-4">
-<div class="card text-center">
+<div class="card text-center shadow-sm mb-3">
+  ${header}
   <div class="card-body">
     <h5 class="card-title">${plan.name}</h5>
       <ul class="list-unstyled">
