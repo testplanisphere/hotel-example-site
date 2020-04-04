@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <title>解説 | STAR HOTEL - テスト自動化デモサイト</title>
+  </head>
+  <body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand text-uppercase font-weight-bold" href="#">Star Hotel</a>
+    </nav>
+    <div class="container bg-white py-5">
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+          <h4 class="my-3">解説</h4>
+          <p>研修メニューを考える方や指導する方向けにより詳しい解説を記載します。このサイトは前述の通りテスト自動化の初心者向けの研修に使うことを想定して作成しています。</p>
+          <p>そのためブラウザテスト自動化の際に引っ掛かりがち、嵌まりがちな要素をある程度意図的に配置しています。</p>
+          <h5>共通</h5>
+          <p>エラーメッセージはエラーが発生した入力欄の下部に表示されます。表示タイミングは画面によって異なります。何度か各画面を触ってもらえれば仕様は把握できると思います。</p>
+          <h5>ログイン画面</h5>
+          <p>シンプルな画面です。エラーメッセージはボタンの押下時に表示されます。未入力の場合、メールアドレス・パスワードの両方もしくは一方が登録内容と異なる場合にエラーとなります。</p>
+          <p>この画面のみ<code>id</code>属性を多く付与してあります。研修ではまずこの画面の操作から始めるのが良いと思います。</p>
+          <ul>
+            <li><code>&lt;input type="email"&gt;</code></li>
+            <li><code>&lt;input type="password"&gt;</code></li>
+            <li><code>&lt;button type="submit"&gt;</code></li>
+          </ul>
+          <h5>会員登録画面</h5>
+          <p>エラーメッセージはボタンの押下時に表示されます。入力必須項目とそれ以外の項目があります。長さ指定のある項目では境界値のテストができます。</p>
+          <p><code>date</code>のようなツールから扱いづらい項目は無理に初心者向けの研修に含める必要はないでしょう。</p>
+          <ul>
+            <li><code>&lt;input type="text"&gt;</code></li>
+            <li><code>&lt;input type="radio"&gt;</code></li>
+            <li><code>&lt;input type="checkbox"&gt;</code></li>
+            <li><code>&lt;input type="email"&gt;</code></li>
+            <li><code>&lt;input type="password"&gt;</code></li>
+            <li><code>&lt;input type="tel"&gt;</code></li>
+            <li><code>&lt;input type="date"&gt;</code></li>
+            <li><code>&lt;select&gt;&lt;option&gt;</code></li>
+          </ul>
+          <h5>マイページ画面</h5>
+          <p>マイページ本体は表示のみの画面です。ログインまたは登録の画面と組み合わせて一本のテストシナリオができると思います。</p>
+          <p>新規登録したユーザの場合、「アイコン設定」「退会する」のボタンが有効になります。</p>
+          <p>アイコン設定では画像のアップロードができます。登録した画像はマイページで表示されます。<code>range</code>と<code>color</code>はツールから扱いづらいため研修で使う際には注意してください。</p>
+          <p>退会のボタンではJavaScriptのダイアログが連続で表示されます。</p>
+          <ul>
+            <li><code>&lt;input type="file"&gt;</code></li>
+            <li><code>&lt;input type="range"&gt;</code></li>
+            <li><code>&lt;input type="color"&gt;</code></li>
+            <li>JavaScriptダイアログ <code>confirm()</code></li>
+            <li>JavaScriptダイアログ <code>alert()</code></li>
+          </ul>
+          <h5>宿泊プラン一覧画面</h5>
+          <p>トップの一つを除き、プランの情報はAjaxによって非同期で取得され表示されます。またログイン状態とユーザの会員ランクによって表示されるプランが変わります。</p>
+          <ul>
+            <li>Ajax (<a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API">Fetch API</a>)</li>
+            <li>新規ウィンドウ表示 (<code>target="_blank"</code>)</li>
+          </ul>
+          <h5>宿泊予約画面</h5>
+          <p>入力内容によって合計金額が計算されて表示されます。組み合わせが多いためテスト技法の練習にもいいかもしれません。</p>
+          <p>この画面用の計算ロジックは<a href="./test/billing_test.html">単体テストがあります</a>。</p>
+          <ul>
+            <li>Ajax (<a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API">Fetch API</a>)</li>
+            <li><a href="https://jqueryui.com/datepicker/">jQuery UI Datepicker</a></li>
+            <li><code>&lt;input type="checkbox"&gt;</code></li>
+            <li><code>&lt;input type="text"&gt;</code></li>
+            <li><code>&lt;input type="number"&gt;</code></li>
+            <li><code>&lt;input type="email"&gt;</code></li>
+            <li><code>&lt;input type="tel"&gt;</code></li>
+            <li><code>&lt;select&gt;&lt;option&gt;</code></li>
+            <li><code>&lt;textarea&gt;</code></li>
+            <li><code>&lt;iframe&gt;</code></li>
+          </ul>
+          <h5>宿泊予約確認画面</h5>
+          <p>予約画面で入力した内容の確認ができます。確定時にはダイアログがアニメーション（フェードイン）付きで出現します。</p>
+          <ul>
+            <li>非JavaScriptダイアログ <a href="https://getbootstrap.com/docs/4.4/components/modal/">Bootstrap Modal</a></li>
+          </ul>
+          <h5>登録済みデータ</h5>
+          <table class="table my-3">
+            <caption>登録済みユーザ</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">メールアドレス</th>
+                <th scope="col">氏名</th>
+                <th scope="col">会員ランク</th>
+                <th scope="col">住所</th>
+                <th scope="col">電話番号</th>
+                <th scope="col">性別</th>
+                <th scope="col">生年月日</th>
+                <th scope="col">お知らせ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>ichiro</td>
+                <td>山田一郎</td>
+                <td>プレミアム会員</td>
+                <td>東京都豊島区池袋</td>
+                <td>01234567891</td>
+                <td>男性</td>
+                <td>-</td>
+                <td>受け取る</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>sakura</td>
+                <td>松本さくら</td>
+                <td>一般会員</td>
+                <td>神奈川県横浜市鶴見区大黒ふ頭</td>
+                <td>-</td>
+                <td>女性</td>
+                <td>2000年4月1日</td>
+                <td>受け取らない</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>jun</td>
+                <td>林潤</td>
+                <td>プレミアム会員</td>
+                <td>大阪府大阪市北区梅田</td>
+                <td>01212341234</td>
+                <td>その他</td>
+                <td>1988年12月17日</td>
+                <td>受け取らない</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>yoshiki</td>
+                <td>木村良樹</td>
+                <td>一般会員</td>
+                <td>-</td>
+                <td>01298765432</td>
+                <td>-</td>
+                <td>1992年8月31日</td>
+                <td>受け取る</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer class="text-center py-5">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://github.com/takeya0x86/automation-testing-practice/">GitHub</a></li>
+        </ul>
+        <p class="text-muted">© 2020</p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="./js/vendor/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
