@@ -27,8 +27,9 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       with:
         path: ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-        restore-keys: ${{ runner.os }}-gradle
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
     - name: Grant execute permission for gradlew
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       working-directory: ./selenium3-java
