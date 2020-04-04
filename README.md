@@ -1,6 +1,7 @@
 # automation-testing-practice
 
 ![selenium3-java](https://github.com/takeya0x86/automation-testing-practice/workflows/selenium3-java/badge.svg)
+![webdriverio](https://github.com/takeya0x86/automation-testing-practice/workflows/webdriverio/badge.svg)
 
 ## このサイトはテスト自動化の学習のためのデモサイトです
 
