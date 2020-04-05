@@ -220,7 +220,6 @@ class MyPageTest {
     iconPage.setColor(Colors.BLACK.getColorValue());
     iconPage.goToMyPage();
 
-    assertTrue(myPage.existsIconImage());
     assertAll("アイコン画像",
         () -> assertTrue(myPage.existsIconImage()),
         () -> assertEquals(80 - 10, myPage.getIconImageWidth()), // -(padding + border)
