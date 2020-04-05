@@ -11,7 +11,7 @@ public class SignupPage {
   public enum Rank { プレミアム会員, 一般会員 }
 
   public enum Gender {
-    未登録("0"), 男性("1"), 女性("2"), その他("9");
+    回答しない("0"), 男性("1"), 女性("2"), その他("9");
 
     private final String value;
 

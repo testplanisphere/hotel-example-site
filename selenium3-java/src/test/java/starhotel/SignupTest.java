@@ -77,7 +77,7 @@ class SignupTest {
     signupPage.setRank(Rank.プレミアム会員);
     signupPage.setAddress("");
     signupPage.setTel("");
-    signupPage.setGender(Gender.未登録);
+    signupPage.setGender(Gender.回答しない);
     signupPage.setBirthday(LocalDate.parse("2000-01-01"));
     signupPage.setNotification(false);
     signupPage.goToMyPageExpectingFailure();
