@@ -9,7 +9,7 @@ describe('ログイン画面テスト', () => {
 
   it('定義済みユーザでログインができること', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('ichiro@example.com');
     LoginPage.password.setValue('password');
     LoginPage.submit();
@@ -18,7 +18,7 @@ describe('ログイン画面テスト', () => {
 
   it('未入力でエラーとなること', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('');
     LoginPage.password.setValue('');
     LoginPage.submit();
@@ -28,7 +28,7 @@ describe('ログイン画面テスト', () => {
 
   it('未登録のユーザでエラーとなること', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('error@example.com');
     LoginPage.password.setValue('error');
     LoginPage.submit();

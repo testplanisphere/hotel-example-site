@@ -10,6 +10,18 @@ class TopPage extends Page {
     super.open('');
   }
 
+  goToLoginPage() {
+    this.loginLink.click();
+  }
+
+  goToSignupPage() {
+    this.signupLink.click();
+  }
+
+  goToPlansPage() {
+    this.planLink.click();
+  }
+
 }
 
 module.exports = new TopPage();

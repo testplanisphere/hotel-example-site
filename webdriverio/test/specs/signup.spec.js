@@ -9,7 +9,7 @@ describe('登録画面テスト', () => {
 
   it('ユーザの新規登録ができること', () => {
     TopPage.open();
-    TopPage.signupLink.click();
+    TopPage.goToSignupPage();
     SignupPage.email.setValue('new-user@gmail.com');
     SignupPage.password.setValue('password');
     SignupPage.passwordConfirmation.setValue('password');
@@ -27,7 +27,7 @@ describe('登録画面テスト', () => {
 
   it('必須項目を未入力にするとエラーとなること', () => {
     TopPage.open();
-    TopPage.signupLink.click();
+    TopPage.goToSignupPage();
     SignupPage.email.setValue('');
     SignupPage.password.setValue('');
     SignupPage.passwordConfirmation.setValue('');
@@ -52,7 +52,7 @@ describe('登録画面テスト', () => {
 
   it('指定のフォーマット外の入力でエラーとなること', () => {
     TopPage.open();
-    TopPage.signupLink.click();
+    TopPage.goToSignupPage();
     SignupPage.email.setValue('a');
     SignupPage.password.setValue('1234567');
     SignupPage.passwordConfirmation.setValue('1');
@@ -77,7 +77,7 @@ describe('登録画面テスト', () => {
 
   it('登録済みのメールアドレスはエラーとなること', () => {
     TopPage.open();
-    TopPage.signupLink.click();
+    TopPage.goToSignupPage();
     SignupPage.email.setValue('new-user@gmail.com');
     SignupPage.password.setValue('password');
     SignupPage.passwordConfirmation.setValue('password');
@@ -95,7 +95,7 @@ describe('登録画面テスト', () => {
 
   it('入力パスワードが一致しないとエラーとなること', () => {
     TopPage.open();
-    TopPage.signupLink.click();
+    TopPage.goToSignupPage();
     SignupPage.email.setValue('new-user@gmail.com');
     SignupPage.password.setValue('password');
     SignupPage.passwordConfirmation.setValue('123456789');

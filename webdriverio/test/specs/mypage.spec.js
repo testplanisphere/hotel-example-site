@@ -12,7 +12,7 @@ describe('マイページテスト', () => {
 
   it('定義済みユーザの情報が表示されること_ichiro', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('ichiro@example.com');
     LoginPage.password.setValue('password');
     LoginPage.submit();
@@ -29,7 +29,7 @@ describe('マイページテスト', () => {
 
   it('定義済みユーザの情報が表示されること_sakura', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('sakura@example.com');
     LoginPage.password.setValue('pass1234');
     LoginPage.submit();
@@ -46,7 +46,7 @@ describe('マイページテスト', () => {
 
   it('定義済みユーザの情報が表示されること_jun', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('jun@example.com');
     LoginPage.password.setValue('pa55w0rd!');
     LoginPage.submit();
@@ -63,7 +63,7 @@ describe('マイページテスト', () => {
 
   it('定義済みユーザの情報が表示されること_yoshiki', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('yoshiki@example.com');
     LoginPage.password.setValue('pass-pass');
     LoginPage.submit();
@@ -80,7 +80,7 @@ describe('マイページテスト', () => {
 
   it('新規登録したユーザの情報が表示されること', () => {
     TopPage.open();
-    TopPage.signupLink.click();
+    TopPage.goToSignupPage();
     SignupPage.email.setValue('new-user@gmail.com');
     SignupPage.password.setValue('11111111');
     SignupPage.passwordConfirmation.setValue('11111111');
@@ -105,7 +105,7 @@ describe('マイページテスト', () => {
 
   it.skip('アイコン設定で画像以外のファイルはエラーとなること', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('new-user@gmail.com');
     LoginPage.password.setValue('11111111');
     LoginPage.submit();
@@ -118,7 +118,7 @@ describe('マイページテスト', () => {
 
   it.skip('アイコン設定で10KBを越えるファイルはエラーとなること', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('new-user@gmail.com');
     LoginPage.password.setValue('11111111');
     LoginPage.submit();
@@ -131,7 +131,7 @@ describe('マイページテスト', () => {
 
   it.skip('設定したアイコンがマイページに表示されること', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('new-user@gmail.com');
     LoginPage.password.setValue('11111111');
     LoginPage.submit();
@@ -149,7 +149,7 @@ describe('マイページテスト', () => {
 
   it('新規登録したユーザが削除できること', () => {
     TopPage.open();
-    TopPage.loginLink.click();
+    TopPage.goToLoginPage();
     LoginPage.email.setValue('new-user@gmail.com');
     LoginPage.password.setValue('11111111');
     LoginPage.submit();

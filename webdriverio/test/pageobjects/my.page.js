@@ -17,6 +17,10 @@ class MyPage extends Page {
   get iconImage() { return $('#icon-holder > img'); }
   get deleteButton() { return $('#delete-form > button'); }
 
+  goToPlansPage() {
+    this.planLink.click();
+  }
+
   delete() {
     this.deleteButton.click();
   }
