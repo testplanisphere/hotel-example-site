@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ReservePage {
 
   public enum Contact {
-    希望しない("no"), メール("email"), 電話("tel");
+    希望しない("no"), メールでのご連絡("email"), 電話でのご連絡("tel");
 
     private final String value;
 

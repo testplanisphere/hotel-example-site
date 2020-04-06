@@ -269,7 +269,7 @@ class ReserveTest {
     var reservePage = new ReservePage(driver);
 
     reservePage.setUsername("");
-    reservePage.setContact(Contact.メール);
+    reservePage.setContact(Contact.メールでのご連絡);
     reservePage.setEmail("");
     reservePage.goToConfirmPageExpectingFailure();
 
@@ -296,7 +296,7 @@ class ReserveTest {
     var reservePage = new ReservePage(driver);
 
     reservePage.setUsername("");
-    reservePage.setContact(Contact.電話);
+    reservePage.setContact(Contact.電話でのご連絡);
     reservePage.setTel("");
     reservePage.goToConfirmPageExpectingFailure();
 
@@ -388,7 +388,7 @@ class ReserveTest {
     reservePage.setBreakfastPlan(true);
     reservePage.setEarlyCheckInPlan(true);
     reservePage.setSightseeingPlan(false);
-    reservePage.setContact(Contact.メール);
+    reservePage.setContact(Contact.メールでのご連絡);
     reservePage.setComment("あああ\n\nいいいいいいい\nうう");
     reservePage.setReserveDate(shortFormatter.format(expectedStart));
     var confirmPage = reservePage.goToConfirmPage();
