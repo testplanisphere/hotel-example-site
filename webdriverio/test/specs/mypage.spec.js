@@ -103,7 +103,7 @@ describe('マイページテスト', () => {
     expect(MyPage.notification).toHaveText('受け取らない');
   });
 
-  it.skip('アイコン設定で画像以外のファイルはエラーとなること', () => {
+  it('アイコン設定で画像以外のファイルはエラーとなること', () => {
     TopPage.open();
     TopPage.goToLoginPage();
     LoginPage.email.setValue('new-user@gmail.com');
@@ -113,10 +113,10 @@ describe('マイページテスト', () => {
     const filePath = path.join(__dirname, '..', 'uploadfiles', 'dummy.txt');
     IconPage.icon.setValue(filePath);
 
-    expect(IconPage.iconMessage).toHaveText('画像ファイルを選択してください');
+    expect(IconPage.iconMessage).toHaveText('画像ファイルを選択してください。');
   });
 
-  it.skip('アイコン設定で10KBを越えるファイルはエラーとなること', () => {
+  it('アイコン設定で10KBを越えるファイルはエラーとなること', () => {
     TopPage.open();
     TopPage.goToLoginPage();
     LoginPage.email.setValue('new-user@gmail.com');
@@ -129,7 +129,7 @@ describe('マイページテスト', () => {
     expect(IconPage.iconMessage).toHaveText('ファイルサイズは10KB以下にしてください。');
   });
 
-  it.skip('設定したアイコンがマイページに表示されること', () => {
+  it('設定したアイコンがマイページに表示されること', () => {
     TopPage.open();
     TopPage.goToLoginPage();
     LoginPage.email.setValue('new-user@gmail.com');
@@ -138,13 +138,13 @@ describe('マイページテスト', () => {
     MyPage.iconLink.click();
     const filePath = path.join(__dirname, '..', 'uploadfiles', '240x240_01.png');
     IconPage.icon.setValue(filePath);
-    IconPage.zoom.setValue(80);
-    IconPage.color.setValue('#000000');
+    IconPage.setZoom(80);
+    IconPage.setColor('#000000');
     IconPage.submit();
 
     expect(MyPage.iconImage).toExist();
     expect(MyPage.iconImage).toHaveAttribute('width', '70');
-    expect(MyPage.iconImage).toHaveProperty('backgroundColor', '#000000');
+    expect(MyPage.iconImage.getCSSProperty('backgroundColor').value).toBe('rgba(0,0,0,1)');
   });
 
   it('新規登録したユーザが削除できること', () => {

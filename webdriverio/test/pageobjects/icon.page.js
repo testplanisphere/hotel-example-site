@@ -11,6 +11,18 @@ class IconPage extends Page {
   submit() {
     this.submitButton.click();
   }
+
+  setZoom(value) {
+    browser.execute((input, value) => {
+      input.value = value;
+    }, this.zoom, value);
+  }
+
+  setColor(value) {
+    browser.execute((input, value) => {
+      input.value = value;
+    }, this.color, value);
+  }
 }
 
 module.exports = new IconPage();
