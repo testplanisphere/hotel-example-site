@@ -88,7 +88,7 @@ class MyPageTest {
         () -> assertEquals("神奈川県横浜市鶴見区大黒ふ頭", myPage.getAddress()),
         () -> assertEquals("未登録", myPage.getTel()),
         () -> assertEquals("女性", myPage.getGender()),
-        () -> assertEquals("2000-04-01", myPage.getBirthday()),
+        () -> assertEquals("2000年4月1日", myPage.getBirthday()),
         () -> assertEquals("受け取らない", myPage.getNotification())
     );
   }
@@ -110,7 +110,7 @@ class MyPageTest {
         () -> assertEquals("大阪府大阪市北区梅田", myPage.getAddress()),
         () -> assertEquals("01212341234", myPage.getTel()),
         () -> assertEquals("その他", myPage.getGender()),
-        () -> assertEquals("1988-12-17", myPage.getBirthday()),
+        () -> assertEquals("1988年12月17日", myPage.getBirthday()),
         () -> assertEquals("受け取らない", myPage.getNotification())
     );
   }
@@ -132,7 +132,7 @@ class MyPageTest {
         () -> assertEquals("未登録", myPage.getAddress()),
         () -> assertEquals("01298765432", myPage.getTel()),
         () -> assertEquals("未登録", myPage.getGender()),
-        () -> assertEquals("1992-08-31", myPage.getBirthday()),
+        () -> assertEquals("1992年8月31日", myPage.getBirthday()),
         () -> assertEquals("受け取る", myPage.getNotification())
     );
   }
@@ -164,7 +164,7 @@ class MyPageTest {
         () -> assertEquals("神奈川県横浜市港区", myPage.getAddress()),
         () -> assertEquals("09876543211", myPage.getTel()),
         () -> assertEquals("女性", myPage.getGender()),
-        () -> assertEquals("2000-01-01", myPage.getBirthday()),
+        () -> assertEquals("2000年1月1日", myPage.getBirthday()),
         () -> assertEquals("受け取らない", myPage.getNotification())
     );
   }

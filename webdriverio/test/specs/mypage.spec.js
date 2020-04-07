@@ -40,7 +40,7 @@ describe('マイページテスト', () => {
     expect(MyPage.address).toHaveText('神奈川県横浜市鶴見区大黒ふ頭');
     expect(MyPage.tel).toHaveText('未登録');
     expect(MyPage.gender).toHaveText('女性');
-    expect(MyPage.birthday).toHaveText('2000-04-01');
+    expect(MyPage.birthday).toHaveText('2000年4月1日');
     expect(MyPage.notification).toHaveText('受け取らない');
   });
 
@@ -57,7 +57,7 @@ describe('マイページテスト', () => {
     expect(MyPage.address).toHaveText('大阪府大阪市北区梅田');
     expect(MyPage.tel).toHaveText('01212341234');
     expect(MyPage.gender).toHaveText('その他');
-    expect(MyPage.birthday).toHaveText('1988-12-17');
+    expect(MyPage.birthday).toHaveText('1988年12月17日');
     expect(MyPage.notification).toHaveText('受け取らない');
   });
 
@@ -74,7 +74,7 @@ describe('マイページテスト', () => {
     expect(MyPage.address).toHaveText('未登録');
     expect(MyPage.tel).toHaveText('01298765432');
     expect(MyPage.gender).toHaveText('未登録');
-    expect(MyPage.birthday).toHaveText('1992-08-31');
+    expect(MyPage.birthday).toHaveText('1992年8月31日');
     expect(MyPage.notification).toHaveText('受け取る');
   });
 
@@ -99,7 +99,7 @@ describe('マイページテスト', () => {
     expect(MyPage.address).toHaveText('神奈川県横浜市港区');
     expect(MyPage.tel).toHaveText('09876543211');
     expect(MyPage.gender).toHaveText('女性');
-    expect(MyPage.birthday).toHaveText('2000-01-01');
+    expect(MyPage.birthday).toHaveText('2000年1月1日');
     expect(MyPage.notification).toHaveText('受け取らない');
   });
 

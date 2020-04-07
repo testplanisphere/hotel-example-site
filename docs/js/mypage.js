@@ -1,4 +1,4 @@
-import {ready, redirectToTop} from './lib/global.js';
+import {ready, redirectToTop, formatDateLong, parseDateISO} from './lib/global.js';
 import {getUser, getSessionUser, logout} from './lib/session.js';
 
 const DISPLAY_GENDER = new Map([
@@ -31,7 +31,8 @@ ready(() => {
   document.getElementById('address').textContent = user.address ? user.address : '未登録';
   document.getElementById('tel').textContent = user.tel ? user.tel : '未登録';
   document.getElementById('gender').textContent = DISPLAY_GENDER.get(user.gender);
-  document.getElementById('birthday').textContent = user.birthday ? user.birthday : '未登録';
+  document.getElementById('birthday').textContent =
+      user.birthday ? formatDateLong(parseDateISO(user.birthday)) : '未登録';
   document.getElementById('notification').textContent = user.notification ? '受け取る' : '受け取らない';
 
   // set icon
