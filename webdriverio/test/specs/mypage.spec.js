@@ -1,9 +1,9 @@
 const path = require('path');
-const TopPage = require('../pageobjects/top.page');
+const IconPage = require('../pageobjects/icon.page');
 const LoginPage = require('../pageobjects/login.page');
 const MyPage = require('../pageobjects/my.page');
 const SignupPage = require('../pageobjects/signup.page');
-const IconPage = require('../pageobjects/icon.page');
+const TopPage = require('../pageobjects/top.page');
 
 describe('マイページテスト', () => {
   afterEach(() => {

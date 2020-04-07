@@ -1,7 +1,6 @@
 const Page = require('./page');
 
 class ConfirmPage extends Page {
-
   get totalBill() { return $('#total-bill'); }
   get planName() { return $('#plan-name'); }
   get term() { return $('#term'); }
@@ -23,7 +22,6 @@ class ConfirmPage extends Page {
   close() {
     this.closeButton.click();
   }
-
 }
 
 module.exports = new ConfirmPage();

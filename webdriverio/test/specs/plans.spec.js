@@ -1,7 +1,7 @@
-const TopPage = require('../pageobjects/top.page');
 const LoginPage = require('../pageobjects/login.page');
 const MyPage = require('../pageobjects/my.page');
 const PlansPage = require('../pageobjects/plans.page');
+const TopPage = require('../pageobjects/top.page');
 
 describe('プラン一覧画面テスト', () => {
   afterEach(() => {

@@ -1,7 +1,6 @@
 const Page = require('./page');
 
 class SignupPage extends Page {
-
   get email() { return $('#email'); }
   get password() { return $('#password'); }
   get passwordConfirmation() { return $('#password-confirmation'); }
@@ -38,7 +37,6 @@ class SignupPage extends Page {
   submit() {
     this.submitButton.click();
   }
-
 }
 
 module.exports = new SignupPage();

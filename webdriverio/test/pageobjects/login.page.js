@@ -1,7 +1,6 @@
 const Page = require('./page');
 
 class LoginPage extends Page {
-
   get email() { return $('#email'); }
   get password() { return $('#password'); }
   get submitButton() { return $('#login-button'); }
@@ -11,7 +10,6 @@ class LoginPage extends Page {
   submit() {
     this.submitButton.click();
   }
-
 }
 
 module.exports = new LoginPage();

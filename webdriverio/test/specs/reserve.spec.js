@@ -23,7 +23,7 @@ describe('宿泊予約画面テスト', () => {
     browser.switchWindow(/^宿泊予約.+$/);
 
     const tomorrow = moment().add(1, 'days').format('YYYY/MM/DD');
-    
+
     expect(ReservePage.planName).toHaveText('お得な特典付きプラン');
     expect(ReservePage.reserveDate).toHaveValue(tomorrow);
     expect(ReservePage.reserveTerm).toHaveValue('1');
@@ -45,7 +45,7 @@ describe('宿泊予約画面テスト', () => {
     browser.switchWindow(/^宿泊予約.+$/);
 
     const tomorrow = moment().add(1, 'days').format('YYYY/MM/DD');
-    
+
     expect(ReservePage.planName).toHaveText('プレミアムプラン');
     expect(ReservePage.reserveDate).toHaveValue(tomorrow);
     expect(ReservePage.reserveTerm).toHaveValue('1');
@@ -69,7 +69,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.reserveTerm.setValue('');
     ReservePage.headCount.setValue('');
     ReservePage.username.setValue('テスト太郎');  // フォーカス移動
-    
+
     expect(ReservePage.reserveDateMessage).toHaveText('このフィールドを入力してください。');
     expect(ReservePage.reserveTermMessage).toHaveText('このフィールドを入力してください。');
     expect(ReservePage.headCountMessage).toHaveText('このフィールドを入力してください。');
@@ -87,7 +87,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.reserveTerm.setValue('0');
     ReservePage.headCount.setValue('0');
     ReservePage.username.setValue('テスト太郎');  // フォーカス移動
-    
+
     expect(ReservePage.reserveDateMessage).toHaveText('翌日以降の日付を入力してください。');
     expect(ReservePage.reserveTermMessage).toHaveText('1以上の値を入力してください。');
     expect(ReservePage.headCountMessage).toHaveText('1以上の値を入力してください。');
@@ -105,7 +105,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.reserveTerm.setValue('10');
     ReservePage.headCount.setValue('10');
     ReservePage.username.setValue('テスト太郎');  // フォーカス移動
-    
+
     expect(ReservePage.reserveDateMessage).toHaveText('3ヶ月以内の日付を入力してください。');
     expect(ReservePage.reserveTermMessage).toHaveText('9以下の値を入力してください。');
     expect(ReservePage.headCountMessage).toHaveText('9以下の値を入力してください。');
@@ -121,7 +121,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.reserveTerm.setValue('a');  // 入力できない
     ReservePage.headCount.setValue('a');  // 入力できない
     ReservePage.username.setValue('テスト太郎');  // フォーカス移動
-    
+
     expect(ReservePage.reserveDateMessage).toHaveText('有効な値を入力してください。');
     expect(ReservePage.reserveTermMessage).toHaveText('このフィールドを入力してください。');
     expect(ReservePage.headCountMessage).toHaveText('このフィールドを入力してください。');
@@ -137,7 +137,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.contact.selectByVisibleText('メールでのご連絡');
     ReservePage.email.setValue('');
     ReservePage.submit();
-    
+
     expect(ReservePage.usernameMessage).toHaveText('このフィールドを入力してください。');
     expect(ReservePage.emailMessage).toHaveText('このフィールドを入力してください。');
   });
@@ -152,7 +152,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.contact.selectByVisibleText('電話でのご連絡');
     ReservePage.tel.setValue('');
     ReservePage.submit();
-    
+
     expect(ReservePage.usernameMessage).toHaveText('このフィールドを入力してください。');
     expect(ReservePage.telMessage).toHaveText('このフィールドを入力してください。');
   });
@@ -176,7 +176,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.username.setValue('テスト太郎');
     ReservePage.contact.selectByVisibleText('希望しない');
     ReservePage.submit();
-    
+
     expect(ConfirmPage.totalBill).toHaveText(expectedTotalBill);
     expect(ConfirmPage.planName).toHaveText('お得な特典付きプラン');
     expect(ConfirmPage.term).toHaveText(expectedTerm);
@@ -223,7 +223,7 @@ describe('宿泊予約画面テスト', () => {
     ReservePage.comment.setValue('あああ\n\nいいいいいいい\nうう');
     ReservePage.reserveDate.setValue(expectedStart.format('YYYY/MM/DD'));
     ReservePage.submit();
-    
+
     expect(ConfirmPage.totalBill).toHaveText(expectedTotalBill);
     expect(ConfirmPage.planName).toHaveText('プレミアムプラン');
     expect(ConfirmPage.term).toHaveText(expectedTerm);

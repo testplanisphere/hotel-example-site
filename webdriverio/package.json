@@ -16,6 +16,8 @@
     "@wdio/spec-reporter": "^6.0.12",
     "@wdio/sync": "^6.0.12",
     "chromedriver": "^80.0.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-wdio": "^6.0.12",
     "moment": "^2.24.0",
     "wdio-chromedriver-service": "^6.0.1"
   }

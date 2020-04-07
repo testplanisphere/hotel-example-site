@@ -1,7 +1,6 @@
 const Page = require('./page');
 
 class MyPage extends Page {
-
   get planLink() { return $('=宿泊予約'); }
   get iconLink() { return $('#icon-link'); }
   get header() { return $('<h2>'); }

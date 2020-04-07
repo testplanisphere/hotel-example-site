@@ -1,6 +1,6 @@
-const TopPage = require('../pageobjects/top.page');
-const SignupPage = require('../pageobjects/signup.page');
 const MyPage = require('../pageobjects/my.page');
+const SignupPage = require('../pageobjects/signup.page');
+const TopPage = require('../pageobjects/top.page');
 
 describe('登録画面テスト', () => {
   afterEach(() => {
@@ -109,5 +109,4 @@ describe('登録画面テスト', () => {
 
     expect(SignupPage.passwordConfirmationMessage).toHaveText('入力されたパスワードと一致しません。');
   });
-  
 });

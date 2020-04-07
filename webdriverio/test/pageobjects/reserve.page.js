@@ -1,7 +1,6 @@
 const Page = require('./page');
 
 class ReservePage extends Page {
-
   get reserveDate() { return $('#date'); }
   get datePickerClose() { return $('.ui-datepicker-close'); }
   get reserveTerm() { return $('#term'); }
@@ -50,7 +49,6 @@ class ReservePage extends Page {
   submit() {
     this.submitButton.click();
   }
-
 }
 
 module.exports = new ReservePage();

@@ -1,7 +1,6 @@
 const Page = require('./page');
 
 class PlansPage extends Page {
-
   get loading() { return $('#plan-list > div[role="status"]'); }
   get planTitles() { return $$('.card-title'); }
   get plans() { return $$('.card'); }
@@ -16,7 +15,6 @@ class PlansPage extends Page {
     this.plans.find((elm) => elm.$('.card-title').getText() === title).$('<a>').click();
     browser.waitUntil(() => browser.getWindowHandles().length === 2);
   }
-
 }
 
 module.exports = new PlansPage();

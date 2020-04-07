@@ -1,7 +1,6 @@
 const Page = require('./page');
 
 class IconPage extends Page {
-
   get icon() { return $('#icon'); }
   get zoom() { return $('#zoom'); }
   get color() { return $('#color'); }
