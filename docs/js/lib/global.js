@@ -14,7 +14,12 @@ export function ready(handler) {
  * Redirect to top page
  */
 export function redirectToTop() {
-  const path = location.pathname.replace(/(\/.+)(\/.+\.html)/, '$1/index.html');
+  let path;
+  if (location.pathname.split('/').length === 2) {
+    path = location.pathname.replace(/(\/.+\.html)/, '/index.html');
+  } else {
+    path = location.pathname.replace(/(\/.+)(\/.+\.html)/, '$1/index.html');
+  }
   location.assign(`${location.origin}${path}`);
 }
 
