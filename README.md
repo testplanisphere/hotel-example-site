@@ -1,7 +1,7 @@
 # automation-testing-practice
 
-![selenium3-java](https://github.com/takeya0x86/hotel-example-selenium3-java/workflows/selenium3-java/badge.svg)
-![webdriverio](https://github.com/takeya0x86/hotel-example-webdriverio/workflows/webdriverio/badge.svg)
+![selenium3-java](https://github.com/testplanisphere/hotel-example-selenium3-java/workflows/selenium3-java/badge.svg)
+![webdriverio](https://github.com/testplanisphere/hotel-example-webdriverio/workflows/webdriverio/badge.svg)
 
 ## このサイトはテスト自動化の学習のためのデモサイトです
 
