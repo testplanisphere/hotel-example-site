@@ -1,7 +1,9 @@
 # automation-testing-practice
 
-![selenium3-java](https://github.com/testplanisphere/hotel-example-selenium3-java/workflows/selenium3-java/badge.svg)
+![selenide](https://github.com/testplanisphere/hotel-example-selenide/workflows/selenide/badge.svg)
 ![webdriverio](https://github.com/testplanisphere/hotel-example-webdriverio/workflows/webdriverio/badge.svg)
+![capybara](https://github.com/testplanisphere/hotel-example-capybara/workflows/capybara/badge.svg)
+![selenium3-java](https://github.com/testplanisphere/hotel-example-selenium3-java/workflows/selenium3-java/badge.svg)
 
 ## このサイトはテスト自動化の学習のためのデモサイトです
 
@@ -34,6 +36,10 @@ python -m http.server 9999
 ```
 
 ### 変更履歴
+
+#### v1.1.0 (2020-04-29)
+
+* サンプルコードにSelenide、Capybaraを追加
 
 #### v1.0.0 (2020-04-14)
 
