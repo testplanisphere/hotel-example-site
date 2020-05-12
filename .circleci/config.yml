@@ -43,7 +43,7 @@ jobs:
       - run: yarn netlify deploy -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
       - slack/notify:
           color: '#125d7d'
-          message: (Staging) Hotel Example Site was successflly deployed
+          message: (Staging) Hotel Example Site was successfully deployed
 
   publish-to-production:
     docker:
@@ -55,7 +55,7 @@ jobs:
       - run: yarn netlify deploy -p -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
       - slack/notify:
           color: '#3d7d12'
-          message: (Production) Hotel Example Site was successflly deployed
+          message: (Production) Hotel Example Site was successfully deployed
       
 workflows:
   version: 2
