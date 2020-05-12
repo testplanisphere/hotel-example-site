@@ -1,4 +1,8 @@
 version: 2.1
+
+orbs:
+  slack: circleci/slack@3.4.2
+
 jobs:
   dependencies:
     docker:
@@ -26,6 +30,11 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn netlify deploy -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
+      - slack/notify:
+          channel: CHANNELID
+          color: '#125d7d'
+          message: (Staging) Hotel Example Site was successflly deployed
+          webhook: webhook
 
   publish-to-production:
     docker:
@@ -35,6 +44,11 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn netlify deploy -p -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
+      - slack/notify:
+          channel: CHANNELID
+          color: '#3d7d12'
+          message: (Production) Hotel Example Site was successflly deployed
+          webhook: webhook
       
 workflows:
   version: 2
