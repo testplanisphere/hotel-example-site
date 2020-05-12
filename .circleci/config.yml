@@ -1,0 +1,55 @@
+version: 2.1
+jobs:
+  dependencies:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - restore_cache:
+          keys: 
+            - v1-repo-{{ checksum "package-lock.json" }}
+      - run: yarn install
+      - save_cache:
+          key: v1-repo-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "node_modules"
+            
+  publish-to-staging:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn netlify deploy -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
+
+  publish-to-production:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn netlify deploy -p -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
+      
+workflows:
+  version: 2
+  Publish:
+    jobs:
+      - dependencies
+      - publish-to-staging:
+          filters:
+            branches:
+              only: development
+          requires:
+            - dependencies
+      - publish-to-production:
+          filters:
+            branches:
+              only: master
+          requires:
+            - dependencies
+          
