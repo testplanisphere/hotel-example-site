@@ -34,7 +34,6 @@ jobs:
           channel: CHANNELID
           color: '#125d7d'
           message: (Staging) Hotel Example Site was successflly deployed
-          webhook: webhook
 
   publish-to-production:
     docker:
@@ -48,7 +47,6 @@ jobs:
           channel: CHANNELID
           color: '#3d7d12'
           message: (Production) Hotel Example Site was successflly deployed
-          webhook: webhook
       
 workflows:
   version: 2
