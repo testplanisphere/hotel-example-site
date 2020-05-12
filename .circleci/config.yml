@@ -31,7 +31,6 @@ jobs:
           at: .
       - run: yarn netlify deploy -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
       - slack/notify:
-          channel: noboru
           color: '#125d7d'
           message: (Staging) Hotel Example Site was successflly deployed
 
@@ -44,7 +43,6 @@ jobs:
           at: .
       - run: yarn netlify deploy -p -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
       - slack/notify:
-          channel: noboru
           color: '#3d7d12'
           message: (Production) Hotel Example Site was successflly deployed
       
