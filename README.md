@@ -1,9 +1,6 @@
 # automation-testing-practice
 
-![selenide](https://github.com/testplanisphere/hotel-example-selenide/workflows/selenide/badge.svg)
-![webdriverio](https://github.com/testplanisphere/hotel-example-webdriverio/workflows/webdriverio/badge.svg)
-![capybara](https://github.com/testplanisphere/hotel-example-capybara/workflows/capybara/badge.svg)
-![selenium3-java](https://github.com/testplanisphere/hotel-example-selenium3-java/workflows/selenium3-java/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e4ce9681-8e05-42d7-8070-c93b4f4319d4/deploy-status)](https://app.netlify.com/sites/hotel-example-site/deploys)
 
 ## このサイトはテスト自動化の学習のためのデモサイトです
 
