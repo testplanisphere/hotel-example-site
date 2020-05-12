@@ -1,6 +1,7 @@
 # automation-testing-practice
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e4ce9681-8e05-42d7-8070-c93b4f4319d4/deploy-status)](https://app.netlify.com/sites/hotel-example-site/deploys)
+[![CircleCI](https://circleci.com/gh/kurumai/hotel-example-site.svg?style=svg)](https://circleci.com/gh/kurumai/hotel-example-site)
 
 ## このサイトはテスト自動化の学習のためのデモサイトです
 
