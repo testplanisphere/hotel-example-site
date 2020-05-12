@@ -21,6 +21,17 @@ jobs:
           root: .
           paths:
             - "node_modules"
+
+  lint:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Run lint
+          command: yarn htmllint *.html
             
   publish-to-staging:
     docker:
@@ -51,16 +62,19 @@ workflows:
   Publish:
     jobs:
       - dependencies
+      - lint:
+          requires:
+            - dependencies
       - publish-to-staging:
           filters:
             branches:
               only: development
           requires:
-            - dependencies
+            - lint
       - publish-to-production:
           filters:
             branches:
               only: master
           requires:
-            - dependencies
+            - lint
           

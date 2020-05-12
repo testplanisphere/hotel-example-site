@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "htmllint-cli": "0.0.7",
     "netlify-cli": "^2.50.0"
   }
 }
