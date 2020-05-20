@@ -40,7 +40,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
-      - run: yarn netlify deploy -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_API_ID}
+      - run: yarn netlify deploy -p -d . -a ${NETLIFY_TOKEN} -s ${NETLIFY_STAGING_API_ID}
       - slack/notify:
           color: '#125d7d'
           message: (Staging) Hotel Example Site was successfully deployed
