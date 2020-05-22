@@ -44,6 +44,10 @@ jobs:
       - slack/notify:
           color: '#125d7d'
           message: (Staging) Hotel Example Site was successfully deployed
+      - run:
+          name: Execute E2E test by Autify
+          command: |
+            curl -H "Authorization: Bearer ${AUTIFY_TOKEN}" https://app.autify.com/api/v1/schedules/4974
 
   publish-to-production:
     docker:
