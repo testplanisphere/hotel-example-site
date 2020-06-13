@@ -22,6 +22,12 @@ const MESSAGES = {
       'onlyImageFile': '画像ファイルを選択してください。',
     },
     'user': {
+      'gender': {
+        'unregistered': '未登録',
+        'male': '男性',
+        'female': '女性',
+        'other': 'その他',
+      },
       'rank': {
         'premium': 'プレミアム会員',
         'normal': '一般会員',
@@ -32,7 +38,7 @@ const MESSAGES = {
         'false': '受け取らない',
       },
       'deleteConfirm': '退会すると全ての情報が削除されます。\nよろしいですか？',
-      'deleteAlert': '退会処理を完了しました。ご利用ありがとうございました。',
+      'deleteComplete': '退会処理を完了しました。ご利用ありがとうございました。',
     },
     'plans': {
       'premiumOnly': '❤️プレミアム会員限定❤️',
