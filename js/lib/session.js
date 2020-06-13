@@ -125,9 +125,10 @@ export function deleteTransactionId() {
  * Set login status to navbar
  */
 export function setLoginNavbar() {
-  document.getElementById('signup-holder').innerHTML = '<a class="nav-link" href="./mypage.html">マイページ</a>';
-  document.getElementById('login-holder').innerHTML =
-      '<form action="./index.html" class="form-inline" id="logout-form" novalidate><button type="submit" class="btn btn-outline-success my-2 my-sm-0">ログアウト</button></form>';
+  document.getElementById('signup-holder').classList.replace('d-block', 'd-none');
+  document.getElementById('login-holder').classList.replace('d-block', 'd-none');
+  document.getElementById('mypage-holder').classList.replace('d-none', 'd-block');
+  document.getElementById('logout-holder').classList.replace('d-none', 'd-block');
   document.getElementById('logout-form').addEventListener('submit', () => {
     logout();
   });
