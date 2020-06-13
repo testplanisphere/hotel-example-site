@@ -37,9 +37,9 @@ const MESSAGES = {
     'plans': {
       'premiumOnly': '❤️プレミアム会員限定❤️',
       'memberOnly': '会員限定',
-      'oneAdult': '大人1名',
+      'oneAdult': '大人1名{}',
       'minHeadCount': '{}名様から',
-      'reserveButton': 'このプランで予約',
+      'reserveLink': 'このプランで予約',
     },
     'reserve': {
       'planDescLong': 'お一人様1泊{}〜、土日は25%アップ。{}名様〜{}名様、最長{}泊',
@@ -51,7 +51,7 @@ const MESSAGES = {
       'breakfast': '朝食バイキング',
       'earlyCheckIn': '昼からチェックインプラン',
       'sightseeing': 'お得な観光プラン',
-      'nothing': 'なし',
+      'none': 'なし',
       'username': '{}様',
       'contact': {
         'no': '希望しない',

@@ -2,6 +2,7 @@ import {ready, redirectToTop, formatCurrency, formatDate, parseDate} from './lib
 import {getSessionUser, getUser, canDisplayPlan, genTransactionId} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/validation.js';
 import {calcTotalBill} from './lib/billing.js';
+import {t} from './lib/messages.js';
 
 ready(() => {
   // Check login
@@ -44,7 +45,7 @@ ready(() => {
     // set initialize values
     document.getElementById('plan-name').textContent = plan.name;
     document.getElementById('plan-desc').textContent =
-        `お一人様1泊${formatCurrency(plan.roomBill)}〜、土日は25%アップ。${plan.minHeadCount}名様〜${plan.maxHeadCount}名様、最長${plan.maxTerm}泊`;
+        t('reserve.planDescLong', formatCurrency(plan.roomBill), plan.minHeadCount, plan.maxHeadCount, plan.maxTerm);
     planIdHidden.value = plan.id;
     planNameHidden.value = plan.name;
     roomBillHidden.value = plan.roomBill;
@@ -62,7 +63,8 @@ ready(() => {
     if (plan.roomPage) {
       const roomInfo = document.getElementById('room-info');
       roomInfo.classList.add('embed-responsive', 'embed-responsive-1by1');
-      roomInfo.innerHTML = `<iframe class="embed-responsive-item" src="./rooms/${plan.roomPage}" title="部屋情報" name="room"></iframe>`;
+      roomInfo.innerHTML =
+          `<iframe class="embed-responsive-item" src="./rooms/${plan.roomPage}" title="${t('reserve.roomInfo')}" name="room"></iframe>`;
     }
   }).catch(() => {
     redirectToTop();
