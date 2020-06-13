@@ -1,6 +1,7 @@
 import {ready, redirectToTop} from './lib/global.js';
 import {getUser, getSessionUser, logout} from './lib/session.js';
 import {setValidityMessage} from './lib/validation.js';
+import {t} from './lib/messages.js';
 
 const session = getSessionUser();
 
@@ -38,7 +39,7 @@ ready(() => {
       document.getElementById('icon-holder').innerHTML = '';
       zoomInput.disabled = true;
       colorInput.disabled = true;
-      event.target.setCustomValidity('ファイルサイズは10KB以下にしてください。');
+      event.target.setCustomValidity(t('validation.underTenKb'));
       setValidityMessage(event.target);
       iconForm.classList.add('was-validated');
       return;
@@ -46,7 +47,7 @@ ready(() => {
       document.getElementById('icon-holder').innerHTML = '';
       zoomInput.disabled = true;
       colorInput.disabled = true;
-      event.target.setCustomValidity('画像ファイルを選択してください。');
+      event.target.setCustomValidity(t('validation.onlyImageFile'));
       setValidityMessage(event.target);
       iconForm.classList.add('was-validated');
       return;
