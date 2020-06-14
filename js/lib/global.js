@@ -23,24 +23,36 @@ export function redirectToTop() {
   location.assign(`${location.origin}${path}`);
 }
 
-const currencyFormatter = new Intl.NumberFormat('ja-JP', {style: 'currency', currency: 'JPY', currencyDisplay: 'name'});
+/**
+ * Get current page locale
+ * @returns {string} locale
+ */
+export function getLocale() {
+  return document.getElementsByTagName('html')[0].lang;
+}
+
+const CURRENCY_FORMATTER = {
+  'ja': new Intl.NumberFormat('ja-JP', {style: 'currency', currency: 'JPY', currencyDisplay: 'name'}),
+};
 /**
  * Format currency to XXXX円
  * @param {number} num
  * @return {string} XXXX円
  */
 export function formatCurrency(num) {
-  return currencyFormatter.format(num);
+  return CURRENCY_FORMATTER[getLocale()].format(num);
 }
 
-const dateLongFormatter = new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: 'long', day: 'numeric'});
+const DATE_LONG_FORMATTER = {
+  'ja': new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: 'long', day: 'numeric'}),
+};
 /**
  * Format date to yyyy年MM月dd日
  * @param {Date} date
  * @return {string} yyyy年MM月dd日
  */
 export function formatDateLong(date) {
-  return dateLongFormatter.format(date);
+  return DATE_LONG_FORMATTER[getLocale()].format(date);
 }
 
 /**

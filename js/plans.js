@@ -1,4 +1,4 @@
-import {ready, formatCurrency} from './lib/global.js';
+import {ready, getLocale,formatCurrency} from './lib/global.js';
 import {getSessionUser, getUser, setLoginNavbar, canDisplayPlan} from './lib/session.js';
 import {t} from './lib/messages.js';
 
@@ -11,7 +11,7 @@ ready(() => {
   const user = getUser(session);
 
   // fetch plan data
-  fetch('./data/plan_data.json', {cache: 'no-store'}).then((response) => {
+  fetch(`./data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
     return response.json();
   }).then((data) => {
     const planHtml = data.filter((val) => val.id !== 0 && canDisplayPlan(val, user))

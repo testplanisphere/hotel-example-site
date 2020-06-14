@@ -1,4 +1,4 @@
-import {ready, redirectToTop, formatCurrency, formatDate, parseDate} from './lib/global.js';
+import {ready, redirectToTop, getLocale, formatCurrency, formatDate, parseDate} from './lib/global.js';
 import {getSessionUser, getUser, canDisplayPlan, genTransactionId} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/validation.js';
 import {calcTotalBill} from './lib/billing.js';
@@ -35,7 +35,7 @@ ready(() => {
   }
 
   // fetch selected plan data
-  fetch('./data/plan_data.json', {cache: 'no-store'}).then((response) => {
+  fetch(`./data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
     return response.json();
   }).then((data) => {
     const plan = data.find((val) => val.id === planId);
