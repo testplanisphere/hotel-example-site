@@ -1,6 +1,7 @@
 import {ready, redirectToTop} from './lib/global.js';
 import {isValidUser, getSessionUser, login} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage} from './lib/validation.js';
+import {t} from './lib/messages.js';
 
 const session = getSessionUser();
 if (session) {
@@ -19,8 +20,8 @@ ready(() => {
     // Check user
     if (emailInput.checkValidity() && passwordInput.checkValidity()) {
       if (!isValidUser(emailInput.value, passwordInput.value)) {
-        emailInput.setCustomValidity('メールアドレスまたはパスワードが違います。');
-        passwordInput.setCustomValidity('メールアドレスまたはパスワードが違います。');
+        emailInput.setCustomValidity(t('validation.mailOrAddressMismatch'));
+        passwordInput.setCustomValidity(t('validation.mailOrAddressMismatch'));
       }
     }
 

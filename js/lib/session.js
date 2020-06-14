@@ -1,49 +1,9 @@
-const PRESET_USERS = [
-  {
-    'email': 'ichiro@example.com',
-    'password': 'password',
-    'username': '山田一郎',
-    'rank': 'premium',
-    'address': '東京都豊島区池袋',
-    'tel': '01234567891',
-    'gender': '1',
-    'birthday': '',
-    'notification': true,
-  },
-  {
-    'email': 'sakura@example.com',
-    'password': 'pass1234',
-    'username': '松本さくら',
-    'rank': 'normal',
-    'address': '神奈川県横浜市鶴見区大黒ふ頭',
-    'tel': '',
-    'gender': '2',
-    'birthday': '2000-04-01',
-    'notification': false,
-  },
-  {
-    'email': 'jun@example.com',
-    'password': 'pa55w0rd!',
-    'username': '林潤',
-    'rank': 'premium',
-    'address': '大阪府大阪市北区梅田',
-    'tel': '01212341234',
-    'gender': '9',
-    'birthday': '1988-12-17',
-    'notification': false,
-  },
-  {
-    'email': 'yoshiki@example.com',
-    'password': 'pass-pass',
-    'username': '木村良樹',
-    'rank': 'normal',
-    'address': '',
-    'tel': '01298765432',
-    'gender': '0',
-    'birthday': '1992-08-31',
-    'notification': true,
-  },
-];
+import {getLocale} from './global.js';
+import {PRESET_USERS as PRESET_USERS_JA} from '../../data/ja/user.js';
+
+const PRESET_USERS = {
+  'ja': PRESET_USERS_JA,
+};
 
 /**
  * Get user data
@@ -51,7 +11,7 @@ const PRESET_USERS = [
  * @return {object} user data
  */
 export function getUser(email) {
-  let user = PRESET_USERS.find((val) => val.email === email);
+  let user = PRESET_USERS[getLocale()].find((val) => val.email === email);
   if (user) {
     user.preset = true;
     return user;
@@ -125,9 +85,10 @@ export function deleteTransactionId() {
  * Set login status to navbar
  */
 export function setLoginNavbar() {
-  document.getElementById('signup-holder').innerHTML = '<a class="nav-link" href="./mypage.html">マイページ</a>';
-  document.getElementById('login-holder').innerHTML =
-      '<form action="./index.html" class="form-inline" id="logout-form" novalidate><button type="submit" class="btn btn-outline-success my-2 my-sm-0">ログアウト</button></form>';
+  document.getElementById('signup-holder').classList.replace('d-block', 'd-none');
+  document.getElementById('login-holder').classList.replace('d-block', 'd-none');
+  document.getElementById('mypage-holder').classList.replace('d-none', 'd-block');
+  document.getElementById('logout-holder').classList.replace('d-none', 'd-block');
   document.getElementById('logout-form').addEventListener('submit', () => {
     logout();
   });

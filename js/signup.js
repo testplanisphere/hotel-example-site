@@ -1,6 +1,7 @@
 import {ready, redirectToTop} from './lib/global.js';
 import {getUser, getSessionUser, login} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage} from './lib/validation.js';
+import {t} from './lib/messages.js';
 
 const session = getSessionUser();
 if (session) {
@@ -27,14 +28,14 @@ ready(() => {
     if (emailInput.checkValidity()) {
       const user = getUser(emailInput.value);
       if (user) {
-        emailInput.setCustomValidity('このメールアドレスはすでに登録済みです。');
+        emailInput.setCustomValidity(t('validation.existsMail'));
       }
     }
 
     // Check password
     if (passwordInput.checkValidity() && passwordConfirmationInput.checkValidity()) {
       if (passwordInput.value !== passwordConfirmationInput.value) {
-        passwordConfirmationInput.setCustomValidity('入力されたパスワードと一致しません。');
+        passwordConfirmationInput.setCustomValidity(t('validation.passwordUnmatch'));
       }
     }
 
