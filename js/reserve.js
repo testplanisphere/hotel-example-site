@@ -1,6 +1,6 @@
 import {ready, redirectToTop} from './lib/global.js';
 import {formatCurrency, formatDateShort, parseDate, formatDateISO} from './lib/formater.js';
-import {getLocale} from './lib/i18n.js';
+import {getLocale, getAdditionalPlanPrice} from './lib/i18n.js';
 import {getSessionUser, getUser, canDisplayPlan, genTransactionId} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/validation.js';
 import {calcTotalBill} from './lib/billing.js';
@@ -60,7 +60,7 @@ ready(() => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     dateInput.value = formatDateShort(tomorrow);
-    const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false);
+    const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false, getAdditionalPlanPrice());
     totalBillOutput.textContent = formatCurrency(total);
     if (plan.roomPage) {
       const roomInfo = document.getElementById('room-info');
@@ -88,7 +88,7 @@ ready(() => {
     const term = parseInt(termInput.value, 10);
     const headCount = parseInt(headCountInput.value, 10);
     const totalBill =
-        calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked);
+        calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked, getAdditionalPlanPrice());
     totalBillOutput.textContent = formatCurrency(totalBill);
   };
 

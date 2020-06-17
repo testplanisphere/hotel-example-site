@@ -51,6 +51,11 @@ const DATE_SHORT_PARSER = {
   },
 };
 
+const ADDITIONAL_PLAN_PRICE = {
+  'ja': 1000,
+  'en-US': 10.00,
+};
+
 /**
  * Get current page locale
  * @returns {string} locale
@@ -111,4 +116,13 @@ export function getDateShortFormatter(locale = getLocale()) {
  */
 export function getDateShortParser(locale = getLocale()) {
   return DATE_SHORT_PARSER[locale];
+}
+
+/**
+ * Get additional plan price
+ * @param {string} locale
+ * @returns {number}
+ */
+export function getAdditionalPlanPrice(locale = getLocale()) {
+  return ADDITIONAL_PLAN_PRICE[locale];
 }

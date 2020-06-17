@@ -1,5 +1,6 @@
 import {ready, redirectToTop} from './lib/global.js';
 import {formatCurrency, formatDateLong, parseDateISO} from './lib/formater.js';
+import {getAdditionalPlanPrice} from './lib/i18n.js';
 import {getTransactionId, deleteTransactionId} from './lib/session.js';
 import {calcTotalBill} from './lib/billing.js';
 import {t} from './lib/messages.js';
@@ -26,7 +27,7 @@ ready(() => {
   const reserveDate = parseDateISO(reservation.date);
   const endDate = new Date(reserveDate.getFullYear(), reserveDate.getMonth(), reserveDate.getDate() + reservation.term);
   const totalBill = calcTotalBill(reservation.roomBill, reserveDate, reservation.term,
-      reservation.headCount, reservation.breakfast, reservation.earlyCheckIn, reservation.sightseeing);
+      reservation.headCount, reservation.breakfast, reservation.earlyCheckIn, reservation.sightseeing, getAdditionalPlanPrice());
 
   // set result
   document.getElementById('total-bill').textContent = t('reserve.totalBill', formatCurrency(totalBill));

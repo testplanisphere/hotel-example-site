@@ -7,9 +7,10 @@
  * @param {boolean} breakfast
  * @param {boolean} earlyCheckIn
  * @param {boolean} sightseeing
+ * @param {number} additionalPlanPrice
  * @return {number} total bill
  */
-export function calcTotalBill(roomBill, date, term, headCount, breakfast, earlyCheckIn, sightseeing) {
+export function calcTotalBill(roomBill, date, term, headCount, breakfast, earlyCheckIn, sightseeing, additionalPlanPrice) {
   let totalBill = roomBill * headCount * term;
   for (let i = 0; i < term; i++) {
     const restDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -20,13 +21,13 @@ export function calcTotalBill(roomBill, date, term, headCount, breakfast, earlyC
   }
 
   if (breakfast) {
-    totalBill += 1000 * headCount * term;
+    totalBill += additionalPlanPrice * headCount * term;
   }
   if (earlyCheckIn) {
-    totalBill += 1000 * headCount;
+    totalBill += additionalPlanPrice * headCount;
   }
   if (sightseeing) {
-    totalBill += 1000 * headCount;
+    totalBill += additionalPlanPrice * headCount;
   }
   return totalBill;
 }
