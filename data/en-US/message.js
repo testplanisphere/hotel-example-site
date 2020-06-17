@@ -47,8 +47,8 @@ export const MESSAGES = {
     'reserveLink': 'Reserve room',
   },
   'reserve': {
-    'planDescLong': '{} per night. If Sun or Sat, plus 25%. {} - {} persons. Maximum {} nights',
-    'planDescShort': '{} per night. If Sun or Sat, plus 25%.',
+    'planDescLong': '{} per night. If contains Sun or Sat, plus 25%. {} - {} persons. Max {} nights',
+    'planDescShort': '{} per night. If contains Sun or Sat, plus 25%.',
     'roomInfo': 'Room info',
     'totalBill': 'Total {} (included taxes)',
     'term': '{} - {}. {} night(s)',
