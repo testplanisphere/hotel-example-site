@@ -11,7 +11,7 @@ ready(() => {
   const user = getUser(session);
 
   // fetch plan data
-  fetch(`./data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
+  fetch(`${location.origin}/data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
     return response.json();
   }).then((data) => {
     const planHtml = data.filter((val) => val.id !== 0 && canDisplayPlan(val, user))

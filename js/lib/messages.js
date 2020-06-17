@@ -1,8 +1,10 @@
 import {getLocale} from './global.js';
 import {MESSAGES as MESSAGES_JA} from '../../data/ja/message.js';
+import {MESSAGES as MESSAGES_EN_US} from '../../data/en-US/message.js';
 
 const MESSAGES = {
   'ja': MESSAGES_JA,
+  'en-US': MESSAGES_EN_US,
 };
 
 /**

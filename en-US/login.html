@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="noindex">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <title>Login | HOTEL PLANISPHERE - Demo Site for Test Automation</title>
+  </head>
+  <body class="bg-light">
+    <h1 class="text-center text-uppercase d-none d-lg-block display-3 my-5">Hotel Planisphere</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-4">
+      <a class="navbar-brand text-uppercase font-weight-bold d-lg-none" href="#">Hotel Planisphere</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./plans.html">Reserve</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./signup.html">Sign up</a>
+          </li>
+          <li class="nav-item px-lg-4 active">
+            <a class="btn btn-outline-secondary" href="./login.html" role="button">Login</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container bg-white py-5">
+      <div class="row">
+        <div class="col-lg-5 mx-auto">
+          <h2 class="my-3">Login</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-5 mx-auto">
+          <form action="./mypage.html" id="login-form" novalidate>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" name="email" id="email" required>
+              <div class="invalid-feedback" id="email-message"></div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name="password" id="password" autocomplete="current-password" required>
+              <div class="invalid-feedback" id="password-message"></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="login-button">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="text-center py-5">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://github.com/testplanisphere/hotel-example-site/">GitHub</a></li>
+        </ul>
+        <p class="text-muted">© 2020</p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="../js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="../js/login.js" type="module"></script>
+  </body>
+</html>

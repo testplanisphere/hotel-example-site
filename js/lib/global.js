@@ -33,11 +33,12 @@ export function getLocale() {
 
 const CURRENCY_FORMATTER = {
   'ja': new Intl.NumberFormat('ja-JP', {style: 'currency', currency: 'JPY', currencyDisplay: 'name'}),
+  'en-US': new Intl.NumberFormat('en-US', {style: 'currency', currency: 'USD', currencyDisplay: 'symbol'}),
 };
 /**
- * Format currency to XXXX円
+ * Format currency
  * @param {number} num
- * @return {string} XXXX円
+ * @return {string} formated text
  */
 export function formatCurrency(num) {
   return CURRENCY_FORMATTER[getLocale()].format(num);
@@ -45,46 +46,46 @@ export function formatCurrency(num) {
 
 const DATE_LONG_FORMATTER = {
   'ja': new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: 'long', day: 'numeric'}),
+  'en-US': new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'long', day: 'numeric'}),
 };
 /**
- * Format date to yyyy年MM月dd日
+ * Format date (long format)
  * @param {Date} date
- * @return {string} yyyy年MM月dd日
+ * @return {string} formated text
  */
 export function formatDateLong(date) {
   return DATE_LONG_FORMATTER[getLocale()].format(date);
 }
 
+const DATE_SHORT_PARSER = {
+  'ja': (dateString) => {
+    const arr = dateString.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
+    if (!arr || arr.length !== 4) {
+      return null;
+    }
+    const year = parseInt(arr[1], 10);
+    const month = parseInt(arr[2], 10);
+    const date = parseInt(arr[3], 10);
+    return new Date(year, month - 1, date);
+  },
+  'en-US': (dateString) => {
+    const arr = dateString.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (!arr || arr.length !== 4) {
+      return null;
+    }
+    const year = parseInt(arr[3], 10);
+    const month = parseInt(arr[1], 10);
+    const date = parseInt(arr[2], 10);
+    return new Date(year, month - 1, date);
+  },
+};
 /**
  * Parse date from yyyy/MM/dd
  * @param {string} dateString
  * @return {Date} date
  */
 export function parseDate(dateString) {
-  const arr = dateString.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
-  if (!arr || arr.length !== 4) {
-    return null;
-  }
-  const year = parseInt(arr[1], 10);
-  const month = parseInt(arr[2], 10);
-  const date = parseInt(arr[3], 10);
-  return new Date(year, month - 1, date);
-}
-
-/**
- * Parse date from yyyy-MM-dd
- * @param {string} dateString
- * @return {Date} date
- */
-export function parseDateISO(dateString) {
-  const arr = dateString.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
-  if (!arr || arr.length !== 4) {
-    return null;
-  }
-  const year = parseInt(arr[1], 10);
-  const month = parseInt(arr[2], 10);
-  const date = parseInt(arr[3], 10);
-  return new Date(year, month - 1, date);
+  return DATE_SHORT_PARSER[getLocale()](dateString);
 }
 
 /**
@@ -100,10 +101,39 @@ function pad(number) {
 }
 
 /**
- * Format date to yyyy/MM/dd
- * @param {Date} date
- * @return {string} yyyy/MM/dd
+ * Format date to ISO-format
+ * @param {Date} date 
+ * @returns {string} string
  */
-export function formatDate(date) {
-  return `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())}`;
+export function formatDateISO(date) {
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+/**
+ * Parse date from ISO-format
+ * @param {string} dateString
+ * @return {Date} date
+ */
+export function parseDateISO(dateString) {
+  const arr = dateString.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if (!arr || arr.length !== 4) {
+    return null;
+  }
+  const year = parseInt(arr[1], 10);
+  const month = parseInt(arr[2], 10);
+  const date = parseInt(arr[3], 10);
+  return new Date(year, month - 1, date);
+}
+
+const DATE_SHORT_FORMATTER = {
+  'ja': new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: '2-digit', day: '2-digit'}),
+  'en-US': new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'}),
+};
+/**
+ * Format date (short format)
+ * @param {Date} date
+ * @return {string} formated text
+ */
+export function formatDateShort(date) {
+  return DATE_SHORT_FORMATTER[getLocale()].format(date);
 }

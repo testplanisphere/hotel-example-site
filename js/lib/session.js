@@ -1,8 +1,10 @@
 import {getLocale} from './global.js';
 import {PRESET_USERS as PRESET_USERS_JA} from '../../data/ja/user.js';
+import {PRESET_USERS as PRESER_USERS_EN_US} from '../../data/en-US/user.js';
 
 const PRESET_USERS = {
   'ja': PRESET_USERS_JA,
+  'en-US': PRESER_USERS_EN_US,
 };
 
 /**
