@@ -1,4 +1,3 @@
-import {parseDate} from './global.js';
 import {t} from './messages.js';
 
 /**
@@ -46,11 +45,10 @@ function getErrorMessege(input) {
 
 /**
  * Validation for date Input
- * @param {string} value
+ * @param {Date} date
  * @return {string} error messege
  */
-export function validateDateInput(value) {
-  const date = parseDate(value);
+export function validateDateInput(date) {
   if (!date) {
     return t('validation.badInput');
   } else {

@@ -1,9 +1,4 @@
-import {getLocale} from './global.js';
-import {PRESET_USERS as PRESET_USERS_JA} from '../../data/ja/user.js';
-
-const PRESET_USERS = {
-  'ja': PRESET_USERS_JA,
-};
+import {getPresetUsers} from './i18n.js';
 
 /**
  * Get user data
@@ -11,7 +6,7 @@ const PRESET_USERS = {
  * @return {object} user data
  */
 export function getUser(email) {
-  let user = PRESET_USERS[getLocale()].find((val) => val.email === email);
+  let user = getPresetUsers().find((val) => val.email === email);
   if (user) {
     user.preset = true;
     return user;

@@ -19,29 +19,29 @@
       const monday = new Date(2020, 3 - 1, 2);
       const saturday = new Date(2020, 3 - 1, 7);
       
-      assert.equal(calcTotalBill(7000, monday, 1, 1, false, false, false), 7000);
-      assert.equal(calcTotalBill(7000, monday, 2, 1, false, false, false), 14000);
-      assert.equal(calcTotalBill(7000, monday, 1, 2, false, false, false), 14000);
-      assert.equal(calcTotalBill(7000, monday, 2, 2, false, false, false), 28000);
-      assert.equal(calcTotalBill(7000, monday, 3, 3, false, false, false), 63000);
+      assert.equal(calcTotalBill(7000, monday, 1, 1, false, false, false, 1000), 7000);
+      assert.equal(calcTotalBill(7000, monday, 2, 1, false, false, false, 1000), 14000);
+      assert.equal(calcTotalBill(7000, monday, 1, 2, false, false, false, 1000), 14000);
+      assert.equal(calcTotalBill(7000, monday, 2, 2, false, false, false, 1000), 28000);
+      assert.equal(calcTotalBill(7000, monday, 3, 3, false, false, false, 1000), 63000);
 
-      assert.equal(calcTotalBill(7000, monday, 1, 1, true, false, true), 9000);
-      assert.equal(calcTotalBill(7000, monday, 2, 1, false, true, false), 15000);
-      assert.equal(calcTotalBill(7000, monday, 1, 2, true, true, false), 18000);
-      assert.equal(calcTotalBill(7000, monday, 2, 2, false, true, true), 32000);
-      assert.equal(calcTotalBill(7000, monday, 3, 3, true, true, true), 78000);
+      assert.equal(calcTotalBill(7000, monday, 1, 1, true, false, true, 1000), 9000);
+      assert.equal(calcTotalBill(7000, monday, 2, 1, false, true, false, 1000), 15000);
+      assert.equal(calcTotalBill(7000, monday, 1, 2, true, true, false, 1000), 18000);
+      assert.equal(calcTotalBill(7000, monday, 2, 2, false, true, true, 1000), 32000);
+      assert.equal(calcTotalBill(7000, monday, 3, 3, true, true, true, 1000), 78000);
 
-      assert.equal(calcTotalBill(7000, saturday, 1, 1, false, false, false), 8750);
-      assert.equal(calcTotalBill(7000, saturday, 2, 1, false, false, false), 17500);
-      assert.equal(calcTotalBill(7000, saturday, 1, 2, false, false, false), 17500);
-      assert.equal(calcTotalBill(7000, saturday, 2, 2, false, false, false), 35000);
-      assert.equal(calcTotalBill(7000, saturday, 3, 1, false, false, false), 24500);
+      assert.equal(calcTotalBill(7000, saturday, 1, 1, false, false, false, 1000), 8750);
+      assert.equal(calcTotalBill(7000, saturday, 2, 1, false, false, false, 1000), 17500);
+      assert.equal(calcTotalBill(7000, saturday, 1, 2, false, false, false, 1000), 17500);
+      assert.equal(calcTotalBill(7000, saturday, 2, 2, false, false, false, 1000), 35000);
+      assert.equal(calcTotalBill(7000, saturday, 3, 1, false, false, false, 1000), 24500);
 
-      assert.equal(calcTotalBill(7000, saturday, 1, 1, true, false, false), 9750);
-      assert.equal(calcTotalBill(7000, saturday, 2, 1, false, true, true), 19500);
-      assert.equal(calcTotalBill(7000, saturday, 1, 2, false, false, true), 19500);
-      assert.equal(calcTotalBill(7000, saturday, 2, 2, true, false, true), 41000);
-      assert.equal(calcTotalBill(7000, saturday, 3, 1, true, true, true), 29500);
+      assert.equal(calcTotalBill(7000, saturday, 1, 1, true, false, false, 1000), 9750);
+      assert.equal(calcTotalBill(7000, saturday, 2, 1, false, true, true, 1000), 19500);
+      assert.equal(calcTotalBill(7000, saturday, 1, 2, false, false, true, 1000), 19500);
+      assert.equal(calcTotalBill(7000, saturday, 2, 2, true, false, true, 1000), 41000);
+      assert.equal(calcTotalBill(7000, saturday, 3, 1, true, true, true, 1000), 29500);
     });
   </script>
 </body>

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <title>HOTEL PLANISPHERE - Demo Site for Test Automation</title>
+  </head>
+  <body class="bg-light">
+    <h1 class="text-center text-uppercase d-none d-lg-block display-3 my-5">Hotel Planisphere</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-4">
+      <a class="navbar-brand text-uppercase font-weight-bold d-lg-none" href="#">Hotel Planisphere</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-lg-4 active">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./plans.html">Reserve</a>
+          </li>
+          <li class="nav-item px-lg-4 d-block" id="signup-holder">
+            <a class="nav-link" href="./signup.html">Sign up</a>
+          </li>
+          <li class="nav-item px-lg-4 d-none" id="mypage-holder">
+            <a class="nav-link" href="./mypage.html">Mypage</a>
+          </li>
+          <li class="nav-item px-lg-4 d-block" id="login-holder">
+            <a class="btn btn-outline-secondary my-2 my-sm-0" href="./login.html" role="button">Login</a>
+          </li>
+          <li class="nav-item px-lg-4 d-none" id="logout-holder">
+            <form action="./index.html" class="form-inline" id="logout-form" novalidate>
+              <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row bg-white my-3 px-3 shadow-sm">
+        <div class="col">
+          <h2 class="my-4">This site is a demo site for learning test automation.</h2>
+          <p><strong class="text-danger">This site is an ALPHA version.</strong></p>
+          <p>This site is a <strong>Test object (System under test)</strong> used for learning browser test automation like Selenium.</p>
+          <p>It also can use for sample or demo on book and blog.</p>
+          <p>It is made for a learning test automation, but you can use a learning test design and technique.</p>
+        </div>
+      </div>
+      <div class="row bg-white my-3 px-3 shadow-sm">
+        <div class="col">
+          <h3 class="my-4">Site Structures</h3>
+          <p>This site is a mock hotel reservation. There are input forms for login, sign up and reserve. Responsive design is supported, so it can be displayed in mobile browsers.</p>
+          <h4 class="my-4">Terms of Use</h4>
+          <ul>
+            <li>We checked the operation with the latest Google Chrome at June, 2020.</li>
+            <li><strong>This site does not work with Internet Explorer.</strong></li>
+            <li>This site hosted on GitHub pages.</li>
+            <li>About input data
+              <ul>
+                <li>The data is stored in the browser Cookie, Session Storage and Local Storage.</li>
+                <li>The data is NOT stored in the server side such as database.</li>
+                <li>Due to the specification of HTML, the contents of the form are sent at the end of the URL. Please note that, it may be left in the GitHub server's logs and other records.</li>
+              </ul>
+            </li>
+            <li>Do NOT use this site for stress testing.</li>
+            <li>We are not responsible for any damage caused by the use of this site.</li>
+          </ul>
+          <h4 class="my-4">Details</h4>
+          <div class="row">
+            <div class="col-12 col-lg-4">
+              <h5 class ="my-2">Login Page</h5>
+              <p>This page contains simple text inputs and a button. The login information is stored in a Cookie. You can use the users you have saved on the sign up page, or preset one (see below).</p>
+            </div>
+            <div class="col-12 col-lg-4">
+              <h5 class ="my-2">Sign up Page</h5>
+              <p>This page contains multiple types of inputs. The users registered on this page are stored in a Local Storage and can be used for login.</p>
+            </div>
+            <div class="col-12 col-lg-4">
+              <h5 class ="my-2">My Page</h5>
+              <p>This page is displayed after you logged in. Registered user information is displayed and can be used for confirmation. And if the user is saved on the sign up page, you can set the icon image and cancel the membership (delete information).</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-12 col-lg-4">
+              <h5 class ="my-2">Plans Page</h5>
+              <p>This page is displayed from "Reserve" menu. The displayed plan will change depending on whether you are an "un-logged in", "normal member" or "premium member". Plan information is loaded asynchronously via Ajax (except for the top ones).</p>
+            </div>
+            <div class="col-12 col-lg-4">
+              <h5 class ="my-2">Reserve Page</h5>
+              <p>This page is for making a reservation. Opens in a new window. This page contains multiple types of inputs, and the total price is dynamically calculated and displayed. The base rate and the number of nights and number of people allowed will change depending on the plan you selected.</p>
+            </div>
+            <div class="col-12 col-lg-4">
+              <h5 class ="my-2">Confirm Page</h5>
+              <p>This page will be displayed after the reservation is confirmed. You will see a confirmation of the information you have entered in the reservation. And, an animated dialog will appear.</p>
+            </div>
+          </div>
+          <table class="table my-3">
+            <caption>Preset users</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Membership</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td><code>clark@example.com</code></td>
+                <td><code>password</code></td>
+                <td>premium</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td><code>diana@example.com</code></td>
+                <td><code>pass1234</code></td>
+                <td>normal</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td><code>ororo@example.com</code></td>
+                <td><code>pa55w0rd!</code></td>
+                <td>premium</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td><code>miles@example.com</code></td>
+                <td><code>pass-pass</code></td>
+                <td>normal</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row bg-white my-3 px-3 shadow-sm">
+        <div class="col">
+          <h3 class="my-4">Example codes</h3>
+          <p>There are example codes which is automated test scripts for this site.</p>
+          <p>You can use it as a reference for your study. Please note that this is just an example.</p>
+          <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+              <div class="card shadow-sm">
+                <div class="card-header">For Java developer</div>
+                <div class="card-body">
+                  <h5 class="card-title">selenide</h5>
+                  <dl class="small">
+                    <dt>Framework</dt>
+                    <dd><a href="https://selenide.org/">Selenide</a></dd>
+                    <dt>Programming language</dt>
+                    <dd>Java</dd>
+                    <dt>Testing framework</dt>
+                    <dd><a href="https://junit.org/junit5/">JUnit 5</a></dd>
+                  </dl>
+                  <a href="https://github.com/testplanisphere/hotel-example-selenide" class="card-link">View codes</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+              <div class="card shadow-sm">
+                <div class="card-header">For JavaScript developer</div>
+                <div class="card-body">
+                  <h5 class="card-title">webdriverio</h5>
+                  <dl class="small">
+                    <dt>Framework</dt>
+                    <dd><a href="https://webdriver.io/">WebDriverIO</a></dd>
+                    <dt>Programming language</dt>
+                    <dd>JavaScript</dd>
+                    <dt>Testing framework</dt>
+                    <dd><a href="https://mochajs.org/">Mocha</a></dd>
+                  </dl>
+                  <a href="https://github.com/testplanisphere/hotel-example-webdriverio/" class="card-link">View codes</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+              <div class="card shadow-sm">
+                <div class="card-header">For Ruby developer</div>
+                <div class="card-body">
+                  <h5 class="card-title">capybara</h5>
+                  <dl class="small">
+                    <dt>Framework</dt>
+                    <dd><a href="https://teamcapybara.github.io/capybara/">Capybara</a></dd>
+                    <dt>Programming language</dt>
+                    <dd>Ruby</dd>
+                    <dt>Testing framework</dt>
+                    <dd><a href="https://rspec.info/">RSpec</a></dd>
+                  </dl>
+                  <a href="https://github.com/testplanisphere/hotel-example-capybara" class="card-link">View codes</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 col-lg-3">
+              <div class="card shadow-sm">
+                <div class="card-header">For Java developer</div>
+                <div class="card-body">
+                  <h5 class="card-title">selenium3-java</h5>
+                  <dl class="small">
+                    <dt>Framework</dt>
+                    <dd><a href="https://www.selenium.dev/">Selenium WebDriver</a></dd>
+                    <dt>Programming language</dt>
+                    <dd>Java</dd>
+                    <dt>Testing framework</dt>
+                    <dd><a href="https://junit.org/junit5/">JUnit 5</a></dd>
+                  </dl>
+                  <a href="https://github.com/testplanisphere/hotel-example-selenium3-java/" class="card-link">View codes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="text-center py-5">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://github.com/testplanisphere/hotel-example-site/">GitHub</a></li>
+        </ul>
+        <p class="text-muted">© 2020</p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="../js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="../js/index.js" type="module"></script>
+  </body>
+</html>

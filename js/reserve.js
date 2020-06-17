@@ -1,4 +1,6 @@
-import {ready, redirectToTop, getLocale, formatCurrency, formatDate, parseDate} from './lib/global.js';
+import {ready, redirectToTop} from './lib/global.js';
+import {formatCurrency, formatDateShort, parseDate, formatDateISO} from './lib/formater.js';
+import {getLocale, getAdditionalPlanPrice} from './lib/i18n.js';
 import {getSessionUser, getUser, canDisplayPlan, genTransactionId} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/validation.js';
 import {calcTotalBill} from './lib/billing.js';
@@ -35,7 +37,7 @@ ready(() => {
   }
 
   // fetch selected plan data
-  fetch(`./data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
+  fetch(`${location.origin}/data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
     return response.json();
   }).then((data) => {
     const plan = data.find((val) => val.id === planId);
@@ -57,8 +59,8 @@ ready(() => {
     headCountInput.value = plan.minHeadCount;
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.value = formatDate(tomorrow);
-    const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false);
+    dateInput.value = formatDateShort(tomorrow);
+    const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false, getAdditionalPlanPrice());
     totalBillOutput.textContent = formatCurrency(total);
     if (plan.roomPage) {
       const roomInfo = document.getElementById('room-info');
@@ -86,7 +88,7 @@ ready(() => {
     const term = parseInt(termInput.value, 10);
     const headCount = parseInt(headCountInput.value, 10);
     const totalBill =
-        calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked);
+        calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked, getAdditionalPlanPrice());
     totalBillOutput.textContent = formatCurrency(totalBill);
   };
 
@@ -131,7 +133,7 @@ ready(() => {
     input.addEventListener('change', (event) => {
       resetCustomValidity(event.target);
       if (event.target.id === 'date' && dateInput.checkValidity()) {
-        const dateMessage = validateDateInput(dateInput.value);
+        const dateMessage = validateDateInput(parseDate(dateInput.value));
         if (dateMessage) {
           dateInput.setCustomValidity(dateMessage);
         }
@@ -152,8 +154,9 @@ ready(() => {
   // Setup submit event
   reserveForm.addEventListener('submit', (event) => {
     resetCustomValidity(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
+    const dateValue = parseDate(dateInput.value);
     if (dateInput.checkValidity()) {
-      const dateMessage = validateDateInput(dateInput.value);
+      const dateMessage = validateDateInput(dateValue);
       if (dateMessage) {
         dateInput.setCustomValidity(dateMessage);
       }
@@ -162,7 +165,7 @@ ready(() => {
       const reservation = {
         'roomBill': parseInt(roomBillHidden.value, 10),
         'planName': planNameHidden.value,
-        'date': dateInput.value.replace(/\//g, '-'),
+        'date': formatDateISO(dateValue),
         'term': parseInt(termInput.value, 10),
         'headCount': parseInt(headCountInput.value, 10),
         'breakfast': breakfastInput.checked,
