@@ -1,11 +1,4 @@
-import {getLocale} from './global.js';
-import {MESSAGES as MESSAGES_JA} from '../../data/ja/message.js';
-import {MESSAGES as MESSAGES_EN_US} from '../../data/en-US/message.js';
-
-const MESSAGES = {
-  'ja': MESSAGES_JA,
-  'en-US': MESSAGES_EN_US,
-};
+import {getMessages} from './i18n.js';
 
 /**
  * Get translated message
@@ -14,7 +7,7 @@ const MESSAGES = {
  * @return {string} 
  */
 export function t(key, ...params) {
-  let messageStore = MESSAGES[getLocale()];
+  let messageStore = getMessages();
   const keys = key.split('.');
   let message;
   for (const k of keys) {

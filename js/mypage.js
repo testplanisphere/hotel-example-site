@@ -1,4 +1,5 @@
-import {ready, redirectToTop, formatDateLong, parseDateISO} from './lib/global.js';
+import {ready, redirectToTop} from './lib/global.js';
+import {formatDateLong, parseDateISO} from './lib/formater.js';
 import {getUser, getSessionUser, logout} from './lib/session.js';
 import {t} from './lib/messages.js';
 

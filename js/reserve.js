@@ -1,4 +1,6 @@
-import {ready, redirectToTop, getLocale, formatCurrency, formatDateShort, parseDate, formatDateISO} from './lib/global.js';
+import {ready, redirectToTop} from './lib/global.js';
+import {formatCurrency, formatDateShort, parseDate, formatDateISO} from './lib/formater.js';
+import {getLocale} from './lib/i18n.js';
 import {getSessionUser, getUser, canDisplayPlan, genTransactionId} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/validation.js';
 import {calcTotalBill} from './lib/billing.js';

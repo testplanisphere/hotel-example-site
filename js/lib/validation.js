@@ -1,4 +1,3 @@
-import {parseDate} from './global.js';
 import {t} from './messages.js';
 
 /**

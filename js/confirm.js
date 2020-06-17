@@ -1,4 +1,5 @@
-import {ready, redirectToTop, formatCurrency, formatDateLong, parseDateISO} from './lib/global.js';
+import {ready, redirectToTop} from './lib/global.js';
+import {formatCurrency, formatDateLong, parseDateISO} from './lib/formater.js';
 import {getTransactionId, deleteTransactionId} from './lib/session.js';
 import {calcTotalBill} from './lib/billing.js';
 import {t} from './lib/messages.js';

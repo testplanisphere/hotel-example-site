@@ -1,4 +1,6 @@
-import {ready, getLocale,formatCurrency} from './lib/global.js';
+import {ready} from './lib/global.js';
+import {formatCurrency} from './lib/formater.js';
+import {getLocale} from './lib/i18n.js';
 import {getSessionUser, getUser, setLoginNavbar, canDisplayPlan} from './lib/session.js';
 import {t} from './lib/messages.js';
 
