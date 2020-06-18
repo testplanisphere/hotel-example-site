@@ -1,0 +1,46 @@
+[
+  {
+    "email": "clark@example.com",
+    "password": "password",
+    "username": "Clark Evans",
+    "rank": "premium",
+    "address": "Mountain View, California",
+    "tel": "01234567891",
+    "gender": "1",
+    "birthday": "",
+    "notification": true
+  },
+  {
+    "email": "diana@example.com",
+    "password": "pass1234",
+    "username": "Diana Johansson",
+    "rank": "normal",
+    "address": "Redmond, Washington",
+    "tel": "",
+    "gender": "2",
+    "birthday": "2000-04-01",
+    "notification": false
+  },
+  {
+    "email": "ororo@example.com",
+    "password": "pa55w0rd!",
+    "username": "Ororo Saldana",
+    "rank": "premium",
+    "address": "Cupertino, California",
+    "tel": "01212341234",
+    "gender": "9",
+    "birthday": "1988-12-17",
+    "notification": false
+  },
+  {
+    "email": "miles@example.com",
+    "password": "pass-pass",
+    "username": "Miles Boseman",
+    "rank": "normal",
+    "address": "",
+    "tel": "01298765432",
+    "gender": "0",
+    "birthday": "1992-08-31",
+    "notification": true
+  }
+]
