@@ -37,7 +37,8 @@ ready(() => {
   }
 
   // fetch selected plan data
-  fetch(`${location.origin}/data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
+  const url = location.origin + '/data/' + getLocale() + '/plan_data.json';
+  fetch(url, {cache: 'no-store'}).then((response) => {
     return response.json();
   }).then((data) => {
     const plan = data.find((val) => val.id === planId);
@@ -66,7 +67,7 @@ ready(() => {
       const roomInfo = document.getElementById('room-info');
       roomInfo.classList.add('embed-responsive', 'embed-responsive-1by1');
       roomInfo.innerHTML =
-          `<iframe class="embed-responsive-item" src="./rooms/${plan.roomPage}" title="${t('reserve.roomInfo')}" name="room"></iframe>`;
+          '<iframe class="embed-responsive-item" src="./rooms/' + plan.roomPage + '" title="' + t('reserve.roomInfo') + '" name="room"></iframe>';
     }
   }).catch(() => {
     redirectToTop();
@@ -179,7 +180,7 @@ ready(() => {
       };
       const transactionId = genTransactionId();
       sessionStorage.setItem(transactionId, JSON.stringify(reservation));
-      document.cookie = `transaction=${transactionId}`;
+      document.cookie = 'transaction=' + transactionId;
     } else {
       event.preventDefault();
       event.stopPropagation();

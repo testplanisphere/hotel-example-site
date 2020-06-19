@@ -43,7 +43,7 @@ export function getSessionUser() {
  * @param {string} email
  */
 export function login(email) {
-  document.cookie = `session=${email}; max-age=630720000`;
+  document.cookie = 'session=' + email + '; max-age=630720000';
 }
 
 /**
@@ -58,7 +58,7 @@ export function logout() {
  * @return {string}
  */
 export function genTransactionId() {
-  return `${Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000}`;
+  return '' + (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000);
 }
 
 /**

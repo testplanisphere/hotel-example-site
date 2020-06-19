@@ -43,9 +43,9 @@ export function parseDate(dateString) {
  */
 function pad(number) {
   if (number < 10) {
-    return `0${number}`;
+    return '0' + number;
   }
-  return `${number}`;
+  return '' + number;
 }
 
 /**
@@ -54,7 +54,7 @@ function pad(number) {
  * @returns {string} string
  */
 export function formatDateISO(date) {
-  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  return date.getFullYear() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate());
 }
 
 /**
