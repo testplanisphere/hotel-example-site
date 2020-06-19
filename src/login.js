@@ -7,14 +7,14 @@ const session = getSessionUser();
 if (session) {
   redirectToTop();
 }
-ready(() => {
+ready(function() {
   // Collect input elements
   const loginForm = document.getElementById('login-form');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
 
   // Setup submit event
-  loginForm.addEventListener('submit', (event) => {
+  loginForm.addEventListener('submit', function(event) {
     resetCustomValidity(emailInput, passwordInput);
 
     // Check user

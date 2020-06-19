@@ -7,7 +7,7 @@ import {t} from './lib/messages.js';
 
 history.replaceState(null, '', 'confirm.html');
 
-ready(() => {
+ready(function() {
   // load data
   const transactionId = getTransactionId();
   if (!transactionId) {

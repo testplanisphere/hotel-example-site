@@ -24,7 +24,7 @@ const DATE_SHORT_FORMATTER = {
 };
 
 const DATE_SHORT_PARSER = {
-  'ja': (dateString) => {
+  'ja': function(dateString) {
     const arr = dateString.match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/);
     if (!arr || arr.length !== 4) {
       return null;
@@ -34,7 +34,7 @@ const DATE_SHORT_PARSER = {
     const date = parseInt(arr[3], 10);
     return new Date(year, month - 1, date);
   },
-  'en-US': (dateString) => {
+  'en-US': function(dateString) {
     const arr = dateString.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
     if (!arr || arr.length !== 4) {
       return null;

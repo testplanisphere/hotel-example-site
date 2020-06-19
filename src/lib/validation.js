@@ -5,7 +5,9 @@ import {t} from './messages.js';
  * @param  {...HTMLInputElement} inputs
  */
 export function resetCustomValidity(...inputs) {
-  inputs.forEach((input) => input.setCustomValidity(''));
+  inputs.forEach(function(input) {
+    input.setCustomValidity('');
+  });
 }
 
 /**
@@ -68,7 +70,7 @@ export function validateDateInput(date) {
  * @param  {...HTMLInputElement} inputs
  */
 export function setValidityMessage(...inputs) {
-  inputs.forEach((input) => {
+  inputs.forEach(function(input) {
     document.querySelector('#' + input.id + ' ~ .invalid-feedback').textContent = getErrorMessege(input);
   });
 }

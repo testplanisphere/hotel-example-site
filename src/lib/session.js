@@ -6,7 +6,9 @@ import {getPresetUsers} from './i18n.js';
  * @return {object} user data
  */
 export function getUser(email) {
-  let user = getPresetUsers().find((val) => val.email === email);
+  let user = getPresetUsers().find(function(val) {
+    return val.email === email;
+  });
   if (user) {
     user.preset = true;
     return user;
@@ -84,7 +86,7 @@ export function setLoginNavbar() {
   document.getElementById('login-holder').classList.replace('d-block', 'd-none');
   document.getElementById('mypage-holder').classList.replace('d-none', 'd-block');
   document.getElementById('logout-holder').classList.replace('d-none', 'd-block');
-  document.getElementById('logout-form').addEventListener('submit', () => {
+  document.getElementById('logout-form').addEventListener('submit', function() {
     logout();
   });
 }

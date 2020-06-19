@@ -7,7 +7,7 @@ const session = getSessionUser();
 if (session) {
   redirectToTop();
 }
-ready(() => {
+ready(function() {
   // Collect input elements
   const signupForm = document.getElementById('signup-form');
   const emailInput = document.getElementById('email');
@@ -20,7 +20,7 @@ ready(() => {
   const birthdayInput = document.getElementById('birthday');
 
   // Setup submit event
-  signupForm.addEventListener('submit', (event) => {
+  signupForm.addEventListener('submit', function(event) {
     resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput,
         addressInput, telInput, genderSelect, birthdayInput);
 

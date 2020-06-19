@@ -6,7 +6,7 @@ import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/
 import {calcTotalBill} from './lib/billing.js';
 import {t} from './lib/messages.js';
 
-ready(() => {
+ready(function() {
   // Check login
   const session = getSessionUser();
   const user = getUser(session);
@@ -38,10 +38,12 @@ ready(() => {
 
   // fetch selected plan data
   const url = location.origin + '/data/' + getLocale() + '/plan_data.json';
-  fetch(url, {cache: 'no-store'}).then((response) => {
+  fetch(url, {cache: 'no-store'}).then(function(response) {
     return response.json();
-  }).then((data) => {
-    const plan = data.find((val) => val.id === planId);
+  }).then(function(data) {
+    const plan = data.find(function(val) {
+      return val.id === planId;
+    });
     if (!plan || !canDisplayPlan(plan, user)) {
       return Promise.reject(new Error());
     }
@@ -69,7 +71,7 @@ ready(() => {
       roomInfo.innerHTML =
           '<iframe class="embed-responsive-item" src="./rooms/' + plan.roomPage + '" title="' + t('reserve.roomInfo') + '" name="room"></iframe>';
     }
-  }).catch(() => {
+  }).catch(function() {
     redirectToTop();
   });
 
@@ -104,7 +106,7 @@ ready(() => {
   });
 
   // Setup contact select
-  contactSelect.addEventListener('change', (event) => {
+  contactSelect.addEventListener('change', function(event) {
     if (event.target.value === 'no') {
       emailInput.disabled = true;
       emailInput.required = false;
@@ -130,8 +132,8 @@ ready(() => {
   });
 
   // Setup calc total function
-  [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput].forEach((input) => {
-    input.addEventListener('change', (event) => {
+  [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput].forEach(function(input) {
+    input.addEventListener('change', function(event) {
       resetCustomValidity(event.target);
       if (event.target.id === 'date' && dateInput.checkValidity()) {
         const dateMessage = validateDateInput(parseDate(dateInput.value));
@@ -153,7 +155,7 @@ ready(() => {
   });
 
   // Setup submit event
-  reserveForm.addEventListener('submit', (event) => {
+  reserveForm.addEventListener('submit', function(event) {
     resetCustomValidity(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
     const dateValue = parseDate(dateInput.value);
     if (dateInput.checkValidity()) {

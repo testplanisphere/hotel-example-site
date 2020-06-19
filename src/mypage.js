@@ -15,7 +15,7 @@ const session = getSessionUser();
 if (!session) {
   redirectToTop();
 }
-ready(() => {
+ready(function() {
   // load user data
   const user = getUser(session);
   if (!user) {
@@ -50,7 +50,7 @@ ready(() => {
     iconHolder.appendChild(img);
   }
 
-  document.getElementById('logout-form').addEventListener('submit', () => {
+  document.getElementById('logout-form').addEventListener('submit', function() {
     logout();
   });
 
@@ -60,7 +60,7 @@ ready(() => {
     iconLink.removeAttribute('tabindex');
     iconLink.removeAttribute('aria-disabled');
     document.querySelector('#delete-form > button').disabled = false;
-    document.getElementById('delete-form').addEventListener('submit', (event) => {
+    document.getElementById('delete-form').addEventListener('submit', function(event) {
       if (confirm(t('user.deleteConfirm'))) {
         logout();
         localStorage.removeItem(user.email);

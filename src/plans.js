@@ -4,7 +4,7 @@ import {getLocale} from './lib/i18n.js';
 import {getSessionUser, getUser, setLoginNavbar, canDisplayPlan} from './lib/session.js';
 import {t} from './lib/messages.js';
 
-ready(() => {
+ready(function() {
   // Check login
   const session = getSessionUser();
   if (session) {
@@ -14,12 +14,16 @@ ready(() => {
 
   // fetch plan data
   const url = location.origin + '/data/' + getLocale() + '/plan_data.json';
-  fetch(url, {cache: 'no-store'}).then((response) => {
+  fetch(url, {cache: 'no-store'}).then(function(response) {
     return response.json();
-  }).then((data) => {
-    const planHtml = data.filter((val) => val.id !== 0 && canDisplayPlan(val, user))
-        .map((val) => genPlanHtml(val))
-        .reduce((acc, cur) => acc + cur);
+  }).then(function(data) {
+    const planHtml = data.filter(function(val) {
+      return val.id !== 0 && canDisplayPlan(val, user);
+    }).map(function(val) {
+      return genPlanHtml(val);
+    }).reduce(function(acc, cur) {
+      return acc + cur;
+    });
     document.getElementById('plan-list').innerHTML = planHtml;
   });
 });
