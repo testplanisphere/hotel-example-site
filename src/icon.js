@@ -43,7 +43,7 @@ ready(function() {
       setValidityMessage(event.target);
       iconForm.classList.add('was-validated');
       return;
-    } else if (!file.type.startsWith('image/')) {
+    } else if (!/^image\/.+$/.test(file.type)) {
       document.getElementById('icon-holder').innerHTML = '';
       zoomInput.disabled = true;
       colorInput.disabled = true;
