@@ -6,20 +6,22 @@ import {getMessages} from './i18n.js';
  * @param {...string} params
  * @return {string} 
  */
-export function t(key, ...params) {
+export function t() {
+  const params = Array.prototype.slice.call(arguments);
+  const key = params.shift();
   let messageStore = getMessages();
   const keys = key.split('.');
   let message;
-  for (const k of keys) {
-    message = messageStore[k];
+  for (let i = 0; i < keys.length; i++) {
+    message = messageStore[keys[i]];
     if (typeof message === 'string') {
       break;
     } else {
-      messageStore = messageStore[k];
+      messageStore = messageStore[keys[i]];
     }
   }
-  for (const p of params) {
-    message = message.replace('{}', p);
+  for (let i = 0; i < params.length; i++) {
+    message = message.replace('{}', params[i]);
   }
   return message;
 }

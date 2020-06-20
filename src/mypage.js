@@ -3,19 +3,19 @@ import {formatDateLong, parseDateISO} from './lib/formater.js';
 import {getUser, getSessionUser, logout} from './lib/session.js';
 import {t} from './lib/messages.js';
 
-const DISPLAY_GENDER = new Map([
-  ['0', t('user.gender.unregistered')],
-  ['1', t('user.gender.male')],
-  ['2', t('user.gender.female')],
-  ['9', t('user.gender.other')],
-]);
+const DISPLAY_GENDER = {
+  '0': t('user.gender.unregistered'),
+  '1': t('user.gender.male'),
+  '2': t('user.gender.female'),
+  '9': t('user.gender.other'),
+};
 
 history.replaceState(null, '', 'mypage.html');
 const session = getSessionUser();
 if (!session) {
   redirectToTop();
 }
-ready(() => {
+ready(function() {
   // load user data
   const user = getUser(session);
   if (!user) {
@@ -32,7 +32,7 @@ ready(() => {
   }
   document.getElementById('address').textContent = user.address ? user.address : t('user.unregistered');
   document.getElementById('tel').textContent = user.tel ? user.tel : t('user.unregistered');
-  document.getElementById('gender').textContent = DISPLAY_GENDER.get(user.gender);
+  document.getElementById('gender').textContent = DISPLAY_GENDER[user.gender];
   document.getElementById('birthday').textContent =
       user.birthday ? formatDateLong(parseDateISO(user.birthday)) : t('user.unregistered');
   document.getElementById('notification').textContent = user.notification ? t('user.notification.true') : t('user.notification.false');
@@ -50,7 +50,7 @@ ready(() => {
     iconHolder.appendChild(img);
   }
 
-  document.getElementById('logout-form').addEventListener('submit', () => {
+  document.getElementById('logout-form').addEventListener('submit', function() {
     logout();
   });
 
@@ -60,7 +60,7 @@ ready(() => {
     iconLink.removeAttribute('tabindex');
     iconLink.removeAttribute('aria-disabled');
     document.querySelector('#delete-form > button').disabled = false;
-    document.getElementById('delete-form').addEventListener('submit', (event) => {
+    document.getElementById('delete-form').addEventListener('submit', function(event) {
       if (confirm(t('user.deleteConfirm'))) {
         logout();
         localStorage.removeItem(user.email);

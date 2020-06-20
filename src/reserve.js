@@ -6,7 +6,7 @@ import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/
 import {calcTotalBill} from './lib/billing.js';
 import {t} from './lib/messages.js';
 
-ready(() => {
+ready(function() {
   // Check login
   const session = getSessionUser();
   const user = getUser(session);
@@ -30,19 +30,28 @@ ready(() => {
   const totalBillOutput = document.getElementById('total-bill');
 
   // Get URL params
-  const params = new URLSearchParams(location.search);
-  const planId = parseInt(params.get('plan-id'), 10);
-  if (isNaN(planId)) {
+  const params = location.search.match(/^\?plan-id=(\d+)$/);
+  if (!params || params.length !== 2) {
     redirectToTop();
+    return;
   }
+  const planId = parseInt(params[1], 10);
 
   // fetch selected plan data
-  fetch(`${location.origin}/data/${getLocale()}/plan_data.json`, {cache: 'no-store'}).then((response) => {
-    return response.json();
-  }).then((data) => {
-    const plan = data.find((val) => val.id === planId);
+  const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + (new Date()).getTime();
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', function() {
+    const data = JSON.parse(this.responseText);
+    let plan = null;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === planId) {
+        plan = data[i];
+        break;
+      }
+    }
     if (!plan || !canDisplayPlan(plan, user)) {
-      return Promise.reject(new Error());
+      redirectToTop();
+      return;
     }
     // set initialize values
     document.getElementById('plan-name').textContent = plan.name;
@@ -66,11 +75,11 @@ ready(() => {
       const roomInfo = document.getElementById('room-info');
       roomInfo.classList.add('embed-responsive', 'embed-responsive-1by1');
       roomInfo.innerHTML =
-          `<iframe class="embed-responsive-item" src="./rooms/${plan.roomPage}" title="${t('reserve.roomInfo')}" name="room"></iframe>`;
+          '<iframe class="embed-responsive-item" src="./rooms/' + plan.roomPage + '" title="' + t('reserve.roomInfo') + '" name="room"></iframe>';
     }
-  }).catch(() => {
-    redirectToTop();
   });
+  xhr.open('GET', url);
+  xhr.send();
 
   // set login user data
   if (user) {
@@ -103,34 +112,41 @@ ready(() => {
   });
 
   // Setup contact select
-  contactSelect.addEventListener('change', (event) => {
+  contactSelect.addEventListener('change', function(event) {
     if (event.target.value === 'no') {
       emailInput.disabled = true;
       emailInput.required = false;
-      emailInput.parentElement.classList.replace('d-block', 'd-none');
+      emailInput.parentElement.classList.remove('d-block');
+      emailInput.parentElement.classList.add('d-none');
       telInput.disabled = true;
       telInput.required = false;
-      telInput.parentElement.classList.replace('d-block', 'd-none');
+      telInput.parentElement.classList.remove('d-block');
+      telInput.parentElement.classList.add('d-none');
     } else if (event.target.value === 'email') {
       emailInput.disabled = false;
       emailInput.required = true;
-      emailInput.parentElement.classList.replace('d-none', 'd-block');
+      emailInput.parentElement.classList.remove('d-none');
+      emailInput.parentElement.classList.add('d-block');
       telInput.disabled = true;
       telInput.required = false;
-      telInput.parentElement.classList.replace('d-block', 'd-none');
+      telInput.parentElement.classList.remove('d-block');
+      telInput.parentElement.classList.add('d-none');
     } else if (event.target.value === 'tel') {
       emailInput.disabled = true;
       emailInput.required = false;
-      emailInput.parentElement.classList.replace('d-block', 'd-none');
+      emailInput.parentElement.classList.remove('d-block');
+      emailInput.parentElement.classList.add('d-none');
       telInput.disabled = false;
       telInput.required = true;
-      telInput.parentElement.classList.replace('d-none', 'd-block');
+      telInput.parentElement.classList.remove('d-none');
+      telInput.parentElement.classList.add('d-block');
     }
   });
 
   // Setup calc total function
-  [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput].forEach((input) => {
-    input.addEventListener('change', (event) => {
+  const inputs = [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput];
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('change', function(event) {
       resetCustomValidity(event.target);
       if (event.target.id === 'date' && dateInput.checkValidity()) {
         const dateMessage = validateDateInput(parseDate(dateInput.value));
@@ -149,10 +165,10 @@ ready(() => {
         event.target.parentElement.classList.add('was-validated');
       }
     });
-  });
+  }
 
   // Setup submit event
-  reserveForm.addEventListener('submit', (event) => {
+  reserveForm.addEventListener('submit', function(event) {
     resetCustomValidity(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
     const dateValue = parseDate(dateInput.value);
     if (dateInput.checkValidity()) {
@@ -179,7 +195,7 @@ ready(() => {
       };
       const transactionId = genTransactionId();
       sessionStorage.setItem(transactionId, JSON.stringify(reservation));
-      document.cookie = `transaction=${transactionId}`;
+      document.cookie = 'transaction=' + transactionId;
     } else {
       event.preventDefault();
       event.stopPropagation();

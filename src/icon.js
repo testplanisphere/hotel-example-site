@@ -16,7 +16,7 @@ if (user.preset) {
   redirectToTop();
 }
 
-ready(() => {
+ready(function() {
   // Collect input elements
   const iconForm = document.getElementById('icon-form');
   const iconInput = document.getElementById('icon');
@@ -24,7 +24,7 @@ ready(() => {
   const colorInput = document.getElementById('color');
 
   // set file event
-  iconInput.addEventListener('change', (event) => {
+  iconInput.addEventListener('change', function(event) {
     event.target.setCustomValidity('');
     const file = event.target.files[0];
     colorInput.value = '#ffffff';
@@ -43,7 +43,7 @@ ready(() => {
       setValidityMessage(event.target);
       iconForm.classList.add('was-validated');
       return;
-    } else if (!file.type.startsWith('image/')) {
+    } else if (!/^image\/.+$/.test(file.type)) {
       document.getElementById('icon-holder').innerHTML = '';
       zoomInput.disabled = true;
       colorInput.disabled = true;
@@ -67,7 +67,7 @@ ready(() => {
 
     // set zoom input
     zoomInput.disabled = false;
-    zoomInput.addEventListener('change', (event) => {
+    zoomInput.addEventListener('change', function(event) {
       const iconImg = document.getElementById('icon-img');
       iconImg.width = parseInt(event.target.value, 10);
       iconImg.height = parseInt(event.target.value, 10);
@@ -75,12 +75,12 @@ ready(() => {
 
     // set color input
     colorInput.disabled = false;
-    colorInput.addEventListener('change', (event) => {
+    colorInput.addEventListener('change', function(event) {
       document.getElementById('icon-img').style.backgroundColor = event.target.value;
     });
   });
 
-  iconForm.addEventListener('submit', (event) => {
+  iconForm.addEventListener('submit', function(event) {
     if (iconForm.checkValidity()) {
       const file = iconInput.files[0];
       const reader = new FileReader();
@@ -104,7 +104,7 @@ ready(() => {
     }
   });
 
-  document.getElementById('logout-form').addEventListener('submit', () => {
+  document.getElementById('logout-form').addEventListener('submit', function() {
     logout();
   });
 });

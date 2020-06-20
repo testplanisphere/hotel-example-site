@@ -6,7 +6,14 @@ import {getPresetUsers} from './i18n.js';
  * @return {object} user data
  */
 export function getUser(email) {
-  let user = getPresetUsers().find((val) => val.email === email);
+  const presetUsers = getPresetUsers();
+  let user = null;
+  for (let i = 0; i < presetUsers.length; i++) {
+    if (presetUsers[i].email === email) {
+      user = presetUsers[i];
+      break;
+    }
+  }
   if (user) {
     user.preset = true;
     return user;
@@ -43,7 +50,7 @@ export function getSessionUser() {
  * @param {string} email
  */
 export function login(email) {
-  document.cookie = `session=${email}; max-age=630720000`;
+  document.cookie = 'session=' + email + '; max-age=630720000';
 }
 
 /**
@@ -58,7 +65,7 @@ export function logout() {
  * @return {string}
  */
 export function genTransactionId() {
-  return `${Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000}`;
+  return '' + (Math.floor(Math.random() * (10000000000 - 1000000000)) + 1000000000);
 }
 
 /**
@@ -80,11 +87,19 @@ export function deleteTransactionId() {
  * Set login status to navbar
  */
 export function setLoginNavbar() {
-  document.getElementById('signup-holder').classList.replace('d-block', 'd-none');
-  document.getElementById('login-holder').classList.replace('d-block', 'd-none');
-  document.getElementById('mypage-holder').classList.replace('d-none', 'd-block');
-  document.getElementById('logout-holder').classList.replace('d-none', 'd-block');
-  document.getElementById('logout-form').addEventListener('submit', () => {
+  const signupHolder = document.getElementById('signup-holder');
+  signupHolder.classList.remove('d-block');
+  signupHolder.classList.add('d-none');
+  const loginHolder = document.getElementById('login-holder');
+  loginHolder.classList.remove('d-block');
+  loginHolder.classList.add('d-none');
+  const mypageHolder = document.getElementById('mypage-holder');
+  mypageHolder.classList.remove('d-none');
+  mypageHolder.classList.add('d-block');
+  const logoutHolder = document.getElementById('logout-holder');
+  logoutHolder.classList.remove('d-none');
+  logoutHolder.classList.add('d-block');
+  document.getElementById('logout-form').addEventListener('submit', function() {
     logout();
   });
 }

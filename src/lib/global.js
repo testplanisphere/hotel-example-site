@@ -20,5 +20,5 @@ export function redirectToTop() {
   } else {
     path = location.pathname.replace(/(\/.+)(\/.+\.html)/, '$1/index.html');
   }
-  location.assign(`${location.origin}${path}`);
+  location.assign(location.origin + path);
 }

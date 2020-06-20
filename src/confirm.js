@@ -7,7 +7,7 @@ import {t} from './lib/messages.js';
 
 history.replaceState(null, '', 'confirm.html');
 
-ready(() => {
+ready(function() {
   // load data
   const transactionId = getTransactionId();
   if (!transactionId) {
@@ -37,16 +37,16 @@ ready(() => {
   document.getElementById('head-count').textContent = t('reserve.headCount', reservation.headCount);
   let plansHtml = '';
   if (reservation.breakfast) {
-    plansHtml += `<li>${t('reserve.breakfast')}</li>`;
+    plansHtml += '<li>' + t('reserve.breakfast') + '</li>';
   }
   if (reservation.earlyCheckIn) {
-    plansHtml += `<li>${t('reserve.earlyCheckIn')}</li>`;
+    plansHtml += '<li>' + t('reserve.earlyCheckIn') + '</li>';
   }
   if (reservation.sightseeing) {
-    plansHtml += `<li>${t('reserve.sightseeing')}</li>`;
+    plansHtml += '<li>' + t('reserve.sightseeing') + '</li>';
   }
   if (plansHtml.length > 0) {
-    plansHtml = `<ul>${plansHtml}</ul>`;
+    plansHtml = '<ul>' + plansHtml + '</ul>';
   } else {
     plansHtml = t('reserve.none');
   }
