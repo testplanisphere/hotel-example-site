@@ -116,24 +116,30 @@ ready(function() {
     if (event.target.value === 'no') {
       emailInput.disabled = true;
       emailInput.required = false;
-      emailInput.parentElement.classList.replace('d-block', 'd-none');
+      emailInput.parentElement.classList.remove('d-block');
+      emailInput.parentElement.classList.add('d-none');
       telInput.disabled = true;
       telInput.required = false;
-      telInput.parentElement.classList.replace('d-block', 'd-none');
+      telInput.parentElement.classList.remove('d-block');
+      telInput.parentElement.classList.add('d-none');
     } else if (event.target.value === 'email') {
       emailInput.disabled = false;
       emailInput.required = true;
-      emailInput.parentElement.classList.replace('d-none', 'd-block');
+      emailInput.parentElement.classList.remove('d-none');
+      emailInput.parentElement.classList.add('d-block');
       telInput.disabled = true;
       telInput.required = false;
-      telInput.parentElement.classList.replace('d-block', 'd-none');
+      telInput.parentElement.classList.remove('d-block');
+      telInput.parentElement.classList.add('d-none');
     } else if (event.target.value === 'tel') {
       emailInput.disabled = true;
       emailInput.required = false;
-      emailInput.parentElement.classList.replace('d-block', 'd-none');
+      emailInput.parentElement.classList.remove('d-block');
+      emailInput.parentElement.classList.add('d-none');
       telInput.disabled = false;
       telInput.required = true;
-      telInput.parentElement.classList.replace('d-none', 'd-block');
+      telInput.parentElement.classList.remove('d-none');
+      telInput.parentElement.classList.add('d-block');
     }
   });
 
