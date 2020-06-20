@@ -64,7 +64,8 @@ export function getLocale() {
  * @param {string} locale 
  * @returns {object}
  */
-export function getMessages(locale = getLocale()) {
+export function getMessages(locale) {
+  locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return MESSAGES[locale];
 }
 
@@ -73,7 +74,8 @@ export function getMessages(locale = getLocale()) {
  * @param {string} locale 
  * @returns {object}
  */
-export function getPresetUsers(locale = getLocale()) {
+export function getPresetUsers(locale) {
+  locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return PRESET_USERS[locale];
 }
 
@@ -82,7 +84,8 @@ export function getPresetUsers(locale = getLocale()) {
  * @param {string} locale 
  * @returns {Intl.NumberFormat}
  */
-export function getCurrencyFormatter(locale = getLocale()) {
+export function getCurrencyFormatter(locale) {
+  locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return CURRENCY_FORMATTER[locale];
 }
 
@@ -91,7 +94,8 @@ export function getCurrencyFormatter(locale = getLocale()) {
  * @param {string} locale 
  * @returns {Intl.DateTimeFormat}
  */
-export function getDateLongFormatter(locale = getLocale()) {
+export function getDateLongFormatter(locale) {
+  locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return DATE_LONG_FORMATTER[locale];
 }
 
@@ -100,7 +104,8 @@ export function getDateLongFormatter(locale = getLocale()) {
  * @param {string} locale 
  * @returns {Intl.DateTimeFormat}
  */
-export function getDateShortFormatter(locale = getLocale()) {
+export function getDateShortFormatter(locale) {
+  locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return DATE_SHORT_FORMATTER[locale];
 }
 
@@ -109,7 +114,8 @@ export function getDateShortFormatter(locale = getLocale()) {
  * @param {string} locale 
  * @returns {Function}
  */
-export function getDateShortParser(locale = getLocale()) {
+export function getDateShortParser(locale) {
+  locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return DATE_SHORT_PARSER[locale];
 }
 
@@ -118,6 +124,7 @@ export function getDateShortParser(locale = getLocale()) {
  * @param {string} locale
  * @returns {number}
  */
-export function getAdditionalPlanPrice(locale = getLocale()) {
+export function getAdditionalPlanPrice(locale) {
+  locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return ADDITIONAL_PLAN_PRICE[locale];
 }
