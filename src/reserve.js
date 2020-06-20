@@ -30,11 +30,12 @@ ready(function() {
   const totalBillOutput = document.getElementById('total-bill');
 
   // Get URL params
-  const params = new URLSearchParams(location.search);
-  const planId = parseInt(params.get('plan-id'), 10);
-  if (isNaN(planId)) {
+  const params = location.search.match(/^\?plan-id=(\d+)$/);
+  if (!params || params.length !== 2) {
     redirectToTop();
+    return;
   }
+  const planId = parseInt(params[1], 10);
 
   // fetch selected plan data
   const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + (new Date()).getTime();
