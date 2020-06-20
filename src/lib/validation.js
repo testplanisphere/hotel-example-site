@@ -2,12 +2,12 @@ import {t} from './messages.js';
 
 /**
  * Reset all validation states
- * @param  {...HTMLInputElement} inputs
+ * @param  {...HTMLInputElement} arguments
  */
-export function resetCustomValidity(...inputs) {
-  inputs.forEach(function(input) {
-    input.setCustomValidity('');
-  });
+export function resetCustomValidity() {
+  for (let i = 0; i < arguments.length; i++) {
+    arguments[i].setCustomValidity('');
+  }
 }
 
 /**
@@ -67,10 +67,11 @@ export function validateDateInput(date) {
 
 /**
  * Set all validation masseges
- * @param  {...HTMLInputElement} inputs
+ * @param  {...HTMLInputElement} arguments
  */
-export function setValidityMessage(...inputs) {
-  inputs.forEach(function(input) {
+export function setValidityMessage() {
+  for (let i = 0; i < arguments.length; i++) {
+    const input = arguments[i];
     document.querySelector('#' + input.id + ' ~ .invalid-feedback').textContent = getErrorMessege(input);
-  });
+  }
 }
