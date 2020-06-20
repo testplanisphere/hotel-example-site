@@ -37,10 +37,10 @@ ready(function() {
   }
 
   // fetch selected plan data
-  const url = location.origin + '/data/' + getLocale() + '/plan_data.json';
-  fetch(url, {cache: 'no-store'}).then(function(response) {
-    return response.json();
-  }).then(function(data) {
+  const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + (new Date()).getTime();
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', function() {
+    const data = JSON.parse(this.responseText);
     let plan = null;
     for (let i = 0; i < data.length; i++) {
       if (data[i].id === planId) {
@@ -49,7 +49,8 @@ ready(function() {
       }
     }
     if (!plan || !canDisplayPlan(plan, user)) {
-      return Promise.reject(new Error());
+      redirectToTop();
+      return;
     }
     // set initialize values
     document.getElementById('plan-name').textContent = plan.name;
@@ -75,9 +76,9 @@ ready(function() {
       roomInfo.innerHTML =
           '<iframe class="embed-responsive-item" src="./rooms/' + plan.roomPage + '" title="' + t('reserve.roomInfo') + '" name="room"></iframe>';
     }
-  }).catch(function() {
-    redirectToTop();
   });
+  xhr.open('GET', url);
+  xhr.send();
 
   // set login user data
   if (user) {

@@ -13,10 +13,10 @@ ready(function() {
   const user = getUser(session);
 
   // fetch plan data
-  const url = location.origin + '/data/' + getLocale() + '/plan_data.json';
-  fetch(url, {cache: 'no-store'}).then(function(response) {
-    return response.json();
-  }).then(function(data) {
+  const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + (new Date()).getTime();
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', function() {
+    const data = JSON.parse(this.responseText);
     let planHtml = '';
     for (let i = 0; i < data.length; i++) {
       if (data[i].id !== 0 && canDisplayPlan(data[i], user)) {
@@ -25,6 +25,8 @@ ready(function() {
     }
     document.getElementById('plan-list').innerHTML = planHtml;
   });
+  xhr.open('GET', url);
+  xhr.send();
 });
 
 /**
