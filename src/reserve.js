@@ -41,9 +41,13 @@ ready(function() {
   fetch(url, {cache: 'no-store'}).then(function(response) {
     return response.json();
   }).then(function(data) {
-    const plan = data.find(function(val) {
-      return val.id === planId;
-    });
+    let plan = null;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id === planId) {
+        plan = data[i];
+        break;
+      }
+    }
     if (!plan || !canDisplayPlan(plan, user)) {
       return Promise.reject(new Error());
     }
@@ -132,8 +136,9 @@ ready(function() {
   });
 
   // Setup calc total function
-  [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput].forEach(function(input) {
-    input.addEventListener('change', function(event) {
+  const inputs = [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput];
+  for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('change', function(event) {
       resetCustomValidity(event.target);
       if (event.target.id === 'date' && dateInput.checkValidity()) {
         const dateMessage = validateDateInput(parseDate(dateInput.value));
@@ -152,7 +157,7 @@ ready(function() {
         event.target.parentElement.classList.add('was-validated');
       }
     });
-  });
+  }
 
   // Setup submit event
   reserveForm.addEventListener('submit', function(event) {

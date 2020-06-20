@@ -6,9 +6,14 @@ import {getPresetUsers} from './i18n.js';
  * @return {object} user data
  */
 export function getUser(email) {
-  let user = getPresetUsers().find(function(val) {
-    return val.email === email;
-  });
+  const presetUsers = getPresetUsers();
+  let user = null;
+  for (let i = 0; i < presetUsers.length; i++) {
+    if (presetUsers[i].email === email) {
+      user = presetUsers[i];
+      break;
+    }
+  }
   if (user) {
     user.preset = true;
     return user;

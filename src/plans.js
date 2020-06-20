@@ -17,13 +17,12 @@ ready(function() {
   fetch(url, {cache: 'no-store'}).then(function(response) {
     return response.json();
   }).then(function(data) {
-    const planHtml = data.filter(function(val) {
-      return val.id !== 0 && canDisplayPlan(val, user);
-    }).map(function(val) {
-      return genPlanHtml(val);
-    }).reduce(function(acc, cur) {
-      return acc + cur;
-    });
+    let planHtml = '';
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id !== 0 && canDisplayPlan(data[i], user)) {
+        planHtml += genPlanHtml(data[i]);
+      }
+    }
     document.getElementById('plan-list').innerHTML = planHtml;
   });
 });
