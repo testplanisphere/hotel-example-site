@@ -72,6 +72,6 @@ export function validateDateInput(date) {
 export function setValidityMessage() {
   for (let i = 0; i < arguments.length; i++) {
     const input = arguments[i];
-    document.querySelector('#' + input.id + ' ~ .invalid-feedback').textContent = getErrorMessege(input);
+    $('#' + input.id + ' ~ .invalid-feedback').text(getErrorMessege(input));
   }
 }

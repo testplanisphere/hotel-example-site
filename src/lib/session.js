@@ -87,19 +87,11 @@ export function deleteTransactionId() {
  * Set login status to navbar
  */
 export function setLoginNavbar() {
-  const signupHolder = document.getElementById('signup-holder');
-  signupHolder.classList.remove('d-block');
-  signupHolder.classList.add('d-none');
-  const loginHolder = document.getElementById('login-holder');
-  loginHolder.classList.remove('d-block');
-  loginHolder.classList.add('d-none');
-  const mypageHolder = document.getElementById('mypage-holder');
-  mypageHolder.classList.remove('d-none');
-  mypageHolder.classList.add('d-block');
-  const logoutHolder = document.getElementById('logout-holder');
-  logoutHolder.classList.remove('d-none');
-  logoutHolder.classList.add('d-block');
-  document.getElementById('logout-form').addEventListener('submit', function() {
+  $('#signup-holder').removeClass('d-block').addClass('d-none');
+  $('#login-holder').removeClass('d-block').addClass('d-none');
+  $('#mypage-holder').removeClass('d-none').addClass('d-block');
+  $('#logout-holder').removeClass('d-none').addClass('d-block');
+  $('#logout-form').submit(function() {
     logout();
   });
 }

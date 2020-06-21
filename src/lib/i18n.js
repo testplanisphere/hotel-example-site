@@ -56,7 +56,7 @@ const ADDITIONAL_PLAN_PRICE = {
  * @returns {string} locale
  */
 export function getLocale() {
-  return document.getElementsByTagName('html')[0].lang;
+  return $('html').attr('lang');
 }
 
 /**
