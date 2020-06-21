@@ -77,6 +77,7 @@ ready(function() {
       roomInfo.innerHTML =
           '<iframe class="embed-responsive-item" src="./rooms/' + plan.roomPage + '" title="' + t('reserve.roomInfo') + '" name="room"></iframe>';
     }
+    document.getElementById('submit-button').disabled = false;
   });
   xhr.open('GET', url);
   xhr.send();
