@@ -29,14 +29,14 @@
           <form action="./confirm.html" id="reserve-form" novalidate>
             <div class="form-group">
               <label for="date">Check-in <span class="badge badge-primary">required</span></label>
-              <input type="text" class="form-control" name="date" id="date" required>
+              <input type="text" class="form-control needs-calc" name="date" id="date" required>
               <small class="form-text text-muted">Reservations can only be made within 3 months.</small>
               <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
               <label for="term">Stay <span class="badge badge-primary">required</span></label>
               <div class="input-group">
-                <input type="number" class="form-control" name="term" id="term" required>
+                <input type="number" class="form-control needs-calc" name="term" id="term" required>
                 <div class="input-group-append">
                   <span class="input-group-text">nights</span>
                 </div>
@@ -46,7 +46,7 @@
             <div class="form-group">
               <label for="head-count">Guests <span class="badge badge-primary">required</span></label>
               <div class="input-group">
-                <input type="number" class="form-control" name="head-count" id="head-count" required>
+                <input type="number" class="form-control needs-calc" name="head-count" id="head-count" required>
                 <div class="input-group-append">
                   <span class="input-group-text">persons</span>
                 </div>
@@ -56,7 +56,7 @@
             <label>Additional plans <small class="text-muted">$10.00 per guest</small></label>
             <div class="form-group">
               <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="breakfast" id="breakfast">
+                <input type="checkbox" class="form-check-input needs-calc" name="breakfast" id="breakfast">
                 <label class="form-check-label" for="breakfast">
                   Breakfast
                 </label>
@@ -64,7 +64,7 @@
             </div>
             <div class="form-group">
               <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="early-check-in" id="early-check-in">
+                <input type="checkbox" class="form-check-input needs-calc" name="early-check-in" id="early-check-in">
                 <label class="form-check-label" for="early-check-in">
                   Early check-in
                 </label>
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group">
               <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="sightseeing" id="sightseeing">
+                <input type="checkbox" class="form-check-input needs-calc" name="sightseeing" id="sightseeing">
                 <label class="form-check-label" for="sightseeing">
                   Sightseeing
                 </label>

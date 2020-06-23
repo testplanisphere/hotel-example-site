@@ -84,6 +84,19 @@ export function deleteTransactionId() {
 }
 
 /**
+ * Redirect to top page
+ */
+export function redirectToTop() {
+  let path;
+  if (location.pathname.split('/').length === 2) {
+    path = location.pathname.replace(/(\/.+\.html)/, '/index.html');
+  } else {
+    path = location.pathname.replace(/(\/.+)(\/.+\.html)/, '$1/index.html');
+  }
+  location.assign(location.origin + path);
+}
+
+/**
  * Set login status to navbar
  */
 export function setLoginNavbar() {
