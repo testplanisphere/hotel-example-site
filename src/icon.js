@@ -1,5 +1,4 @@
-import {ready, redirectToTop} from './lib/global.js';
-import {getUser, getSessionUser, logout} from './lib/session.js';
+import {getUser, getSessionUser, logout, redirectToTop} from './lib/session.js';
 import {setValidityMessage} from './lib/validation.js';
 import {t} from './lib/messages.js';
 
@@ -16,95 +15,85 @@ if (user.preset) {
   redirectToTop();
 }
 
-ready(function() {
-  // Collect input elements
-  const iconForm = document.getElementById('icon-form');
-  const iconInput = document.getElementById('icon');
-  const zoomInput = document.getElementById('zoom');
-  const colorInput = document.getElementById('color');
-
+$(function() {
   // set file event
-  iconInput.addEventListener('change', function(event) {
-    event.target.setCustomValidity('');
-    const file = event.target.files[0];
-    colorInput.value = '#ffffff';
-    zoomInput.value = 100;
+  $('#icon').change(function() {
+    this.setCustomValidity('');
+    const file = this.files[0];
+    $('#color').val('#ffffff');
+    $('#zoom').val(100);
     if (!file) {
-      document.getElementById('icon-holder').innerHTML = '';
-      zoomInput.disabled = true;
-      colorInput.disabled = true;
+      $('#icon-holder').empty();
+      $('#zoom').prop('disabled', true);
+      $('#color').prop('disabled', true);
       return;
-    }
-    if (file.size > (10 * 1024)) {
-      document.getElementById('icon-holder').innerHTML = '';
-      zoomInput.disabled = true;
-      colorInput.disabled = true;
-      event.target.setCustomValidity(t('validation.underTenKb'));
-      setValidityMessage(event.target);
-      iconForm.classList.add('was-validated');
+    } else if (file.size > (10 * 1024)) {
+      $('#icon-holder').empty();
+      $('#zoom').prop('disabled', true);
+      $('#color').prop('disabled', true);
+      this.setCustomValidity(t('validation.underTenKb'));
+      setValidityMessage($(this));
+      $('#icon-form').addClass('was-validated');
       return;
     } else if (!/^image\/.+$/.test(file.type)) {
-      document.getElementById('icon-holder').innerHTML = '';
-      zoomInput.disabled = true;
-      colorInput.disabled = true;
-      event.target.setCustomValidity(t('validation.onlyImageFile'));
-      setValidityMessage(event.target);
-      iconForm.classList.add('was-validated');
+      $('#icon-holder').empty();
+      $('#zoom').prop('disabled', true);
+      $('#color').prop('disabled', true);
+      this.setCustomValidity(t('validation.onlyImageFile'));
+      setValidityMessage($(this));
+      $('#icon-form').addClass('was-validated');
       return;
     }
-    const img = document.createElement('img');
-    img.id = 'icon-img';
-    img.classList.add('img-thumbnail');
-    img.src = URL.createObjectURL(file);
-    img.width = 100;
-    img.height = 100;
-    img.onload = function() {
-      URL.revokeObjectURL(this.src);
-    };
-    const iconHolder = document.getElementById('icon-holder');
-    iconHolder.innerHTML = '';
-    iconHolder.appendChild(img);
+    $('<img>', {
+      'id': 'icon-img',
+      'class': 'img-thumbnail',
+      'src': URL.createObjectURL(file),
+      'width': 100,
+      'height': 100,
+      'on': {
+        'load': function() {
+          URL.revokeObjectURL(this.src);
+        },
+      },
+    }).appendTo('#icon-holder');
 
     // set zoom input
-    zoomInput.disabled = false;
-    zoomInput.addEventListener('change', function(event) {
-      const iconImg = document.getElementById('icon-img');
-      iconImg.width = parseInt(event.target.value, 10);
-      iconImg.height = parseInt(event.target.value, 10);
+    $('#zoom').prop('disabled', false);
+    $('#zoom').change(function() {
+      $('#icon-img').width(parseInt($(this).val(), 10))
+                    .height(parseInt($(this).val(), 10));
     });
 
     // set color input
-    colorInput.disabled = false;
-    colorInput.addEventListener('change', function(event) {
-      document.getElementById('icon-img').style.backgroundColor = event.target.value;
+    $('#color').prop('disabled', false);
+    $('#color').change(function() {
+      $('#icon-img').css('backgroundColor', $(this).val());
     });
   });
 
-  iconForm.addEventListener('submit', function(event) {
-    if (iconForm.checkValidity()) {
-      const file = iconInput.files[0];
+  $('#icon-form').submit(function() {
+    if (this.checkValidity()) {
+      const file = $('#icon').prop('files')[0];
       const reader = new FileReader();
       reader.onload = function(event) {
-        const dataURL = event.target.result;
-        const icon = {
-          'image': dataURL,
-          'width': parseInt(zoomInput.value, 10),
-          'height': parseInt(zoomInput.value, 10),
-          'color': colorInput.value,
+        user.icon = {
+          'image': event.target.result,
+          'width': parseInt($('#zoom').val(), 10),
+          'height': parseInt($('#zoom').val(), 10),
+          'color': $('#color').val(),
         };
-        user.icon = icon;
         localStorage.setItem(user.email, JSON.stringify(user));
       };
+      
       reader.readAsDataURL(file);
     } else {
-      event.preventDefault();
-      event.stopPropagation();
-      setValidityMessage(iconInput);
-      iconForm.classList.add('was-validated');
+      setValidityMessage($('#icon'));
+      $(this).addClass('was-validated');
+      return false;
     }
   });
 
-  document.getElementById('logout-form').addEventListener('submit', function() {
+  $('#logout-form').submit(function() {
     logout();
   });
 });

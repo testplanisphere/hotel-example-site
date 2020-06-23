@@ -1,10 +1,9 @@
-import {ready} from './lib/global.js';
 import {formatCurrency} from './lib/formater.js';
 import {getLocale} from './lib/i18n.js';
 import {getSessionUser, getUser, setLoginNavbar, canDisplayPlan} from './lib/session.js';
 import {t} from './lib/messages.js';
 
-ready(function() {
+$(function() {
   // Check login
   const session = getSessionUser();
   if (session) {
@@ -13,20 +12,16 @@ ready(function() {
   const user = getUser(session);
 
   // fetch plan data
-  const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + (new Date()).getTime();
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener('load', function() {
-    const data = JSON.parse(this.responseText);
+  const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + Date.now();
+  $.getJSON(url).done(function(data) {
     let planHtml = '';
     for (let i = 0; i < data.length; i++) {
       if (data[i].id !== 0 && canDisplayPlan(data[i], user)) {
         planHtml += genPlanHtml(data[i]);
       }
     }
-    document.getElementById('plan-list').innerHTML = planHtml;
+    $('#plan-list').html(planHtml);
   });
-  xhr.open('GET', url);
-  xhr.send();
 });
 
 /**

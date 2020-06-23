@@ -1,5 +1,4 @@
-import {ready, redirectToTop} from './lib/global.js';
-import {isValidUser, getSessionUser, login} from './lib/session.js';
+import {isValidUser, getSessionUser, login, redirectToTop} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage} from './lib/validation.js';
 import {t} from './lib/messages.js';
 
@@ -7,32 +6,26 @@ const session = getSessionUser();
 if (session) {
   redirectToTop();
 }
-ready(function() {
-  // Collect input elements
-  const loginForm = document.getElementById('login-form');
-  const emailInput = document.getElementById('email');
-  const passwordInput = document.getElementById('password');
-
+$(function() {
   // Setup submit event
-  loginForm.addEventListener('submit', function(event) {
-    resetCustomValidity(emailInput, passwordInput);
+  $('#login-form').submit(function() {
+    resetCustomValidity($(this).find('input'));
 
     // Check user
-    if (emailInput.checkValidity() && passwordInput.checkValidity()) {
-      if (!isValidUser(emailInput.value, passwordInput.value)) {
-        emailInput.setCustomValidity(t('validation.mailOrAddressMismatch'));
-        passwordInput.setCustomValidity(t('validation.mailOrAddressMismatch'));
+    if ($('#email')[0].checkValidity() && $('#password')[0].checkValidity()) {
+      if (!isValidUser($('#email').val(), $('#password').val())) {
+        $('#email')[0].setCustomValidity(t('validation.mailOrAddressMismatch'));
+        $('#password')[0].setCustomValidity(t('validation.mailOrAddressMismatch'));
       }
     }
 
     // submit or error
-    if (loginForm.checkValidity()) {
-      login(emailInput.value);
+    if (this.checkValidity()) {
+      login($('#email').val());
     } else {
-      event.preventDefault();
-      event.stopPropagation();
-      setValidityMessage(emailInput, passwordInput);
-      loginForm.classList.add('was-validated');
+      setValidityMessage($(this).find('input'));
+      $(this).addClass('was-validated');
+      return false;
     }
   });
 });

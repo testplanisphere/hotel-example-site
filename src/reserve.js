@@ -1,33 +1,14 @@
-import {ready, redirectToTop} from './lib/global.js';
 import {formatCurrency, formatDateShort, parseDate, formatDateISO} from './lib/formater.js';
 import {getLocale, getAdditionalPlanPrice} from './lib/i18n.js';
-import {getSessionUser, getUser, canDisplayPlan, genTransactionId} from './lib/session.js';
+import {getSessionUser, getUser, canDisplayPlan, genTransactionId, redirectToTop} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage, validateDateInput} from './lib/validation.js';
 import {calcTotalBill} from './lib/billing.js';
 import {t} from './lib/messages.js';
 
-ready(function() {
+$(function() {
   // Check login
   const session = getSessionUser();
   const user = getUser(session);
-
-  // Collect input elements
-  const reserveForm = document.getElementById('reserve-form');
-  const planIdHidden = document.getElementById('plan-id-hidden');
-  const planNameHidden = document.getElementById('plan-name-hidden');
-  const roomBillHidden = document.getElementById('room-bill-hidden');
-  const dateInput = document.getElementById('date');
-  const termInput = document.getElementById('term');
-  const headCountInput = document.getElementById('head-count');
-  const breakfastInput = document.getElementById('breakfast');
-  const earlyCheckInInput = document.getElementById('early-check-in');
-  const sightseeingInput = document.getElementById('sightseeing');
-  const usernameInput = document.getElementById('username');
-  const contactSelect = document.getElementById('contact');
-  const emailInput = document.getElementById('email');
-  const telInput = document.getElementById('tel');
-  const commentTextArea = document.getElementById('comment');
-  const totalBillOutput = document.getElementById('total-bill');
 
   // Get URL params
   const params = location.search.match(/^\?plan-id=(\d+)$/);
@@ -38,10 +19,8 @@ ready(function() {
   const planId = parseInt(params[1], 10);
 
   // fetch selected plan data
-  const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + (new Date()).getTime();
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener('load', function() {
-    const data = JSON.parse(this.responseText);
+  const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + Date.now();
+  $.getJSON(url).done(function(data) {
     let plan = null;
     for (let i = 0; i < data.length; i++) {
       if (data[i].id === planId) {
@@ -54,53 +33,40 @@ ready(function() {
       return;
     }
     // set initialize values
-    document.getElementById('plan-name').textContent = plan.name;
-    document.getElementById('plan-desc').textContent =
-        t('reserve.planDescLong', formatCurrency(plan.roomBill), plan.minHeadCount, plan.maxHeadCount, plan.maxTerm);
-    planIdHidden.value = plan.id;
-    planNameHidden.value = plan.name;
-    roomBillHidden.value = plan.roomBill;
-    termInput.min = plan.minTerm;
-    termInput.max = plan.maxTerm;
-    termInput.value = plan.minTerm;
-    headCountInput.min = plan.minHeadCount;
-    headCountInput.max = plan.maxHeadCount;
-    headCountInput.value = plan.minHeadCount;
+    $('#plan-name').text(plan.name);
+    $('#plan-desc').text(t('reserve.planDescLong', formatCurrency(plan.roomBill), plan.minHeadCount, plan.maxHeadCount, plan.maxTerm));
+    $('#plan-id-hidden').val(plan.id);
+    $('#plan-name-hidden').val(plan.name);
+    $('#room-bill-hidden').val(plan.roomBill);
+    $('#term').attr('min', plan.minTerm)
+              .attr('max', plan.maxTerm)
+              .val(plan.minTerm);
+    $('#head-count').attr('min', plan.minHeadCount)
+                    .attr('max', plan.maxHeadCount)
+                    .val(plan.minHeadCount);
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    dateInput.value = formatDateShort(tomorrow);
+    $('#date').val(formatDateShort(tomorrow));
     const total = calcTotalBill(plan.roomBill, tomorrow, plan.minTerm, plan.minHeadCount, false, false, false, getAdditionalPlanPrice());
-    totalBillOutput.textContent = formatCurrency(total);
+    $('#total-bill').text(formatCurrency(total));
     if (plan.roomPage) {
-      const roomInfo = document.getElementById('room-info');
-      roomInfo.classList.add('embed-responsive', 'embed-responsive-1by1');
-      roomInfo.innerHTML =
-          '<iframe class="embed-responsive-item" src="./rooms/' + plan.roomPage + '" title="' + t('reserve.roomInfo') + '" name="room"></iframe>';
+      $('<iframe></iframe>', {
+        'class': 'embed-responsive-item',
+        'src': './rooms/' + plan.roomPage,
+        'title': t('reserve.roomInfo'),
+        'name': 'room',
+      }).appendTo('#room-info');
+      $('#room-info').addClass('embed-responsive embed-responsive-1by1');
     }
-    document.getElementById('submit-button').disabled = false;
+    $('#submit-button').prop('disabled', false);
   });
-  xhr.open('GET', url);
-  xhr.send();
 
   // set login user data
   if (user) {
-    usernameInput.value = user.username;
-    emailInput.value = user.email;
-    telInput.value = user.tel;
+    $('#username').val(user.username);
+    $('#email').val(user.email);
+    $('#tel').val(user.tel);
   }
-
-  const updateTotalBill = function() {
-    const date = parseDate(dateInput.value);
-    if (!date) {
-      return;
-    }
-    const roomBill = parseInt(roomBillHidden.value, 10);
-    const term = parseInt(termInput.value, 10);
-    const headCount = parseInt(headCountInput.value, 10);
-    const totalBill =
-        calcTotalBill(roomBill, date, term, headCount, breakfastInput.checked, earlyCheckInInput.checked, sightseeingInput.checked, getAdditionalPlanPrice());
-    totalBillOutput.textContent = formatCurrency(totalBill);
-  };
 
   // Setup datepicker
   $('#date').datepicker({
@@ -113,95 +79,106 @@ ready(function() {
   });
 
   // Setup contact select
-  contactSelect.addEventListener('change', function(event) {
-    if (event.target.value === 'no') {
-      emailInput.disabled = true;
-      emailInput.required = false;
-      emailInput.parentElement.classList.remove('d-block');
-      emailInput.parentElement.classList.add('d-none');
-      telInput.disabled = true;
-      telInput.required = false;
-      telInput.parentElement.classList.remove('d-block');
-      telInput.parentElement.classList.add('d-none');
-    } else if (event.target.value === 'email') {
-      emailInput.disabled = false;
-      emailInput.required = true;
-      emailInput.parentElement.classList.remove('d-none');
-      emailInput.parentElement.classList.add('d-block');
-      telInput.disabled = true;
-      telInput.required = false;
-      telInput.parentElement.classList.remove('d-block');
-      telInput.parentElement.classList.add('d-none');
-    } else if (event.target.value === 'tel') {
-      emailInput.disabled = true;
-      emailInput.required = false;
-      emailInput.parentElement.classList.remove('d-block');
-      emailInput.parentElement.classList.add('d-none');
-      telInput.disabled = false;
-      telInput.required = true;
-      telInput.parentElement.classList.remove('d-none');
-      telInput.parentElement.classList.add('d-block');
+  $('#contact').change(function() {
+    if ($(this).val() === 'no') {
+      $('#email').prop('disabled', true)
+                 .prop('required', false)
+                 .parent().removeClass('d-block').addClass('d-none');
+      $('#tel').prop('disabled', true)
+               .prop('required', false)
+               .parent().removeClass('d-block').addClass('d-none');
+    } else if ($(this).val() === 'email') {
+      $('#email').prop('disabled', false)
+                 .prop('required', true)
+                 .parent().removeClass('d-none').addClass('d-block');
+      $('#tel').prop('disabled', true)
+               .prop('required', false)
+               .parent().removeClass('d-block').addClass('d-none');
+    } else if ($(this).val() === 'tel') {
+      $('#email').prop('disabled', true)
+                 .prop('required', false)
+                 .parent().removeClass('d-block').addClass('d-none');
+      $('#tel').prop('disabled', false)
+               .prop('required', true)
+               .parent().removeClass('d-none').addClass('d-block');
     }
   });
 
-  // Setup calc total function
-  const inputs = [dateInput, termInput, headCountInput, breakfastInput, earlyCheckInInput, sightseeingInput];
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('change', function(event) {
-      resetCustomValidity(event.target);
-      if (event.target.id === 'date' && dateInput.checkValidity()) {
-        const dateMessage = validateDateInput(parseDate(dateInput.value));
-        if (dateMessage) {
-          dateInput.setCustomValidity(dateMessage);
-        }
-      }
-      if (dateInput.checkValidity() && termInput.checkValidity() && headCountInput.checkValidity()) {
-        dateInput.parentElement.classList.remove('was-validated');
-        termInput.parentElement.classList.remove('was-validated');
-        headCountInput.parentElement.classList.remove('was-validated');
-        updateTotalBill();
-      } else {
-        totalBillOutput.textContent = '-';
-        setValidityMessage(dateInput, termInput, headCountInput);
-        event.target.parentElement.classList.add('was-validated');
-      }
-    });
-  }
-
-  // Setup submit event
-  reserveForm.addEventListener('submit', function(event) {
-    resetCustomValidity(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
-    const dateValue = parseDate(dateInput.value);
-    if (dateInput.checkValidity()) {
-      const dateMessage = validateDateInput(dateValue);
+  // Setup calc total function    
+  $('.needs-calc').change(function() {
+    resetCustomValidity($(this));
+    if ($(this).attr('id') === 'date' && $("#date")[0].checkValidity()) {
+      const dateMessage = validateDateInput(parseDate($('#date').val()));
       if (dateMessage) {
-        dateInput.setCustomValidity(dateMessage);
+        $("#date")[0].setCustomValidity(dateMessage);
       }
     }
-    if (reserveForm.checkValidity()) {
+    if ($("#date")[0].checkValidity() && $("#term")[0].checkValidity() && $("#head-count")[0].checkValidity()) {
+      $("#date").parent().removeClass('was-validated');
+      $("#term").parent().removeClass('was-validated');
+      $("#head-count").parent().removeClass('was-validated');
+      updateTotalBill();
+    } else {
+      $('#total-bill').text('-');
+      setValidityMessage($('.needs-calc'));
+      $(this).parent().addClass('was-validated');
+    }
+  });
+
+  // Setup submit event
+  $('#reserve-form').submit(function() {
+    resetCustomValidity($(this).find('input'));
+    const dateValue = parseDate($('#date').val());
+    if ($('#date')[0].checkValidity()) {
+      const dateMessage = validateDateInput(dateValue);
+      if (dateMessage) {
+        $('#date')[0].setCustomValidity(dateMessage);
+      }
+    }
+    if (this.checkValidity()) {
       const reservation = {
-        'roomBill': parseInt(roomBillHidden.value, 10),
-        'planName': planNameHidden.value,
+        'roomBill': parseInt($('#room-bill-hidden').val(), 10),
+        'planName': $('#plan-name-hidden').val(),
         'date': formatDateISO(dateValue),
-        'term': parseInt(termInput.value, 10),
-        'headCount': parseInt(headCountInput.value, 10),
-        'breakfast': breakfastInput.checked,
-        'earlyCheckIn': earlyCheckInInput.checked,
-        'sightseeing': sightseeingInput.checked,
-        'username': usernameInput.value,
-        'contact': contactSelect.options[contactSelect.selectedIndex].value,
-        'email': emailInput.value,
-        'tel': telInput.value,
-        'comment': commentTextArea.value,
+        'term': parseInt($('#term').val(), 10),
+        'headCount': parseInt($('#head-count').val(), 10),
+        'breakfast': $('#breakfast').prop('checked'),
+        'earlyCheckIn': $('#early-check-in').prop('checked'),
+        'sightseeing': $('#sightseeing').prop('checked'),
+        'username': $('#username').val(),
+        'contact': $('#contact').val(),
+        'email': $('#email').val(),
+        'tel': $('#tel').val(),
+        'comment': $('#comment').val(),
       };
       const transactionId = genTransactionId();
       sessionStorage.setItem(transactionId, JSON.stringify(reservation));
       document.cookie = 'transaction=' + transactionId;
     } else {
-      event.preventDefault();
-      event.stopPropagation();
-      setValidityMessage(dateInput, termInput, headCountInput, usernameInput, emailInput, telInput);
-      reserveForm.classList.add('was-validated');
+      setValidityMessage($(this).find('input'));
+      $(this).addClass('was-validated');
+      return false;
     }
   });
 });
+
+function updateTotalBill() {
+  const date = parseDate($('#date').val());
+  if (!date) {
+    return;
+  }
+  const roomBill = parseInt($('#room-bill-hidden').val(), 10);
+  const term = parseInt($('#term').val(), 10);
+  const headCount = parseInt($('#head-count').val(), 10);
+  const totalBill = calcTotalBill(
+      roomBill,
+      date,
+      term, 
+      headCount,
+      $('#breakfast').prop('checked'),
+      $('#early-check-in').prop('checked'),
+      $('#sightseeing').prop('checked'),
+      getAdditionalPlanPrice()
+  );
+  $('#total-bill').text(formatCurrency(totalBill));
+}

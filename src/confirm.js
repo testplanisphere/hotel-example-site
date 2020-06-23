@@ -1,13 +1,12 @@
-import {ready, redirectToTop} from './lib/global.js';
 import {formatCurrency, formatDateLong, parseDateISO} from './lib/formater.js';
 import {getAdditionalPlanPrice} from './lib/i18n.js';
-import {getTransactionId, deleteTransactionId} from './lib/session.js';
+import {getTransactionId, deleteTransactionId, redirectToTop} from './lib/session.js';
 import {calcTotalBill} from './lib/billing.js';
 import {t} from './lib/messages.js';
 
 history.replaceState(null, '', 'confirm.html');
 
-ready(function() {
+$(function() {
   // load data
   const transactionId = getTransactionId();
   if (!transactionId) {
@@ -30,11 +29,11 @@ ready(function() {
       reservation.headCount, reservation.breakfast, reservation.earlyCheckIn, reservation.sightseeing, getAdditionalPlanPrice());
 
   // set result
-  document.getElementById('total-bill').textContent = t('reserve.totalBill', formatCurrency(totalBill));
-  document.getElementById('plan-name').textContent = reservation.planName;
-  document.getElementById('plan-desc').textContent = t('reserve.planDescShort', formatCurrency(reservation.roomBill));
-  document.getElementById('term').textContent = t('reserve.term', formatDateLong(reserveDate), formatDateLong(endDate), reservation.term);
-  document.getElementById('head-count').textContent = t('reserve.headCount', reservation.headCount);
+  $('#total-bill').text(t('reserve.totalBill', formatCurrency(totalBill)));
+  $('#plan-name').text(reservation.planName);
+  $('#plan-desc').text(t('reserve.planDescShort', formatCurrency(reservation.roomBill)));
+  $('#term').text(t('reserve.term', formatDateLong(reserveDate), formatDateLong(endDate), reservation.term));
+  $('#head-count').text(t('reserve.headCount', reservation.headCount));
   let plansHtml = '';
   if (reservation.breakfast) {
     plansHtml += '<li>' + t('reserve.breakfast') + '</li>';
@@ -50,8 +49,8 @@ ready(function() {
   } else {
     plansHtml = t('reserve.none');
   }
-  document.getElementById('plans').innerHTML = plansHtml;
-  document.getElementById('username').textContent = t('reserve.username', reservation.username);
+  $('#plans').html(plansHtml);
+  $('#username').text(t('reserve.username', reservation.username));
   let contactText = '';
   if (reservation.contact === 'no') {
     contactText += t('reserve.contact.no');
@@ -60,8 +59,8 @@ ready(function() {
   } else if (reservation.contact === 'tel') {
     contactText += t('reserve.contact.tel', reservation.tel);
   }
-  document.getElementById('contact').textContent = contactText;
-  document.getElementById('comment').textContent = reservation.comment ? reservation.comment : t('reserve.none');
+  $('#contact').text(contactText);
+  $('#comment').text(reservation.comment ? reservation.comment : t('reserve.none'));
 
   $('#success-modal').on('hidden.bs.modal', function() {
     window.close();

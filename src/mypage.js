@@ -1,6 +1,5 @@
-import {ready, redirectToTop} from './lib/global.js';
 import {formatDateLong, parseDateISO} from './lib/formater.js';
-import {getUser, getSessionUser, logout} from './lib/session.js';
+import {getUser, getSessionUser, logout, redirectToTop} from './lib/session.js';
 import {t} from './lib/messages.js';
 
 const DISPLAY_GENDER = {
@@ -15,7 +14,7 @@ const session = getSessionUser();
 if (!session) {
   redirectToTop();
 }
-ready(function() {
+$(function() {
   // load user data
   const user = getUser(session);
   if (!user) {
@@ -23,51 +22,46 @@ ready(function() {
   }
 
   // set user data
-  document.getElementById('email').textContent = user.email;
-  document.getElementById('username').textContent = user.username;
+  $('#email').text(user.email);
+  $('#username').text(user.username);
   if (user.rank === 'premium') {
-    document.getElementById('rank').textContent = t('user.rank.premium');
+    $('#rank').text(t('user.rank.premium'));
   } else if (user.rank === 'normal') {
-    document.getElementById('rank').textContent = t('user.rank.normal');
+    $('#rank').text(t('user.rank.normal'));
   }
-  document.getElementById('address').textContent = user.address ? user.address : t('user.unregistered');
-  document.getElementById('tel').textContent = user.tel ? user.tel : t('user.unregistered');
-  document.getElementById('gender').textContent = DISPLAY_GENDER[user.gender];
-  document.getElementById('birthday').textContent =
-      user.birthday ? formatDateLong(parseDateISO(user.birthday)) : t('user.unregistered');
-  document.getElementById('notification').textContent = user.notification ? t('user.notification.true') : t('user.notification.false');
+  $('#address').text(user.address ? user.address : t('user.unregistered'));
+  $('#tel').text(user.tel ? user.tel : t('user.unregistered'));
+  $('#gender').text(DISPLAY_GENDER[user.gender]);
+  $('#birthday').text(user.birthday ? formatDateLong(parseDateISO(user.birthday)) : t('user.unregistered'));
+  $('#notification').text(user.notification ? t('user.notification.true') : t('user.notification.false'));
 
   // set icon
   if (user.icon) {
-    const img = document.createElement('img');
-    img.classList.add('img-thumbnail');
-    img.src = user.icon.image;
-    img.width = user.icon.width;
-    img.height = user.icon.height;
-    img.style.backgroundColor = user.icon.color;
-    const iconHolder = document.getElementById('icon-holder');
-    iconHolder.innerHTML = '';
-    iconHolder.appendChild(img);
+    $('<img>', {
+      'class': 'img-thumbnail',
+      'src': user.icon.image,
+      'width': user.icon.width,
+      'height': user.icon.height,
+      'css': {
+        'backgroundColor': user.icon.color,
+      },
+    }).appendTo('#icon-holder');
   }
 
-  document.getElementById('logout-form').addEventListener('submit', function() {
+  $('#logout-form').submit(function() {
     logout();
   });
 
   if (!user.preset) {
-    const iconLink = document.getElementById('icon-link');
-    iconLink.classList.remove('disabled');
-    iconLink.removeAttribute('tabindex');
-    iconLink.removeAttribute('aria-disabled');
-    document.querySelector('#delete-form > button').disabled = false;
-    document.getElementById('delete-form').addEventListener('submit', function(event) {
+    $('#icon-link').removeClass('disabled').removeAttr('tabindex').removeAttr('aria-disabled')
+    $('#delete-form > button').prop('disabled', false);
+    $('#delete-form').submit(function() {
       if (confirm(t('user.deleteConfirm'))) {
         logout();
         localStorage.removeItem(user.email);
         alert(t('user.deleteComplete'));
       } else {
-        event.preventDefault();
-        event.stopPropagation();
+        return false;
       }
     });
   }

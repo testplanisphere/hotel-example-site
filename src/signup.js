@@ -1,5 +1,4 @@
-import {ready, redirectToTop} from './lib/global.js';
-import {getUser, getSessionUser, login} from './lib/session.js';
+import {getUser, getSessionUser, login, redirectToTop} from './lib/session.js';
 import {resetCustomValidity, setValidityMessage} from './lib/validation.js';
 import {t} from './lib/messages.js';
 
@@ -7,63 +6,47 @@ const session = getSessionUser();
 if (session) {
   redirectToTop();
 }
-ready(function() {
-  // Collect input elements
-  const signupForm = document.getElementById('signup-form');
-  const emailInput = document.getElementById('email');
-  const passwordInput = document.getElementById('password');
-  const passwordConfirmationInput = document.getElementById('password-confirmation');
-  const usernameInput = document.getElementById('username');
-  const addressInput = document.getElementById('address');
-  const telInput = document.getElementById('tel');
-  const genderSelect = document.getElementById('gender');
-  const birthdayInput = document.getElementById('birthday');
-
+$(function() {
   // Setup submit event
-  signupForm.addEventListener('submit', function(event) {
-    resetCustomValidity(emailInput, passwordInput, passwordConfirmationInput, usernameInput,
-        addressInput, telInput, genderSelect, birthdayInput);
+  $('#signup-form').submit(function() {
+    resetCustomValidity($(this).find('input'));
 
     // Check exsists user
-    if (emailInput.checkValidity()) {
-      const user = getUser(emailInput.value);
+    if ($('#email')[0].checkValidity()) {
+      const user = getUser($('#email').val());
       if (user) {
-        emailInput.setCustomValidity(t('validation.existsMail'));
+        $('#email')[0].setCustomValidity(t('validation.existsMail'));
       }
     }
 
     // Check password
-    if (passwordInput.checkValidity() && passwordConfirmationInput.checkValidity()) {
-      if (passwordInput.value !== passwordConfirmationInput.value) {
-        passwordConfirmationInput.setCustomValidity(t('validation.passwordUnmatch'));
+    if ($('#password')[0].checkValidity() && $('#password-confirmation')[0].checkValidity()) {
+      if ($('#password').val() !== $('#password-confirmation').val()) {
+        $('#password-confirmation')[0].setCustomValidity(t('validation.passwordUnmatch'));
       }
     }
 
     // Submit or error
-    if (signupForm.checkValidity()) {
-      const rankInput = document.querySelector('input[name="rank"]:checked');
-      const notificationInput = document.getElementById('notification');
+    if (this.checkValidity()) {
       const newUser = {
-        'email': emailInput.value,
-        'password': passwordInput.value,
-        'username': usernameInput.value,
-        'rank': rankInput.value,
-        'address': addressInput.value,
-        'tel': telInput.value,
-        'gender': genderSelect.options[genderSelect.selectedIndex].value,
-        'birthday': birthdayInput.value,
-        'notification': notificationInput.checked,
+        'email': $('#email').val(),
+        'password': $('#password').val(),
+        'username': $('#username').val(),
+        'rank': $('input[name="rank"]:checked').val(),
+        'address': $('#address').val(),
+        'tel': $('#tel').val(),
+        'gender': $('#gender').val(),
+        'birthday': $('#birthday').val(),
+        'notification': $('#notification').prop('checked'),
       };
 
       // store user data
       localStorage.setItem(newUser.email, JSON.stringify(newUser));
       login(newUser.email);
     } else {
-      event.preventDefault();
-      event.stopPropagation();
-      setValidityMessage(emailInput, passwordInput, passwordConfirmationInput, usernameInput,
-          addressInput, telInput, genderSelect, birthdayInput);
-      signupForm.classList.add('was-validated');
+      setValidityMessage($(this).find('input'));
+      $(this).addClass('was-validated');
+      return false;
     }
   });
 });

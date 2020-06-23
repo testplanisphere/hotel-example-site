@@ -2,12 +2,22 @@ import {t} from './messages.js';
 
 /**
  * Reset all validation states
- * @param  {...HTMLInputElement} arguments
+ * @param  {jQuery} $inputs
  */
-export function resetCustomValidity() {
-  for (let i = 0; i < arguments.length; i++) {
-    arguments[i].setCustomValidity('');
-  }
+export function resetCustomValidity($inputs) {
+  $inputs.each(function() {
+    this.setCustomValidity('');
+  });
+}
+
+/**
+ * Set all validation masseges
+ * @param  {jQuery} $inputs
+ */
+export function setValidityMessage($inputs) {
+  $inputs.each(function() {
+    $(this).nextAll('.invalid-feedback').text(getErrorMessege(this));
+  });
 }
 
 /**
@@ -62,16 +72,5 @@ export function validateDateInput(date) {
     } else if (date.getTime() > after90.getTime()) {
       return t('validation.shouldBeThreeMonth');
     }
-  }
-}
-
-/**
- * Set all validation masseges
- * @param  {...HTMLInputElement} arguments
- */
-export function setValidityMessage() {
-  for (let i = 0; i < arguments.length; i++) {
-    const input = arguments[i];
-    document.querySelector('#' + input.id + ' ~ .invalid-feedback').textContent = getErrorMessege(input);
   }
 }
