@@ -20,9 +20,7 @@ $(function() {
 
   // fetch selected plan data
   const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + Date.now();
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener('load', function() {
-    const data = JSON.parse(this.responseText);
+  $.getJSON(url).done(function(data) {
     let plan = null;
     for (let i = 0; i < data.length; i++) {
       if (data[i].id === planId) {
@@ -62,8 +60,6 @@ $(function() {
     }
     $('#submit-button').prop('disabled', false);
   });
-  xhr.open('GET', url);
-  xhr.send();
 
   // set login user data
   if (user) {

@@ -13,9 +13,7 @@ $(function() {
 
   // fetch plan data
   const url = location.origin + '/data/' + getLocale() + '/plan_data.json?' + Date.now();
-  const xhr = new XMLHttpRequest();
-  xhr.addEventListener('load', function() {
-    const data = JSON.parse(this.responseText);
+  $.getJSON(url).done(function(data) {
     let planHtml = '';
     for (let i = 0; i < data.length; i++) {
       if (data[i].id !== 0 && canDisplayPlan(data[i], user)) {
@@ -24,8 +22,6 @@ $(function() {
     }
     $('#plan-list').html(planHtml);
   });
-  xhr.open('GET', url);
-  xhr.send();
 });
 
 /**
