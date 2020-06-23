@@ -68,27 +68,6 @@ $(function() {
     $('#tel').val(user.tel);
   }
 
-  const updateTotalBill = function() {
-    const date = parseDate($('#date').val());
-    if (!date) {
-      return;
-    }
-    const roomBill = parseInt($('#room-bill-hidden').val(), 10);
-    const term = parseInt($('#term').val(), 10);
-    const headCount = parseInt($('#head-count').val(), 10);
-    const totalBill = calcTotalBill(
-        roomBill, 
-        date, 
-        term, 
-        headCount, 
-        $('#breakfast').prop('checked'), 
-        $('#early-check-in').prop('checked'),
-        $('#sightseeing').prop('checked'),
-        getAdditionalPlanPrice()
-    );
-    $('#total-bill').text(formatCurrency(totalBill));
-  };
-
   // Setup datepicker
   $('#date').datepicker({
     showButtonPanel: true,
@@ -182,3 +161,24 @@ $(function() {
     }
   });
 });
+
+function updateTotalBill() {
+  const date = parseDate($('#date').val());
+  if (!date) {
+    return;
+  }
+  const roomBill = parseInt($('#room-bill-hidden').val(), 10);
+  const term = parseInt($('#term').val(), 10);
+  const headCount = parseInt($('#head-count').val(), 10);
+  const totalBill = calcTotalBill(
+      roomBill,
+      date,
+      term, 
+      headCount,
+      $('#breakfast').prop('checked'),
+      $('#early-check-in').prop('checked'),
+      $('#sightseeing').prop('checked'),
+      getAdditionalPlanPrice()
+  );
+  $('#total-bill').text(formatCurrency(totalBill));
+}
