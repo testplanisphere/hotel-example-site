@@ -12,9 +12,9 @@
   <div id="qunit-fixture"></div>
   <script src="./qunit-2.9.2.js"></script>
   <script type="module">
-    import { calcTotalBill } from '../js/lib/billing.js';
+    import { calcTotalBill } from '../src/lib/billing.js';
 
-    QUnit.test('Test total bill', (assert) => {
+    QUnit.test('Test total bill', function(assert) {
       // calcTotalBill(roomBill, date, term, headCount, breakfast, earlyCheckIn, sightseeing) 
       const monday = new Date(2020, 3 - 1, 2);
       const saturday = new Date(2020, 3 - 1, 7);
