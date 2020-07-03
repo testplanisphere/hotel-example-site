@@ -24,7 +24,8 @@ export function formatDateLong(date) {
  * @return {string} formated text
  */
 export function formatDateShort(date) {
-  return getDateShortFormatter().format(date);
+  const formatter = getDateShortFormatter();
+  return formatter(date);
 }
 
 /**
@@ -33,7 +34,8 @@ export function formatDateShort(date) {
  * @return {Date} date
  */
 export function parseDate(dateString) {
-  return getDateShortParser()(dateString);
+  const parser = getDateShortParser();
+  return parser(dateString);
 }
 
 /**

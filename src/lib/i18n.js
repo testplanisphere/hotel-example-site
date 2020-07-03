@@ -19,8 +19,12 @@ const DATE_LONG_FORMATTER = {
 };
 
 const DATE_SHORT_FORMATTER = {
-  'ja': new Intl.DateTimeFormat('ja-JP', {year: 'numeric', month: '2-digit', day: '2-digit'}),
-  'en-US': new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit', day: '2-digit'}),
+  'ja': function(date) {
+    return date.getFullYear() + '/' + pad(date.getMonth() + 1) + '/' + pad(date.getDate());
+  },
+  'en-US': function(date) {
+    return pad(date.getMonth() + 1) + '/' + pad(date.getDate() + '/' + date.getFullYear());
+  },
 };
 
 const DATE_SHORT_PARSER = {
@@ -127,4 +131,16 @@ export function getDateShortParser(locale) {
 export function getAdditionalPlanPrice(locale) {
   locale = (typeof locale !== 'undefined') ?  locale : getLocale();
   return ADDITIONAL_PLAN_PRICE[locale];
+}
+
+/**
+ * Pad zero
+ * @param {number} number
+ * @return {string} 0X string
+ */
+function pad(number) {
+  if (number < 10) {
+    return '0' + number;
+  }
+  return '' + number;
 }
