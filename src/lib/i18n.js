@@ -23,7 +23,7 @@ const DATE_SHORT_FORMATTER = {
     return date.getFullYear() + '/' + pad(date.getMonth() + 1) + '/' + pad(date.getDate());
   },
   'en-US': function(date) {
-    return pad(date.getMonth() + 1) + '/' + pad(date.getDate() + '/' + date.getFullYear());
+    return pad(date.getMonth() + 1) + '/' + pad(date.getDate()) + '/' + date.getFullYear();
   },
 };
 

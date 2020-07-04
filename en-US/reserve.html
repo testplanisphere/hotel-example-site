@@ -24,9 +24,9 @@
           <p class="text-muted" id ="plan-desc">&nbsp;</p>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-6 ml-auto">
-          <form action="./confirm.html" id="reserve-form" novalidate>
+      <form action="./confirm.html" id="reserve-form" novalidate>
+        <div class="row">
+          <div class="col-lg-6 ml-auto">
             <div class="form-group">
               <label for="date">Check-in <span class="badge badge-primary">required</span></label>
               <input type="text" class="form-control needs-calc" name="date" id="date" required>
@@ -112,15 +112,15 @@
             <input type="hidden" name="plan-id-hidden" id="plan-id-hidden" value="">
             <input type="hidden" name="plan-name-hidden" id="plan-name-hidden" value="">
             <input type="hidden" name="room-bill-hidden" id="room-bill-hidden" value="">
-          </form>
+          </div>
+          <div class="col-lg-3 mr-auto">
+            <h3>Total</h3>
+            <output class="h1 my-2" name="total-bill" id="total-bill">-</output>
+            <button type="submit" class="btn btn-primary btn-block my-3" data-test="submit-button" id="submit-button" disabled>Confirm Reservation</button>
+            <div id="room-info"><p>choice room freely</p></div>
+          </div>
         </div>
-        <div class="col-lg-3 mr-auto">
-          <h3>Total</h3>
-          <output class="h1 my-2" name="total-bill" id="total-bill" form="reserve-form">-</output>
-          <button type="submit" class="btn btn-primary btn-block my-3" form="reserve-form" data-test="submit-button" id="submit-button" disabled>Confirm Reservation</button>
-          <div id="room-info"><p>choice room freely</p></div>
-        </div>
-      </div>
+      </form>
     </div>
     <footer class="text-center py-5">
       <div class="container">
