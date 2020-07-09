@@ -74,7 +74,7 @@ $(function() {
     maxDate: 90,
     minDate: 1,
     onSelect: function() {
-      updateTotalBill();
+      $(this).change();
     },
   });
 
