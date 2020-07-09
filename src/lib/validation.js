@@ -38,10 +38,6 @@ function getErrorMessege(input) {
     } else {
       return t('validation.badInput');
     }
-  } else if (input.validity.badInput) {
-    return t('validation.badInput');
-  } else if (input.validity.patternMismatch) {
-    return t('validation.patternMismatch');
   } else if (input.validity.tooLong) {
     return t('validation.tooLong', input.maxLength);
   } else if (input.validity.tooShort) {
@@ -52,6 +48,10 @@ function getErrorMessege(input) {
     return t('validation.rangeUnderflow', input.min);
   } else if (input.validity.stepMismatch) {
     return t('validation.badInput');
+  } else if (input.validity.badInput) {
+    return t('validation.badInput');
+  } else if (input.validity.patternMismatch) {
+    return t('validation.patternMismatch');
   }
 }
 
