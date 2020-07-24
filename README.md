@@ -1,46 +1,39 @@
-# automation-testing-practice
+# hotel-example-site
 
 ![selenide](https://github.com/testplanisphere/hotel-example-selenide/workflows/selenide/badge.svg)
 ![webdriverio](https://github.com/testplanisphere/hotel-example-webdriverio/workflows/webdriverio/badge.svg)
 ![capybara](https://github.com/testplanisphere/hotel-example-capybara/workflows/capybara/badge.svg)
 ![selenium3-java](https://github.com/testplanisphere/hotel-example-selenium3-java/workflows/selenium3-java/badge.svg)
 
-## このサイトはテスト自動化の学習のためのデモサイトです
+## This site is a sandbox to practice test automation.
 
-Seleniumなどのブラウザテスト自動化を学習したい方が利用しやすいテスト対象サイトとして作成しています。
+This site aims to learn browser automation with running automation scripts against this site as the system under test.
 
-学習のほか、書籍やブログなどでのサンプルやデモなどにもお使いいただけます。
+You can refer to this site from any places such as books and blogs under [MIT License](https://github.com/testplanisphere/hotel-example-site/blob/master/LICENSE).
 
-自動テストの学習を主目的として作成していますが、テスト設計のお題などにも使用可能です。
+It is made for learning test automation, but you can also use it to learn test design and technique.
 
-### サイトの構成
+### Site Structure
 
-ホテルの予約サイトを模した作りになっています。ログイン・会員登録・ホテルの宿泊予約のそれぞれの入力フォームを用意しています。レスポンシブデザインに対応しているためモバイルブラウザでも表示できます。
+This site provides mocked booking hotel feature. It has input forms to log in, sign up, and reserve a room. The layout is mobile friendly by responsive design.
 
-#### ご利用上の注意
+#### Terms of Use
 
-* 2020年4月時点でのGoogle Chrome、Mozilla Firefoxの最新版で動作確認をしています。
-* **Internet Explorerでは動作しません。**
-* サイトはGitHub Pagesでホストされています。
-* 入力データについて
-  * データはブラウザのCookieおよびSession Storage、Local Storageに保存されます。
-  * DBなどサーバ側での保存はありません。
-  * HTMLの仕様上、フォームへの入力内容はURLの末尾に付加されて送信されます。Githubサーバのログなどに残る可能性があるのでお気をつけください。
-* JMeter、Gatlingなどサイトに負荷のかかるテストはおやめください。
-* このサイトを利用することによって生じた損害などにつきましては、一切の責任を負いません。
+* We confirmed sample code worked with the latest Google Chrome in June 2020.
+* This site is working on GitHub pages.
+* About input data
+  * The data is stored in the browser's Cookie, Session Storage and Local Storage.
+  * he data is NOT stored in the server side such as database.
+  * Due to the specification of HTML, the contents of the form are sent as the last part of the URL. Please note that it may be left in the GitHub server's logs and other records.
+* Do NOT use this site for stress testing.
+* We do not take any responsibilities by using this site.
 
-### ローカル環境での実行方法
-
-```
-python -m http.server 9999
-```
-
-### 変更履歴
+### Changelog
 
 #### v1.1.0 (2020-04-29)
 
-* サンプルコードにSelenide、Capybaraを追加
+* Add example codes using Selenide and Capybara
 
 #### v1.0.0 (2020-04-14)
 
-* 正式リリース
+* First release
