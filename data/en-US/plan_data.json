@@ -13,7 +13,7 @@
   },
   {
     "id": 1,
-    "name": "Plamium plan",
+    "name": "Premium plan",
     "roomBill": 100.00,
     "minHeadCount": 2,
     "maxHeadCount": 9,
