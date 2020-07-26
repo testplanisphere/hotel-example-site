@@ -1,9 +1,14 @@
 # hotel-example-site
 
-![selenide](https://github.com/testplanisphere/hotel-example-selenide/workflows/selenide/badge.svg)
-![webdriverio](https://github.com/testplanisphere/hotel-example-webdriverio/workflows/webdriverio/badge.svg)
-![capybara](https://github.com/testplanisphere/hotel-example-capybara/workflows/capybara/badge.svg)
-![selenium3-java](https://github.com/testplanisphere/hotel-example-selenium3-java/workflows/selenium3-java/badge.svg)
+![selenide-en-us](https://github.com/testplanisphere/hotel-example-selenide-en-us/workflows/selenide-en-us/badge.svg)
+![webdriverio-en-us](https://github.com/testplanisphere/hotel-example-webdriverio-en-us/workflows/webdriverio-en-us/badge.svg)
+![capybara-en-us](https://github.com/testplanisphere/hotel-example-capybara-en-us/workflows/capybara-en-us/badge.svg)
+![selenium3-java-en-us](https://github.com/testplanisphere/hotel-example-selenium3-java-en-us/workflows/selenium3-java-en-us/badge.svg)
+
+![selenide-ja](https://github.com/testplanisphere/hotel-example-selenide-ja/workflows/selenide-ja/badge.svg)
+![webdriverio-ja](https://github.com/testplanisphere/hotel-example-webdriverio-ja/workflows/webdriverio-ja/badge.svg)
+![capybara-ja](https://github.com/testplanisphere/hotel-example-capybara-ja/workflows/capybara-ja/badge.svg)
+![selenium3-java-ja](https://github.com/testplanisphere/hotel-example-selenium3-java-ja/workflows/selenium3-java-ja/badge.svg)
 
 ## This site is a sandbox to practice test automation.
 
