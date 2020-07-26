@@ -45,190 +45,37 @@
     <div class="container">
       <div class="row bg-white my-3 px-3 shadow-sm">
         <div class="col">
-          <h2 class="my-4">このサイトはテスト自動化の学習のための練習サイトです</h2>
+          <h2 class="my-4">This site is a sandbox to practice test automation.</h2>
+          <h3 class="my-4">このサイトはテスト自動化の学習用の練習サイトです。</h3>
+        </div>
+      </div>
+      <div class="row bg-white my-3 px-3 py-3 shadow-sm">
+        <div class="col">
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h4 class="card-title">English (U.S.)</h4>
+                  <a href="./en-US/" class="card-link btn btn-primary">Go to Top Page</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h4 class="card-title">日本語<small class="text-muted"> Japanese</small></h4>
+                  <a href="./ja/" class="card-link btn btn-primary">トップページへ</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row bg-white my-3 px-3 py-3 shadow-sm">
+        <div class="col">
           <h5><strong class="text-danger">お知らせ</strong></h5>
-          <p><strong>現在（2020年7月）新機能追加のため内部実装の大幅な書き換えを実施しています。</strong><br>
-            外部の挙動には変化がないように随時テストを行いながら（下にあるサンプルコードがそれです）改修していますが、漏れなどにより不具合がある可能性があります。何か見つけた方は<a href="https://github.com/testplanisphere/hotel-example-site/issues">issues</a>まで報告をお願いいたします。<br>
-            前述の通り、外部仕様には極力変化がないように努めていますが、実装上の理由により変更になった箇所があります（随時更新）。
-            <ul>
-              <li>宿泊予約ページの「予約内容を確認する」ボタンをプラン情報の読み込みが完了するまで非活性状態にするように変更しました。</li>
-              <li>プラン一覧、宿泊予約ページのAjax通信がFetch APIからXMLHttpRequestに変更になりました。</li>
-              <li>宿泊予約ページのDOM構造が変更になりました。form要素の位置がdivの外側になっています。</li>
-              <li>サイト名が「テスト自動化デモサイト」から「テスト自動化練習サイト」に変更になりました。</li>
-            </ul>
-            また、新機能のリリース後にはルートパスが現在の<code>/</code>から<code>/ja/</code>になる予定です。現行のページも当面は残しますがご留意ください。<br>
-            <strong class="text-danger">お知らせここまで</strong>
-          </p>
-          <p>Seleniumなどのブラウザテスト自動化を学習したい方が、実際にテストスクリプトを実行するための<strong>テスト対象サイト</strong>として作成しています。</p>
-          <p>書籍やブログなどでのサンプルやデモなどにもお使いいただけます。ライセンスは<a href="https://github.com/testplanisphere/hotel-example-site/blob/master/LICENSE">MIT License</a>です。</p>
-          <p>自動テストの学習を目的として作成していますが、テスト設計や技法の学習にも使えます。</p>
-        </div>
-      </div>
-      <div class="row bg-white my-3 px-3 shadow-sm">
-        <div class="col">
-          <h3 class="my-4">サイトの構成</h3>
-          <p>ホテルの予約サイトを模した作りになっています。ログイン・会員登録・ホテルの宿泊予約のそれぞれの入力フォームを用意しています。レスポンシブデザインに対応しているためモバイルブラウザでも表示できます。</p>
-          <h4 class="my-4">ご利用上の注意</h4>
-          <ul>
-            <li>2020年6月時点でのGoogle Chromeの最新版で動作確認をしています。</li>
-            <li>サイトはGitHub Pagesでホストされています。</li>
-            <li>入力データについて
-              <ul>
-                <li>データはブラウザのCookieおよびSession Storage、Local Storageに保存されます。</li>
-                <li>DBなどサーバ側での保存はありません。</li>
-                <li>HTMLの仕様上、フォームへの入力内容はURLの末尾に付加されて送信されます。Githubサーバのログなどに残る可能性があるのでお気をつけください。</li>
-              </ul>
-            </li>
-            <li>負荷テストには利用しないでください。</li>
-            <li>このサイトを利用することによって生じた損害などにつきましては、一切の責任を負いません。</li>
-          </ul>
-          <h4 class="my-4">構成の詳細</h4>
-          <div class="row">
-            <div class="col-12 col-lg-4">
-              <h5 class ="my-2">ログイン画面</h5>
-              <p>シンプルなテキストインプットとボタンの画面です。ログイン情報はCookieに保存されます。会員登録画面で保存したユーザの他、登録済みのユーザ（下記）があります。</p>
-            </div>
-            <div class="col-12 col-lg-4">
-              <h5 class ="my-2">会員登録画面</h5>
-              <p>複数種類のインプットがある画面です。この画面で登録したユーザはLocal Storageに保存され、ログインに使用することができるようになります。</p>
-            </div>
-            <div class="col-12 col-lg-4">
-              <h5 class ="my-2">マイページ画面</h5>
-              <p>ログイン後に表示される画面です。登録したユーザ情報が表示され、確認に使うことができます。また、新規登録したユーザの場合アイコン画像の設定と退会（情報削除）ができます。</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-12 col-lg-4">
-              <h5 class ="my-2">宿泊プラン一覧画面</h5>
-              <p>「宿泊予約」のメニューから表示できる画面です。表示されるプランは「未ログイン」「一般会員」「プレミアム会員」によって変わります。プラン情報はAjaxで非同期に読み込まれます（トップの一つを除く）。</p>
-            </div>
-            <div class="col-12 col-lg-4">
-              <h5 class ="my-2">宿泊予約画面</h5>
-              <p>宿泊の予約を行う画面です。新規ウィンドウで開きます。複数種類のインプットのほか、合計金額が入力内容で動的に計算され表示されます。基本料および宿泊数・人数の許容値は選択したプランで変わります。</p>
-            </div>
-            <div class="col-12 col-lg-4">
-              <h5 class ="my-2">宿泊予約確認画面</h5>
-              <p>宿泊予約の確定後に表示される画面です。予約で入力した内容の確認表示があります。また、アニメーション付きのダイアログが表示されます。</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <p><a href="./about.html" target="_blank">より詳しい解説はこちら（研修を作る方向け）</a></p>
-            </div>
-          </div>
-          <table class="table my-3">
-            <caption>登録済みユーザ</caption>
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">メールアドレス</th>
-                <th scope="col">パスワード</th>
-                <th scope="col">会員ランク</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td><code>ichiro@example.com</code></td>
-                <td><code>password</code></td>
-                <td>プレミアム会員</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td><code>sakura@example.com</code></td>
-                <td><code>pass1234</code></td>
-                <td>一般会員</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td><code>jun@example.com</code></td>
-                <td><code>pa55w0rd!</code></td>
-                <td>プレミアム会員</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td><code>yoshiki@example.com</code></td>
-                <td><code>pass-pass</code></td>
-                <td>一般会員</td>
-              </tr>
-          </table>
-        </div>
-      </div>
-      <div class="row bg-white my-3 px-3 shadow-sm">
-        <div class="col">
-          <h3 class="my-4">サンプルコード</h3>
-          <p>このサイトをテスト対象とした自動テストスクリプトです。学習の参考としてお使いください。</p>
-          <div class="row">
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="card shadow-sm">
-                <div class="card-header">Java開発者向け</div>
-                <div class="card-body">
-                  <h5 class="card-title">selenide</h5>
-                  <dl class="small">
-                    <dt>フレームワーク</dt>
-                    <dd><a href="https://selenide.org/">Selenide</a></dd>
-                    <dt>プログラミング言語</dt>
-                    <dd>Java</dd>
-                    <dt>テスティングフレームワーク</dt>
-                    <dd><a href="https://junit.org/junit5/">JUnit 5</a></dd>
-                  </dl>
-                  <a href="https://github.com/testplanisphere/hotel-example-selenide-ja" class="card-link">コードを見る</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="card shadow-sm">
-                <div class="card-header">JavaScript開発者向け</div>
-                <div class="card-body">
-                  <h5 class="card-title">webdriverio</h5>
-                  <dl class="small">
-                    <dt>フレームワーク</dt>
-                    <dd><a href="https://webdriver.io/">WebDriverIO</a></dd>
-                    <dt>プログラミング言語</dt>
-                    <dd>JavaScript</dd>
-                    <dt>テスティングフレームワーク</dt>
-                    <dd><a href="https://mochajs.org/">Mocha</a></dd>
-                  </dl>
-                  <a href="https://github.com/testplanisphere/hotel-example-webdriverio-ja" class="card-link">コードを見る</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="card shadow-sm">
-                <div class="card-header">Ruby開発者向け</div>
-                <div class="card-body">
-                  <h5 class="card-title">capybara</h5>
-                  <dl class="small">
-                    <dt>フレームワーク</dt>
-                    <dd><a href="https://teamcapybara.github.io/capybara/">Capybara</a></dd>
-                    <dt>プログラミング言語</dt>
-                    <dd>Ruby</dd>
-                    <dt>テスティングフレームワーク</dt>
-                    <dd><a href="https://rspec.info/">RSpec</a></dd>
-                  </dl>
-                  <a href="https://github.com/testplanisphere/hotel-example-capybara-ja" class="card-link">コードを見る</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4 col-lg-3">
-              <div class="card shadow-sm">
-                <div class="card-header">Java開発者向け</div>
-                <div class="card-body">
-                  <h5 class="card-title">selenium3-java</h5>
-                  <dl class="small">
-                    <dt>フレームワーク</dt>
-                    <dd><a href="https://www.selenium.dev/">Selenium WebDriver</a></dd>
-                    <dt>プログラミング言語</dt>
-                    <dd>Java</dd>
-                    <dt>テスティングフレームワーク</dt>
-                    <dd><a href="https://junit.org/junit5/">JUnit 5</a></dd>
-                  </dl>
-                  <a href="https://github.com/testplanisphere/hotel-example-selenium3-java-ja" class="card-link">コードを見る</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p>日本語版のサイトは <a href="https://hotel.testplanisphere.dev/ja/">https://hotel.testplanisphere.dev/ja/</a> へ移動しました。<br>
+          ご利用の方はブックマーク等の変更をお願いいたします。ルート直下の旧URLのページは8月末の更新で削除する予定です。</p>
         </div>
       </div>
     </div>
