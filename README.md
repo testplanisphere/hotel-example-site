@@ -35,6 +35,11 @@ This site provides mocked booking hotel feature. It has input forms to log in, s
 
 ### Changelog
 
+#### v2.1.0 (2020-08-31)
+
+* Remove old Japanese pages
+* Update dependencies
+
 #### v2.0.0 (2020-07-27)
 
 * Add English version
