@@ -1,14 +1,14 @@
 # hotel-example-site
 
-![selenide-en-us](https://github.com/testplanisphere/hotel-example-selenide-en-us/workflows/selenide-en-us/badge.svg)
-![webdriverio-en-us](https://github.com/testplanisphere/hotel-example-webdriverio-en-us/workflows/webdriverio-en-us/badge.svg)
-![capybara-en-us](https://github.com/testplanisphere/hotel-example-capybara-en-us/workflows/capybara-en-us/badge.svg)
-![selenium3-java-en-us](https://github.com/testplanisphere/hotel-example-selenium3-java-en-us/workflows/selenium3-java-en-us/badge.svg)
+[![selenide-en-us](https://github.com/testplanisphere/hotel-example-selenide-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenide-en-us/actions/workflows/test.yml)
+[![webdriverio-en-us](https://github.com/testplanisphere/hotel-example-webdriverio-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-webdriverio-en-us/actions/workflows/test.yml)
+[![capybara-en-us](https://github.com/testplanisphere/hotel-example-capybara-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-capybara-en-us/actions/workflows/test.yml)
+[![selenium3-java-en-us](https://github.com/testplanisphere/hotel-example-selenium3-java-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenium3-java-en-us/actions/workflows/test.yml)
 
-![selenide-ja](https://github.com/testplanisphere/hotel-example-selenide-ja/workflows/selenide-ja/badge.svg)
-![webdriverio-ja](https://github.com/testplanisphere/hotel-example-webdriverio-ja/workflows/webdriverio-ja/badge.svg)
-![capybara-ja](https://github.com/testplanisphere/hotel-example-capybara-ja/workflows/capybara-ja/badge.svg)
-![selenium3-java-ja](https://github.com/testplanisphere/hotel-example-selenium3-java-ja/workflows/selenium3-java-ja/badge.svg)
+[![selenide-ja](https://github.com/testplanisphere/hotel-example-selenide-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenide-ja/actions/workflows/test.yml)
+[![webdriverio-ja](https://github.com/testplanisphere/hotel-example-webdriverio-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-webdriverio-ja/actions/workflows/test.yml)
+[![capybara-ja](https://github.com/testplanisphere/hotel-example-capybara-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-capybara-ja/actions/workflows/test.yml)
+[![selenium3-java-ja](https://github.com/testplanisphere/hotel-example-selenium3-java-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenium3-java-ja/actions/workflows/test.yml)
 
 ## This site is a sandbox to practice test automation.
 
@@ -34,6 +34,10 @@ This site provides mocked booking hotel feature. It has input forms to log in, s
 * We do not take any responsibilities by using this site.
 
 ### Changelog
+
+#### v2.1.1 (2021-02-28)
+
+* [#31](https://github.com/testplanisphere/hotel-example-site/pull/31) Add rel=opener
 
 #### v2.1.0 (2020-08-31)
 
