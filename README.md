@@ -3,12 +3,12 @@
 [![selenide-en-us](https://github.com/testplanisphere/hotel-example-selenide-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenide-en-us/actions/workflows/test.yml)
 [![webdriverio-en-us](https://github.com/testplanisphere/hotel-example-webdriverio-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-webdriverio-en-us/actions/workflows/test.yml)
 [![capybara-en-us](https://github.com/testplanisphere/hotel-example-capybara-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-capybara-en-us/actions/workflows/test.yml)
-[![selenium3-java-en-us](https://github.com/testplanisphere/hotel-example-selenium3-java-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenium3-java-en-us/actions/workflows/test.yml)
+[![selenium4-java-en-us](https://github.com/testplanisphere/hotel-example-selenium4-java-en-us/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenium4-java-en-us/actions/workflows/test.yml)
 
 [![selenide-ja](https://github.com/testplanisphere/hotel-example-selenide-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenide-ja/actions/workflows/test.yml)
 [![webdriverio-ja](https://github.com/testplanisphere/hotel-example-webdriverio-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-webdriverio-ja/actions/workflows/test.yml)
 [![capybara-ja](https://github.com/testplanisphere/hotel-example-capybara-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-capybara-ja/actions/workflows/test.yml)
-[![selenium3-java-ja](https://github.com/testplanisphere/hotel-example-selenium3-java-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenium3-java-ja/actions/workflows/test.yml)
+[![selenium4-java-ja](https://github.com/testplanisphere/hotel-example-selenium4-java-ja/actions/workflows/test.yml/badge.svg)](https://github.com/testplanisphere/hotel-example-selenium4-java-ja/actions/workflows/test.yml)
 
 ## This site is a sandbox to practice test automation.
 
