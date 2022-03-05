@@ -1,0 +1,122 @@
+[
+  {
+    "id": 0,
+    "name": "Plan with special offers",
+    "roomBill": 70.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "Standard twin room",
+    "roomPage": "standard-twin.html",
+    "only": null
+  },
+  {
+    "id": 1,
+    "name": "Premium plan",
+    "roomBill": 100.00,
+    "minHeadCount": 2,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "Premium twin room",
+    "roomPage": "premium-twin.html",
+    "only": "premium"
+  },
+  {
+    "id": 2,
+    "name": "With dinner",
+    "roomBill": 85.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 4,
+    "minTerm": 1,
+    "maxTerm": 3,
+    "room": "choice room freely",
+    "roomPage": null,
+    "only": "member"
+  },
+  {
+    "id": 3,
+    "name": "Economical",
+    "roomBill": 60.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "choice room freely",
+    "roomPage": null,
+    "only": "member"
+  },
+  {
+    "id": 4,
+    "name": "Staying without meals",
+    "roomBill": 55.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 2,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "Single room",
+    "roomPage": "single.html",
+    "only": null
+  },
+  {
+    "id": 5,
+    "name": "Business trip",
+    "roomBill": 75.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 2,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "Single room",
+    "roomPage": "single.html",
+    "only": null
+  },
+  {
+    "id": 6,
+    "name": "With beauty salon",
+    "roomBill": 90.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 6,
+    "minTerm": 1,
+    "maxTerm": 9,
+    "room": "choice room freely",
+    "roomPage": null,
+    "only": null
+  },
+  {
+    "id": 7,
+    "name": "With private onsen",
+    "roomBill": 90.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 6,
+    "minTerm": 1,
+    "maxTerm": 3,
+    "room": "choice room freely",
+    "roomPage": null,
+    "only": null
+  },
+  {
+    "id": 8,
+    "name": "For honeymoon",
+    "roomBill": 80.00,
+    "minHeadCount": 2,
+    "maxHeadCount": 2,
+    "minTerm": 1,
+    "maxTerm": 2,
+    "room": "Premium twin room",
+    "roomPage": "premium-twin.html",
+    "only": null
+  },
+  {
+    "id": 9,
+    "name": "With complimentary ticket",
+    "roomBill": 100.00,
+    "minHeadCount": 1,
+    "maxHeadCount": 9,
+    "minTerm": 1,
+    "maxTerm": 5,
+    "room": "choice room freely",
+    "roomPage": null,
+    "only": null
+  }
+]

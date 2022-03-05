@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="noindex">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <title>MyPage | HOTEL PLANISPHERE - Website for Practice Test Automation</title>
+  </head>
+  <body class="bg-light">
+    <h1 class="text-center text-uppercase d-none d-lg-block display-3 my-5">Hotel Planisphere</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-lg-4">
+      <a class="navbar-brand text-uppercase font-weight-bold d-lg-none" href="#">Hotel Planisphere</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <a class="nav-link" href="./plans.html">Reserve</a>
+          </li>
+          <li class="nav-item px-lg-4 active">
+            <a class="nav-link" href="./mypage.html">Mypage</a>
+          </li>
+          <li class="nav-item px-lg-4">
+            <form action="./index.html" class="form-inline" id="logout-form" novalidate>
+              <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Logout</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container bg-white py-5">
+      <div class="row">
+        <div class="col-lg-9 mx-auto">
+          <h2 class="my-3">MyPage <span id="icon-holder"></span></h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 ml-auto">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Email</h5>
+                <p id="email"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Name</h5>
+                <p id="username"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Membership</h5>
+                <p id="rank"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Address</h5>
+                <p id="address"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Tel</h5>
+                <p id="tel"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Gender</h5>
+                <p id="gender"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Date of birth</h5>
+                <p id="birthday"></p>
+              </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <div>
+                <h5>Notification</h5>
+                <p id="notification"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 mr-auto">
+          <a href="./icon.html" class="btn btn-primary btn-block disabled" role="button" tabindex="-1" id="icon-link" aria-disabled="true">Icon Setting</a>
+          <form action="./index.html" id="delete-form">
+            <button type="submit" class="btn btn-danger btn-block my-3" disabled>Delete Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="text-center py-5">
+      <div class="container">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://github.com/testplanisphere/hotel-example-site">GitHub</a></li>
+        </ul>
+        <p class="text-muted">© 2020 Test Planisphere</p>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../dist/vendor/jquery-3.6.0.min.js"></script>
+    <script src="../dist/vendor/bootstrap.bundle.min.js"></script>
+    <script src="../dist/mypage.bundle.js"></script>
+  </body>
+</html>
