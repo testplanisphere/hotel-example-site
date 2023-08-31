@@ -31,7 +31,7 @@
     "maxHeadCount": 4,
     "minTerm": 1,
     "maxTerm": 3,
-    "room": "choice room freely",
+    "room": "choose room freely",
     "roomPage": null,
     "only": "member"
   },
@@ -43,7 +43,7 @@
     "maxHeadCount": 9,
     "minTerm": 1,
     "maxTerm": 9,
-    "room": "choice room freely",
+    "room": "choose room freely",
     "roomPage": null,
     "only": "member"
   },
@@ -79,7 +79,7 @@
     "maxHeadCount": 6,
     "minTerm": 1,
     "maxTerm": 9,
-    "room": "choice room freely",
+    "room": "choose room freely",
     "roomPage": null,
     "only": null
   },
@@ -91,7 +91,7 @@
     "maxHeadCount": 6,
     "minTerm": 1,
     "maxTerm": 3,
-    "room": "choice room freely",
+    "room": "choose room freely",
     "roomPage": null,
     "only": null
   },
@@ -115,7 +115,7 @@
     "maxHeadCount": 9,
     "minTerm": 1,
     "maxTerm": 5,
-    "room": "choice room freely",
+    "room": "choose room freely",
     "roomPage": null,
     "only": null
   }
